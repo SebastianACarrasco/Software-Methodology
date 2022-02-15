@@ -1,7 +1,7 @@
 # Software-Methodology
 cs213 Rutgers, Software Methodology
 
-Project 1
+## Project 1  
 Your team will develop a software that behaves like a bank teller to process banking transactions. This project uses
 the IDE console as the user interface and utilizes the Java standard input and output to read the transactions and write
 the results. The transactions may include, open a new account, close an existing account, deposit money to an existing
