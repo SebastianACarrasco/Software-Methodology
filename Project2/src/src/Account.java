@@ -30,7 +30,6 @@ public abstract class Account {
         this.closed = closed;
     }
 
-
     /**
      * Checks if two accounts are equal. This method is generalized for all the
      * different types of accounts under this abstract class.
