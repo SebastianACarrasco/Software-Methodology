@@ -14,7 +14,7 @@ public class Savings extends Account {
     private static final double MIN_BALANCE = 300;
     private static final double LOYAL_INTEREST = 0.0045;
     private static final double NONLOYAL_INTEREST = 0.003;
-    private static final double fee = 6.0;
+    private static final double FEE = 6.0;
 
     /**
      * Constructor for Savings class that takes information from account class
@@ -52,7 +52,7 @@ public class Savings extends Account {
         if(balance >= MIN_BALANCE) {
             return 0.0;
         } else {
-            return fee;
+            return FEE;
         }
     }
 
