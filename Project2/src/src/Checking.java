@@ -30,6 +30,6 @@ public class Checking extends Account{
 
     @Override
     public String getType() {
-        return "Checking";
+        return "Checking ";
     }
 }

@@ -23,6 +23,6 @@ public class CollegeChecking extends Account{
 
     @Override
     public String getType() {
-        return "College Checkings";
+        return "College Checking";
     }
 }
