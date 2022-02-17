@@ -6,7 +6,7 @@ package src;
  * This class has generalized methods for all the different types of accounts
  * and holds the holders profile
  *
- * @author Sebastinan Carrasco, Racheal Chin
+ * @author Sebastinan Carrasco, Rachael Chin
  */
 
 public abstract class Account {
