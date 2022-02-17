@@ -6,7 +6,7 @@ public class Profile {
      * and a Date object for the date of birth. It also can return the information of the attributes
      * in a toString method, and can check if two patients are the same person or not.
      * @RachaelChin
-     * @JundyLacuata
+     * @SebatianCarrasco
      */
         private String fName;
         private String lName;
@@ -42,12 +42,12 @@ public class Profile {
          * if not we return 1
          */
 
-        public int equals(Profile profile) {
+        public boolean equals(Profile profile) {
             if (profile.fName.equals(this.fName) && profile.lName.equals(this.lName)
                     && profile.dob == (this.dob)) {
-                return 0; //the profiles are the same
+                return true; //the profiles are the same
             }
-            return 1; //the profiles are different. One or more attributes are not the same
+            return false; //the profiles are different. One or more attributes are not the same
         }
 
         public String getlName() {

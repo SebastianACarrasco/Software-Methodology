@@ -1,0 +1,116 @@
+package src;
+
+/**
+ * This is the Account class responsible for all the different types of accounts
+ * including regular checking, savings, college checking, and money market.
+ * This class has generalized methods for all the different types of accounts
+ * and holds the holders profile
+ *
+ * @author Sebastinan Carrasco, Racheal Chin
+ */
+
+public abstract class Account {
+    protected Profile holder;
+    protected boolean closed;
+    protected double balance;
+
+    /**
+     *Constructor for the Account class, taking in the holders profile which
+     * contains their first name, last name, and dob. This also includes the
+     * account balance, and if the account is closed or not. This class carries
+     * generalized methods for all the different types of accounts and
+     * constructor.
+     * @param holder
+     * @param balance
+     * @param closed
+     */
+    public Account(Profile holder, double balance, boolean closed) {
+        this.holder = holder;
+        this.balance = balance;
+        this.closed = closed;
+    }
+
+    /**
+     * Checks if two accounts are equal. This method is generalized for all the
+     * different types of accounts under this abstract class.
+     * @param obj
+     * @return true if the object are equal false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Account) {
+            Account other = (Account) obj;
+            return this.getType().equals(other.getType())
+                    && this.holder.equals(other.holder);
+        }
+        return false;
+    }
+
+    /**
+     * Returns all the account information as a string. Generalized for all the
+     * different types of accounts.
+     * @return account information as a string
+     */
+    @Override
+    public String toString() {
+        //acct type:: FN LN DOB :: balance $00.00 :: location
+        return "";
+    }
+
+    /**
+     * Withdraws the amount from the account of the holder. Generalized for
+     * all the different types of accounts.
+     * @param amount to withdraw
+     */
+    public void withdraw(double amount) {
+        this.balance -= amount;
+    }
+
+    /**
+     * Deposits the amount holders input. Generalized for
+     * all the different types of accounts.
+     * @param amount to deposit
+     */
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
+
+    /**
+     * Getter method for balance
+     * @return balance
+     */
+    public double getBalance() {
+        return balance;
+    }
+
+    /**
+     * Getter method for closed
+     * @return true if closed else false
+     */
+    public boolean isClosed() {
+        return closed;
+    }
+
+    /**
+     * Abstract method that calculates interest for the accounts.
+     * @return interest rate for specified account
+     */
+    public abstract double monthlyInterest(); //return the monthly interest
+
+    /**
+     * Abstract method that calculates fee for the accounts.
+     * @return fee for specified account
+     */
+    public abstract double fee(); //return the monthly fee
+
+    /**
+     * Abstract method that returns which account type it is.
+     * @return account type
+     */
+    public abstract String getType(); //return the account type (class name)
+
+
+}
+
+
+
