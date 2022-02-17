@@ -11,8 +11,8 @@ public class MoneyMarket extends Account{
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
-    private static final double REGULARINTEREST = 100.8;
-    private static final double LOYALINTEREST = 100.95;
+    private static final double REGULARINTEREST = 100.8/12;
+    private static final double LOYALINTEREST = 100.95/12;
     private static final int MAXWITHDRAWALS = 3;
 
     /**

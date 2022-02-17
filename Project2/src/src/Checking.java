@@ -10,7 +10,7 @@ public class Checking extends Account{
     private static final double FEE = 25.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 1000.0;
-    private static final double INTEREST = 100.1;
+    private static final double INTEREST = 100.1/12;
 
     /**
      * Constructor for Checking class that takes information from account class
