@@ -2,6 +2,7 @@ package src;
 
 public class CollegeChecking extends Account{
 
+    private static final int randomholder = 5;
     private static final double INTEREST = 100.25;
     private static final double COLLEGEFEE = 0.0;
 
