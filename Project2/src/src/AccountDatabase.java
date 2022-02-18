@@ -140,8 +140,8 @@ public class AccountDatabase {
     public void printFeeAndInterest() {
         for (int i = 0; i < this.numAcct; i++) {
             System.out.println(this.accounts[i].toString()
-                    + " fee $ " + this.accounts[i].getFee()
-                    + " :: monthly interest $" + this.accounts[i].getInterest());
+                    + " fee $ " + this.accounts[i].fee()
+                    + " :: monthly interest $" + this.accounts[i].monthlyInterest());
         }
     }
 
