@@ -7,6 +7,7 @@ package src;
  */
 public class CollegeChecking extends Checking{
 
+    private double balance;
     private static final double INTEREST = 100.25/12;
     private static final double COLLEGEFEE = 0.0;
 
@@ -50,4 +51,5 @@ public class CollegeChecking extends Checking{
     public String getType() {
         return "College Checkings";
     }
+
 }

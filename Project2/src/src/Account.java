@@ -106,7 +106,6 @@ public abstract class Account {
      */
     public abstract String getType(); //return the account type (class name)
 
-
 }
 
 
