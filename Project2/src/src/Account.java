@@ -54,7 +54,8 @@ public abstract class Account {
     @Override
     public String toString() {
         //acct type:: FN LN DOB :: balance $00.00 :: location
-        return "";
+        return getType() + "::" + holder.toString() + ":: $" + balance + "::";
+                //+ (getType().equals("CollegeChecking") ? campu : "");
     }
 
     /**
@@ -70,27 +71,22 @@ public abstract class Account {
     }
 
     /**
+     * helper method to checks to see if account is closed or not
+     * @return true if account is closed false otherwise
+     */
+    public boolean isClosed() {
+        if(this.closed) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Deposits the amount holders input. Generalized for
      * all the different types of accounts.
      * @param amount to deposit
      */
     public void deposit(double amount) { this.balance += amount; }
-
-    /**
-     * Getter method for balance
-     * @return balance
-     */
-    public double getBalance() {
-        return balance;
-    }
-
-    /**
-     * Getter method for closed
-     * @return true if closed else false
-     */
-    public boolean isClosed() {
-        return closed;
-    }
 
     /**
      * Abstract method that calculates interest for the accounts.
