@@ -55,6 +55,7 @@ public class Savings extends Account {
             return FEE;
         }
     }
+    
 
     /**
      * Gets the account type, used from Account abstract class.

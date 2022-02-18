@@ -56,4 +56,5 @@ public class Checking extends Account{
     public String getType() {
         return "Checking";
     }
+
 }
