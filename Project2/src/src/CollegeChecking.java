@@ -5,7 +5,7 @@ package src;
  * It has the capacity to get the monthly interest, fees, and the type of account
  * @author Rachael Chin
  */
-public class CollegeChecking extends Account{
+public class CollegeChecking extends Checking{
 
     private static final double INTEREST = 100.25/12;
     private static final double COLLEGEFEE = 0.0;

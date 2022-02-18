@@ -21,9 +21,8 @@ public class Savings extends Account {
      * @param holder
      * @param balance
      * @param closed
-     * @param isLoyal
      */
-    public Savings(Profile holder, double balance, boolean closed, boolean isLoyal) {
+    public Savings(Profile holder, double balance, boolean closed) {
         super(holder, balance, closed);
         this.balance = balance;
         this.isLoyal = isLoyal;
@@ -63,6 +62,7 @@ public class Savings extends Account {
     public String getType(){
         return "Savings";
     }
+
 }
 
 
