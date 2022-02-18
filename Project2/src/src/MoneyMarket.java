@@ -5,8 +5,9 @@ package src;
  * It has the capacity to get the monthly interest, fees, and the type of account
  * @author Rachael Chin
  */
-public class MoneyMarket extends Account{
+public class MoneyMarket extends Savings{
 
+    private double balance;
     private boolean isLoyal;
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
