@@ -7,9 +7,13 @@ package src;
  */
 public class CollegeChecking extends Checking{
 
+
     private double balance;
     private static final double INTEREST = 100.25/12;
     private static final double COLLEGEFEE = 0.0;
+    private static final int NEWBRUNSWICK = 0;
+    private static final int NEWARK = 1;
+    private static final int CAMDEN = 2;
 
     /**
      * Constructor for CollegeChecking class that takes information from account class
