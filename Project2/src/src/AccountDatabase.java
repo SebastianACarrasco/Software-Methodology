@@ -16,7 +16,7 @@ public class AccountDatabase {
 
     /**
      * Constructor for the AccountDatabase class.
-     * Setting the account araay to a size of size 4.
+     * Setting the account array to a size of size 4.
      */
     public AccountDatabase() {
         this.accounts = new Account[4];
@@ -34,7 +34,6 @@ public class AccountDatabase {
                 return i;
             }
         }
-
         return NOT_FOUND;
     }
 
@@ -61,6 +60,7 @@ public class AccountDatabase {
             for(int i = 0; i < this.numAcct; i++) {
                 if(this.accounts[i] == null) {
                     this.accounts[i] = account;
+                    grow();
                     return true;
                 }
             }
@@ -78,15 +78,16 @@ public class AccountDatabase {
             if(this.accounts[i].equals(account)) {
                 this.accounts[i].balance = 0;
 
-                if(this.accounts[i].getType().equals("Savings")) {
+                if(this.accounts[i].getType().equals("Savings")
+                || this.accounts[i].getType().equals("MoneyMarket")) {
                     //need to set isLoyal to false after closing
+                    //this.accounts[i].setLoyal(false);
                 }
-
                 this.accounts[i].closed = true;
                 return true;
             }
         }
-        return false;
+        return false; //account not found
     }
 
     /**
@@ -103,7 +104,7 @@ public class AccountDatabase {
      * @return true if money was successfully withdrawn, false if not
      */
     public boolean withdraw(Account account) {
-        return false; //return false if insufficient fund
+        return false;
     }
 
     /**

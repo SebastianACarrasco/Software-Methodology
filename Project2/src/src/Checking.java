@@ -3,12 +3,11 @@ package src;
 /**
  * This is the Checking class responsible for all regular checkings accounts.
  * It has the capacity to get the monthly interest, fees, and the type of account
- * @author Rachael Chin
+ * @author Sebastian Carrasco, Rachael Chin
  */
 public class Checking extends Account{
 
     private double balance;
-    double fees;
     double interest;
     private static final double FEE = 25.0;
     private static final double MIN_FEE = 0.0;

@@ -3,7 +3,7 @@ package src;
 /**
  * This is the MoneyMarket class responsible for all MoneyMarket accounts.
  * It has the capacity to get the monthly interest, fees, and the type of account
- * @author Rachael Chin
+ * @author Seabstian Carrasco, Rachael Chin
  */
 public class MoneyMarket extends Savings{
 
@@ -22,8 +22,8 @@ public class MoneyMarket extends Savings{
      * @param balance for how much balance remains in the account
      * @param closed whether or not the account is closed
      */
-    public MoneyMarket(Profile holder, double balance, boolean closed) {
-        super(holder, balance, closed);
+    public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
+        super(holder, balance, closed, isLoyal);
         this.balance = balance;
         this.isLoyal = true; //loyal customer by default
     }
@@ -51,7 +51,8 @@ public class MoneyMarket extends Savings{
      */
     @Override
     public double fee() {
-        if (this.balance >= MIN_BALANCE && numberOfWithdrawals > MAXWITHDRAWALS) {
+        //if (this.balance >= MIN_BALANCE && numberOfWithdrawals > MAXWITHDRAWALS) {
+        if (this.balance >= MIN_BALANCE) {
             return MIN_FEE;
         } else {
             //case if the balance <2500 or if the number of withdrawals > 3

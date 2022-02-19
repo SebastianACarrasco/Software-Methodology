@@ -13,7 +13,7 @@ public abstract class Account {
     protected Profile holder;
     protected boolean closed;
     protected double balance;
-    int numberOfWithdrawals = 0;
+    //int numberOfWithdrawals = 0;
     /**
      *Constructor for the Account class, taking in the holders profile which
      * contains their first name, last name, and dob. This also includes the
@@ -55,7 +55,7 @@ public abstract class Account {
     public String toString() {
         //acct type:: FN LN DOB :: balance $00.00 :: location
         return getType() + "::" + holder.toString() + ":: $" + balance + "::";
-                //+ (getType().equals("CollegeChecking") ? campu : "");
+                //+ getLocation();
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class Account {
     public void withdraw(double amount) {
 
         this.balance -= amount;
-        numberOfWithdrawals++;
+        //numberOfWithdrawals++;
 
     }
 
@@ -86,7 +86,9 @@ public abstract class Account {
      * all the different types of accounts.
      * @param amount to deposit
      */
-    public void deposit(double amount) { this.balance += amount; }
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
 
     /**
      * Abstract method that calculates interest for the accounts.

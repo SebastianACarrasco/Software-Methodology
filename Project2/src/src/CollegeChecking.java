@@ -3,12 +3,11 @@ package src;
 /**
  * This is the CollegeChecking class responsible for all college checkings accounts.
  * It has the capacity to get the monthly interest, fees, and the type of account
- * @author Rachael Chin
+ * @author Sebastian Carrasco, Rachael Chin
  */
-public class CollegeChecking extends Checking{
-
-
+public class CollegeChecking extends Checking {
     private double balance;
+    private int location;
     private static final double INTEREST = 100.25/12;
     private static final double COLLEGEFEE = 0.0;
     private static final int NEWBRUNSWICK = 0;
@@ -21,9 +20,12 @@ public class CollegeChecking extends Checking{
      * @param balance for how much balance remains in the account
      * @param closed whether or not the account is closed
      */
-    public CollegeChecking (Profile holder, double balance, boolean closed){
+    public CollegeChecking (Profile holder, double balance, boolean closed,
+                             int location){
         super(holder, balance, closed);
         this.balance = balance;
+        this.location = location;
+
     }
 
     /**
@@ -54,6 +56,20 @@ public class CollegeChecking extends Checking{
     @Override
     public String getType() {
         return "College Checkings";
+    }
+
+    /**
+     * Gets the location of the account
+     * @return location of the account as a string
+     */
+    public String getLocation() {
+        if (location == NEWBRUNSWICK) {
+            return "New Brunswick";
+        } else if (location == NEWARK) {
+            return "Newark";
+        } else {
+            return "Camden";
+        }
     }
 
 }
