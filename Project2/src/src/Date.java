@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
  *  * using the current calendar date. It also can compare two Date objects
  *  * to one another to check for equality, return the Date in a toString format,
  *  * and check if the Date is a valid given date while accounting for leap year variability.
+ *
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class Date {
@@ -189,7 +190,7 @@ public class Date {
         return this.month + "/" + this.day + "/" + this.year;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // this test case is to test if the current date 2/8/22 is a valid date
         Date date1 = new Date();
         boolean expectedValue = true;
