@@ -97,7 +97,7 @@ public class AccountDatabase {
     public void deposit(Account account) {
         int index = this.find(account);
         if (index != NOT_FOUND) {
-            this.accounts[index].deposit();
+            accounts[index].deposit(account.balance);
         }
         //account.deposit(65);
         //just call the method and update it but again idk how to get the amount
@@ -112,11 +112,11 @@ public class AccountDatabase {
         int index = this.find(account);
         if (index != NOT_FOUND && account.balance > 0){
             //confused because how do we get the amount to withdraw
-            double balanceBeforeWithdrawal = account.balance;
-            account.withdraw(65);
-            if (balanceBeforeWithdrawal != account.balance) {
-                return true;
-            }
+
+            accounts[index].withdraw(account.balance); //defined by profile and balance and we can get the balance by
+            //// encapsulate it by getting an instance of account from outside. when the bank teller class
+            return true;
+
         }
         return false;
 

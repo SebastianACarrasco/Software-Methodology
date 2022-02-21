@@ -13,7 +13,7 @@ public abstract class Account {
     protected Profile holder;
     protected boolean closed;
     protected double balance;
-    int numberOfWithdrawals = 0;
+    //int numberOfWithdrawals = 0;
     /**
      *Constructor for the Account class, taking in the holders profile which
      * contains their first name, last name, and dob. This also includes the
@@ -64,10 +64,7 @@ public abstract class Account {
      * @param amount to withdraw
      */
     public void withdraw(double amount) {
-        if (this.balance - amount > 0){
             this.balance -= amount;
-            numberOfWithdrawals++;
-        }
     }
 
     /**
@@ -109,6 +106,8 @@ public abstract class Account {
      */
     public abstract String getType(); //return the account type (class name)
 
+    //have a get balance getter method gets the amount to withdraw or deposit -> we
+    // do this using bank teller so when bank teller bc every account would have a withdraw or deposit and amount value
 }
 
 

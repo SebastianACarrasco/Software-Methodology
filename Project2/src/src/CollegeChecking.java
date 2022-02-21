@@ -62,6 +62,7 @@ public class CollegeChecking extends Checking {
      * @return location of the account as a string
      */
     public String getLocation() {
+        //to get the location we need to create an instance of that object and then try to get the location it will work
         if (location == NEWBRUNSWICK) {
             return "New Brunswick";
         } else if (location == NEWARK) {
