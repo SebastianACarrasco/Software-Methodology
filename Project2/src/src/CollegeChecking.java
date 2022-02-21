@@ -71,4 +71,15 @@ public class CollegeChecking extends Checking {
         }
     }
 
+    /**
+     * Returns all the account information as a string.
+     * @return account information as a string
+     */
+    @Override
+    public String toString() {
+        //acct type:: FN LN DOB :: balance $00.00 :: location
+        return getType() + "::" + holder.toString() + ":: $" + balance + "::"
+        + getLocation();
+    }
+
 }
