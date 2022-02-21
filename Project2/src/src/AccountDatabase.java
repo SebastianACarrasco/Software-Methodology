@@ -109,7 +109,7 @@ public class AccountDatabase {
             //confused because how do we get the amount to withdraw
             double balanceBeforeWithdrawal = account.balance;
             account.withdraw(65);
-            if (balanceBeforeWithdrawal   != account.balance) {
+            if (balanceBeforeWithdrawal != account.balance) {
                 return true;
             }
         }
