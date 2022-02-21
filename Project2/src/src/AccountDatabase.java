@@ -95,7 +95,8 @@ public class AccountDatabase {
      * @param account
      */
     public void deposit(Account account) {
-
+        account.deposit(65);
+        //just call the method and update it but again idk how to get the amount
     }
 
     /**
@@ -104,7 +105,16 @@ public class AccountDatabase {
      * @return true if money was successfully withdrawn, false if not
      */
     public boolean withdraw(Account account) {
+        if (account.balance > 0){
+            //confused because how do we get the amount to withdraw
+            double balanceBeforeWithdrawal = account.balance;
+            account.withdraw(65);
+            if (balanceBeforeWithdrawal   != account.balance) {
+                return true;
+            }
+        }
         return false;
+
     }
 
     /**
