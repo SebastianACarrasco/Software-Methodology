@@ -7,8 +7,9 @@ package src;
  */
 public class MoneyMarket extends Savings{
 
-    private double balance;
-    private boolean isLoyal;
+    private double balance; // redundant only in account
+    //private boolean isLoyal; // redundant only in savings
+    private int numberOfWithdrawals = 0;
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
@@ -25,7 +26,7 @@ public class MoneyMarket extends Savings{
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed, isLoyal);
         this.balance = balance;
-        this.isLoyal = true; //loyal customer by default
+        isLoyal = true; //loyal customer by default
     }
 
     /**

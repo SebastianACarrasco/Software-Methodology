@@ -9,8 +9,8 @@ package src;
  */
 
 public class Savings extends Account {
-    private double balance;
-    private boolean isLoyal;
+    //private double balance;
+    protected boolean isLoyal;
     private static final double MIN_BALANCE = 300;
     private static final double LOYAL_INTEREST = 0.0045;
     private static final double NONLOYAL_INTEREST = 0.003/12;
