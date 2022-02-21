@@ -25,7 +25,6 @@ public class CollegeChecking extends Checking {
         super(holder, balance, closed);
         this.balance = balance;
         this.location = location;
-
     }
 
     /**
