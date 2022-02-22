@@ -30,7 +30,8 @@ public class AccountDatabase {
      */
     private int find(Account account) {
         for (int i = 0; i < this.numAcct; i++) {
-            if (this.accounts[i].equals(account)) {
+            if (this.accounts[i] != null
+                && this.accounts[i].equals(account)) {
                 return i;
             }
         }
@@ -77,7 +78,7 @@ public class AccountDatabase {
         if (this.accounts[index].getType().equals("MoneyMarket")){
             MoneyMarket mm = (MoneyMarket) account;
             if(mm.isClosed()) {
-                mm.isLoyal = false;
+                mm.setLoyal(false);
                 return mm;
             }
         }
@@ -145,6 +146,10 @@ public class AccountDatabase {
      */
     public void print() {
         for (int i = 0; i < this.numAcct; i++) {
+            if(this.accounts[i].isClosed()) {
+                System.out.println("closed");
+                continue;
+            }
             System.out.println(this.accounts[i].toString());
         }
     }
@@ -166,6 +171,8 @@ public class AccountDatabase {
                 }
             }
         } while((isSwapped));
+
+        print();
     }
 
     /**
@@ -173,6 +180,10 @@ public class AccountDatabase {
      */
     public void printFeeAndInterest() {
         for (int i = 0; i < this.numAcct; i++) {
+            if(this.accounts[i].isClosed()) {
+                System.out.println("closed");
+                continue;
+            }
             System.out.println(this.accounts[i].toString()
                     + " fee $ " + this.accounts[i].fee()
                     + " :: monthly interest $" + this.accounts[i].monthlyInterest());
