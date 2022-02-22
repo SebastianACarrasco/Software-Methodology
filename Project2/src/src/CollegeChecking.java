@@ -57,10 +57,12 @@ public class CollegeChecking extends Checking {
         return "College Checkings";
     }
 
+
     /**
      * Gets the location of the account
      * @return location of the account as a string
      */
+
     public String getLocation() {
         //to get the location we need to create an instance of that object and then try to get the location it will work
         if (location == NEWBRUNSWICK) {
@@ -70,7 +72,9 @@ public class CollegeChecking extends Checking {
         } else {
             return "Camden";
         }
+
     }
+
 
     /**
      * Returns all the account information as a string.
@@ -80,7 +84,8 @@ public class CollegeChecking extends Checking {
     public String toString() {
         //acct type:: FN LN DOB :: balance $00.00 :: location
         return getType() + "::" + holder.toString() + ":: $" + balance + "::"
-        + getLocation();
+                + getLocation();
     }
 
 }
+

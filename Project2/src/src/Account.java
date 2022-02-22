@@ -14,6 +14,8 @@ public abstract class Account {
     protected boolean closed;
     protected double balance;
     //int numberOfWithdrawals = 0;
+
+
     /**
      *Constructor for the Account class, taking in the holders profile which
      * contains their first name, last name, and dob. This also includes the
