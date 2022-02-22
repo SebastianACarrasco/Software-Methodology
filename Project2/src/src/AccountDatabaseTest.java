@@ -8,10 +8,77 @@ public class AccountDatabaseTest {
 
     @Test
     public void open() {
+        AccountDatabase accountDatabase = new AccountDatabase();
+
+        //open a checkings account
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("Sebastian", "Carrasco", d1);
+        Account checkings = new Checking(p1, 100, false);
+        assertTrue(accountDatabase.open(checkings));
+
+        //open college checkings account
+        Date d2 = new Date("12/15/2000");
+        Profile p2 = new Profile("Rachael", "Chin", d1);
+        Account collegecheckings = new CollegeChecking(p1, 10000, false, 0);
+        assertTrue(accountDatabase.open(collegecheckings));
+
+        //open a money market account
+        Date d3 = new Date("10/10/2000");
+        Profile p3 = new Profile("John", "Doe", d1);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+        assertTrue(accountDatabase.open(moneymarket));
+
+        //open a savings account
+        Date d4 = new Date("11/10/2001");
+        Profile p4 = new Profile("Sebastian", "Carrasco", d1);
+        Account savings = new Savings(p1, 100, false, true);
+        assertTrue(accountDatabase.open(savings));
+
+        //negative balance
+        Date d5 = new Date("1/1/2005");
+        Profile p5 = new Profile("Timothy", "Carrasco", d1);
+        Account balance = new Checking(p1, -100, false);
+        assertFalse(accountDatabase.open(balance));
+
+        //wrong location
+        //Date d6 = new Date("11/10/2001");
+        //Profile p6 = new Profile("Sebastian", "Carrasco", d1);
+        //Account location = new CollegeChecking(p1, 100, false, 4);
+        //assertFalse(accountDatabase.open(location));
+
 
     }
 
     @Test
     public void close() {
+        AccountDatabase accountDatabase = new AccountDatabase();
+
+        //close checkings
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("Sebastian", "Carrasco", d1);
+        Account checkings = new Checking(p1, 100, false);
+        accountDatabase.open(checkings);
+        assertTrue(accountDatabase.close(checkings));
+
+        //close savings
+        Date d2 = new Date("11/10/2001");
+        Profile p2 = new Profile("Sebastian", "Carrasco", d1);
+        Account savings = new Savings(p1, 100, false, true);
+        accountDatabase.open(savings);
+        assertTrue(accountDatabase.close(savings));
+
+        //close college checkings
+        Date d3 = new Date("11/10/2001");
+        Profile p3 = new Profile("Sebastian", "Carrasco", d1);
+        Account collegecheckings = new CollegeChecking(p1, 100, false, 1);
+        accountDatabase.open(collegecheckings);
+        assertTrue(accountDatabase.close(collegecheckings));
+
+        //close money market
+        Date d4 = new Date("11/10/2001");
+        Profile p4 = new Profile("Sebastian", "Carrasco", d1);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+        accountDatabase.open(moneymarket);
+        assertTrue(accountDatabase.close(moneymarket));
     }
 }
