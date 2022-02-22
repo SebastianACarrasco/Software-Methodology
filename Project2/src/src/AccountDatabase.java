@@ -72,10 +72,16 @@ public class AccountDatabase {
      *
      * @param account
      */
-    public void setLoyalFalse(Account account) {
-        if(account.isClosed()) {
-            (Savings)account.setLoyal(false);
+    public Account setLoyalFalse(Account account) {
+        int index = this.find(account);
+        if (this.accounts[index].getType().equals("MoneyMarket")){
+            MoneyMarket mm = (MoneyMarket) account;
+            if(mm.isClosed()) {
+                mm.isLoyal = false;
+                return mm;
+            }
         }
+        return account;
     }
 
 
@@ -92,7 +98,7 @@ public class AccountDatabase {
             if(this.accounts[index].getType().equals("Savings")
                     || this.accounts[index].getType().equals("MoneyMarket")) {
                 //need to set isLoyal to false after closing
-                //setLoyalFalse(accounts[index]);
+                accounts[index] = setLoyalFalse(accounts[index]);
             }
 
             this.accounts[index].closed = true;
