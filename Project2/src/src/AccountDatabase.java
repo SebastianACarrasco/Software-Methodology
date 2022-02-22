@@ -69,25 +69,37 @@ public class AccountDatabase {
     }
 
     /**
+     *
+     * @param account
+     */
+    public void setLoyalFalse(Account account) {
+        if(account.isClosed()) {
+            (Savings)account.setLoyal(false);
+        }
+    }
+
+
+    /**
      * Closes an account in the database
      * @param account
      * @return true if account is successfully closed, false if not
      */
     public boolean close(Account account) {
-        for (int i = 0; i < this.numAcct; i++) {
-            if(this.accounts[i].equals(account)) {
-                this.accounts[i].balance = 0;
+        int index = this.find(account);
+        if (index != NOT_FOUND) {
+            this.accounts[index].balance = 0;
 
-                if(this.accounts[i].getType().equals("Savings")
-                || this.accounts[i].getType().equals("MoneyMarket")) {
-                    //need to set isLoyal to false after closing
-                    //this.accounts[i].setLoyal(false);
-                }
-                this.accounts[i].closed = true;
-                return true;
+            if(this.accounts[index].getType().equals("Savings")
+                    || this.accounts[index].getType().equals("MoneyMarket")) {
+                //need to set isLoyal to false after closing
+                //setLoyalFalse(accounts[index]);
             }
+
+            this.accounts[index].closed = true;
+            return true;
         }
-        return false; //account not found
+
+        return false; // account not found
     }
 
     /**
@@ -112,8 +124,8 @@ public class AccountDatabase {
         int index = this.find(account);
         if (index != NOT_FOUND && account.balance > 0){
             //confused because how do we get the amount to withdraw
-
-            accounts[index].withdraw(account.balance); //defined by profile and balance and we can get the balance by
+            accounts[index].withdraw(account.balance);
+            //defined by profile and balance and we can get the balance by
             //// encapsulate it by getting an instance of account from outside. when the bank teller class
             return true;
 

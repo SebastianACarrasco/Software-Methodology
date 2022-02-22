@@ -31,6 +31,7 @@ public class Profile {
      * toString method to return the attributes in the formatted way for profile
      * @return a String of the first name, last name, and date of birth
      */
+    @Override
     public String toString() {
         return this.fName + " " + this.lName + ", DOB: " + this.dob;
     }

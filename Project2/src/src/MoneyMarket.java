@@ -26,7 +26,7 @@ public class MoneyMarket extends Savings{
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed, isLoyal);
         this.balance = balance;
-        isLoyal = true; //loyal customer by default
+        //isLoyal = true; //loyal customer by default
     }
 
     /**
@@ -71,3 +71,6 @@ public class MoneyMarket extends Savings{
         return "Money Market";
     }
 }
+
+
+
