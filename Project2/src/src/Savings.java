@@ -24,7 +24,15 @@ public class Savings extends Account {
      */
     public Savings(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed);
-        this.balance = balance;
+        //this.balance = balance;
+        this.isLoyal = isLoyal;
+    }
+
+    /**
+     * Setter method for loyalty
+     * @param isLoyal
+     */
+    public void setLoyal(boolean isLoyal){
         this.isLoyal = isLoyal;
     }
 

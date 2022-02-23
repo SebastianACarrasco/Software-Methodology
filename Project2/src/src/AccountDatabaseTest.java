@@ -18,25 +18,25 @@ public class AccountDatabaseTest {
 
         //open college checkings account
         Date d2 = new Date("12/15/2000");
-        Profile p2 = new Profile("Rachael", "Chin", d1);
+        Profile p2 = new Profile("Rachael", "Chin", d2);
         Account collegecheckings = new CollegeChecking(p1, 10000, false, 0);
         assertTrue(accountDatabase.open(collegecheckings));
 
         //open a money market account
         Date d3 = new Date("10/10/2000");
-        Profile p3 = new Profile("John", "Doe", d1);
+        Profile p3 = new Profile("John", "Doe", d3);
         Account moneymarket = new MoneyMarket(p1, 100, false, true);
         assertTrue(accountDatabase.open(moneymarket));
 
         //open a savings account
         Date d4 = new Date("11/10/2001");
-        Profile p4 = new Profile("Sebastian", "Carrasco", d1);
+        Profile p4 = new Profile("Sebastian", "Carrasco", d4);
         Account savings = new Savings(p1, 100, false, true);
         assertTrue(accountDatabase.open(savings));
 
         //negative balance
         Date d5 = new Date("1/1/2005");
-        Profile p5 = new Profile("Timothy", "Carrasco", d1);
+        Profile p5 = new Profile("Timothy", "Carrasco", d5);
         Account balance = new Checking(p1, -100, false);
         assertFalse(accountDatabase.open(balance));
 
@@ -81,4 +81,85 @@ public class AccountDatabaseTest {
         accountDatabase.open(moneymarket);
         assertTrue(accountDatabase.close(moneymarket));
     }
+
+    /*
+    @Test
+    public void print() {
+        //test print method
+        AccountDatabase db = new AccountDatabase();
+
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("Sebastian", "Carrasco", d1);
+        Account checkings = new Checking(p1, 100, false);
+
+        //open college checkings account
+        Date d2 = new Date("12/15/2000");
+        Profile p2 = new Profile("Rachael", "Chin", d2);
+        Account collegecheckings = new CollegeChecking(p1, 10000, false, 0);
+
+        //open a money market account
+        Date d3 = new Date("10/10/2000");
+        Profile p3 = new Profile("John", "Doe", d3);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+
+        db.open(checkings);
+        db.open(collegecheckings);
+        db.open(moneymarket);
+
+        db.print();
+    }
+
+
+    @Test
+    public void printByAccountType() {
+        //test print method
+        AccountDatabase db = new AccountDatabase();
+
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("Sebastian", "Carrasco", d1);
+        Account checkings = new Checking(p1, 100, false);
+
+        //open college checkings account
+        Date d2 = new Date("12/15/2000");
+        Profile p2 = new Profile("Rachael", "Chin", d2);
+        Account collegecheckings = new CollegeChecking(p1, 10000, false, 0);
+
+        //open a money market account
+        Date d3 = new Date("10/10/2000");
+        Profile p3 = new Profile("John", "Doe", d3);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+
+        db.open(moneymarket);
+        db.open(checkings);
+        db.open(collegecheckings);
+
+        db.printByAccountType();
+    }
+
+
+    @Test
+    public void printFeeAndInterest() {
+        AccountDatabase db = new AccountDatabase();
+
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("Sebastian", "Carrasco", d1);
+        Account checkings = new Checking(p1, 100, false);
+
+        //open college checkings account
+        Date d2 = new Date("12/15/2000");
+        Profile p2 = new Profile("Rachael", "Chin", d2);
+        Account collegecheckings = new CollegeChecking(p1, 10000, false, 0);
+
+        //open a money market account
+        Date d3 = new Date("10/10/2000");
+        Profile p3 = new Profile("John", "Doe", d3);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+
+        db.open(moneymarket);
+        db.open(checkings);
+        db.open(collegecheckings);
+
+        db.printFeeAndInterest();
+    }
+     */
 }

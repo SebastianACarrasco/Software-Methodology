@@ -1,14 +1,13 @@
 package src;
+/**
+ * The Profile class creates an object Profile using a String for first name, last name,
+ * and a Date object for the date of birth. It also can return the information of the attributes
+ * in a toString method, and can check if two patients are the same person or not.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
 
 public class Profile {
-
-    /**
-     * The Profile class creates an object Profile using a String for first name, last name,
-     * and a Date object for the date of birth. It also can return the information of the attributes
-     * in a toString method, and can check if two patients are the same person or not.
-     * @RachaelChin
-     * @SebatianCarrasco
-     */
     private String fName;
     private String lName;
     private Date dob;
@@ -49,7 +48,7 @@ public class Profile {
                 && profile.dob == (this.dob)) {
             return true; //the profiles are the same
         }
-        return false; //the profiles are different. One or more attributes are not the same
+        return false;//the profiles are different.One or more attributes are not the same
     }
 
     /**
