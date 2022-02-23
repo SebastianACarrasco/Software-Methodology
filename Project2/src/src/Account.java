@@ -60,8 +60,13 @@ public abstract class Account {
     @Override
     public String toString() {
         //acct type:: FN LN DOB :: balance $00.00 :: location
-        return getType() + "::" + holder.toString() + ":: $" + balance + "::";
-                //+ getLocation();
+        /*
+        if(getType().equals("Savings") || getType().equals("MoneyMarket")) {
+            return getType() + "::" + holder.toString() + ":: $" + balance
+                    + ":: " + ;
+        }
+        */
+        return getType() + "::" + holder.toString() + ":: $" + balance;
     }
 
     /**

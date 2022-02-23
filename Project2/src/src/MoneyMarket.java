@@ -9,12 +9,12 @@ public class MoneyMarket extends Savings{
 
     private double balance; // redundant only in account
     private boolean isLoyal; // redundant only in savings
-    private int numberOfWithdrawals = 0;
+    //private int numberOfWithdrawals = 0;
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
-    private static final double REGULARINTEREST = 100.8/12;
-    private static final double LOYALINTEREST = 100.95/12;
+    private static final double REGULARINTEREST = 0.008/12;
+    private static final double LOYALINTEREST = 0.0095/12;
     private static final int MAXWITHDRAWALS = 3;
 
     /**
@@ -26,16 +26,9 @@ public class MoneyMarket extends Savings{
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed, isLoyal);
         this.balance = balance;
-        isLoyal = true; //loyal customer by default
+        this.isLoyal = true; //loyal customer by default
     }
 
-    /**
-     * Setter method for loyalty
-     * @param isLoyal
-     */
-    public void setLoyal(boolean isLoyal){
-        this.isLoyal = isLoyal;
-    }
 
     /**
      * Helps with finding interest rate depending on account information and
@@ -45,7 +38,7 @@ public class MoneyMarket extends Savings{
     @Override
     public double monthlyInterest() {
         double interest = 0;
-        if (isLoyal) {
+        if (this.isLoyal) {
             interest = this.balance * REGULARINTEREST;
         } else {
             interest = this.balance * LOYALINTEREST;

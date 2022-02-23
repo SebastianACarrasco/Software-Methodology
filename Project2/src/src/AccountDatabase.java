@@ -1,4 +1,5 @@
 package src;
+
 /**
  * This is an array based container database for accounts with all the different
  * types of accounts. This class also prints all the accounts depending on the
@@ -30,8 +31,7 @@ public class AccountDatabase {
      */
     private int find(Account account) {
         for (int i = 0; i < this.numAcct; i++) {
-            if (this.accounts[i] != null
-                && this.accounts[i].equals(account)) {
+            if (this.accounts[i] != null && this.accounts[i].equals(account)) {
                 return i;
             }
         }
@@ -70,7 +70,7 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Helper method that sets loyal to false when closing an account
      * @param account
      */
     public Account setLoyalFalse(Account account) {
@@ -81,7 +81,14 @@ public class AccountDatabase {
                 mm.setLoyal(false);
                 return mm;
             }
+        } else if (this.accounts[index].getType().equals("Savings")) {
+            Savings s = (Savings) account;
+            if(s.isClosed()) {
+                s.setLoyal(false);
+                return s;
+            }
         }
+
         return account;
     }
 
@@ -118,8 +125,6 @@ public class AccountDatabase {
         if (index != NOT_FOUND) {
             accounts[index].deposit(account.balance);
         }
-        //account.deposit(65);
-        //just call the method and update it but again idk how to get the amount
     }
 
     /**
@@ -130,10 +135,10 @@ public class AccountDatabase {
     public boolean withdraw(Account account) {
         int index = this.find(account);
         if (index != NOT_FOUND && account.balance > 0){
-            //confused because how do we get the amount to withdraw
             accounts[index].withdraw(account.balance);
             //defined by profile and balance and we can get the balance by
-            //// encapsulate it by getting an instance of account from outside. when the bank teller class
+            // encapsulate it by getting an instance of account from outside.
+            // when the bank teller class
             return true;
 
         }
@@ -146,32 +151,29 @@ public class AccountDatabase {
      */
     public void print() {
         for (int i = 0; i < this.numAcct; i++) {
-            if(this.accounts[i].isClosed()) {
-                System.out.println("closed");
+            if(this.accounts[i] != null && this.accounts[i].closed == true) {
+                System.out.println("Closed");
                 continue;
+            } else if(this.accounts[i] != null) {
+                System.out.println(this.accounts[i].toString());
             }
-            System.out.println(this.accounts[i].toString());
         }
     }
 
     /**
-     * Prints all the accounts in the database by order of Account Type.
+     * Prints all the accounts in the database by order of account type.
      */
     public void printByAccountType() {
-        boolean isSwapped = false;
-
-        do {
-            isSwapped = false;
-            for (int i = 0; i < numAcct; i++) {
-                if(accounts[i].getType().compareTo(accounts[i+1].getType()) > 0) {
-                    Account temp = accounts[i+1];
-                    accounts[i+1] = accounts[i];
+        for (int j = 0; j < numAcct; j++) {
+            for (int i = j + 1; i < numAcct; i++) {
+                if (this.accounts[i] != null
+                        && accounts[i].getType().compareTo(accounts[j].getType()) < 0) {
+                    Account temp = accounts[j];
+                    accounts[j] = accounts[i];
                     accounts[i] = temp;
-                    isSwapped = true;
                 }
             }
-        } while((isSwapped));
-
+        }
         print();
     }
 
@@ -180,18 +182,19 @@ public class AccountDatabase {
      */
     public void printFeeAndInterest() {
         for (int i = 0; i < this.numAcct; i++) {
-            if(this.accounts[i].isClosed()) {
+            if(this.accounts[i] != null
+                    && this.accounts[i].closed == true) {
                 System.out.println("closed");
                 continue;
+            } else if(this.accounts[i] != null) {
+                System.out.println(this.accounts[i].toString()
+                  + " fee $" + String.format("%.2f",this.accounts[i].fee())
+                  + " :: monthly interest $"
+                  + String.format("%.2f",this.accounts[i].monthlyInterest()));
             }
-            System.out.println(this.accounts[i].toString()
-                    + " fee $ " + this.accounts[i].fee()
-                    + " :: monthly interest $" + this.accounts[i].monthlyInterest());
         }
     }
-
 }
-
 
 
 
