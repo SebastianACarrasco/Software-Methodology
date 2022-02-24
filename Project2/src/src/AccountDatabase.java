@@ -134,13 +134,12 @@ public class AccountDatabase {
      */
     public boolean withdraw(Account account) {
         int index = this.find(account);
-        if (index != NOT_FOUND && account.balance > 0){
+        if (index != NOT_FOUND && account.balance > 0) {
             accounts[index].withdraw(account.balance);
             //defined by profile and balance and we can get the balance by
             // encapsulate it by getting an instance of account from outside.
             // when the bank teller class
             return true;
-
         }
         return false;
 
@@ -151,10 +150,7 @@ public class AccountDatabase {
      */
     public void print() {
         for (int i = 0; i < this.numAcct; i++) {
-            if(this.accounts[i] != null && this.accounts[i].closed == true) {
-                System.out.println("Closed");
-                continue;
-            } else if(this.accounts[i] != null) {
+            if(this.accounts[i] != null) {
                 System.out.println(this.accounts[i].toString());
             }
         }
@@ -182,11 +178,7 @@ public class AccountDatabase {
      */
     public void printFeeAndInterest() {
         for (int i = 0; i < this.numAcct; i++) {
-            if(this.accounts[i] != null
-                    && this.accounts[i].closed == true) {
-                System.out.println("closed");
-                continue;
-            } else if(this.accounts[i] != null) {
+            if(this.accounts[i] != null) {
                 System.out.println(this.accounts[i].toString()
                   + " fee $" + String.format("%.2f",this.accounts[i].fee())
                   + " :: monthly interest $"

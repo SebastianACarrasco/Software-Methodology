@@ -37,6 +37,31 @@ public class Savings extends Account {
     }
 
     /**
+     * Getter method for loyalty
+     * @return loyalty as a string which called in toString()
+     */
+    public String getIsLoyal(){
+        if(this.isLoyal){
+            return "::Loyal";
+        }
+        return "";
+    }
+
+    /**
+     * Returns all the account information as a string.
+     * @return account information as a string
+     */
+    @Override
+    public String toString() {
+        if(this.closed) {
+            return getType() + "::" + holder.toString() + "::balance $" + balance
+                    + getIsLoyal() + ":: CLOSED";
+        }
+        return getType() + "::" + holder.toString() + "::balance $" + balance;
+    }
+
+
+    /**
      * Helps with finding interest rate depending on account information and
      * data. Used from Account abstract class.
      * @return monthy interest rate as double

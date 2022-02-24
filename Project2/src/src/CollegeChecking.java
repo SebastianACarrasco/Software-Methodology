@@ -8,7 +8,7 @@ package src;
 public class CollegeChecking extends Checking {
     private double balance;
     private int location;
-    private static final double INTEREST = 100.25/12;
+    private static final double INTEREST = 0.0025/12;
     private static final double COLLEGEFEE = 0.0;
     private static final int NEWBRUNSWICK = 0;
     private static final int NEWARK = 1;
@@ -83,7 +83,11 @@ public class CollegeChecking extends Checking {
     @Override
     public String toString() {
         //acct type:: FN LN DOB :: balance $00.00 :: location
-        return getType() + "::" + holder.toString() + ":: $" + balance + "::"
+        if(this.closed) {
+            return getType() + "::" + holder.toString() + "::balance $" + balance + "::"
+                    + "CLOSED::" + getLocation();
+        }
+        return getType() + "::" + holder.toString() + "::balance $" + balance + "::"
                 + getLocation();
     }
 
