@@ -9,7 +9,7 @@ public class MoneyMarket extends Savings{
 
     private double balance; // redundant only in account
     private boolean isLoyal; // redundant only in savings
-    //private int numberOfWithdrawals = 0;
+    private int numberOfWithdrawals = 0;
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
@@ -26,7 +26,7 @@ public class MoneyMarket extends Savings{
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed, isLoyal);
         this.balance = balance;
-        this.isLoyal = true; //loyal customer by default
+        this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
     }
 
 
@@ -39,9 +39,9 @@ public class MoneyMarket extends Savings{
     public double monthlyInterest() {
         double interest = 0;
         if (this.isLoyal) {
-            interest = this.balance * REGULARINTEREST;
-        } else {
             interest = this.balance * LOYALINTEREST;
+        } else {
+            interest = this.balance * REGULARINTEREST;
         }
         return interest;
     }
@@ -70,6 +70,35 @@ public class MoneyMarket extends Savings{
     @Override
     public String getType() {
         return "Money Market";
+    }
+
+    /**
+     * helper method to keep track of how many withdrawals have been made
+     */
+    public void countWithdrawal() {
+        numberOfWithdrawals++;
+    }
+
+    /**
+     * getter method for number of withdrawals
+     */
+    public int getNumberOfWithdrawals() {
+        return numberOfWithdrawals;
+    }
+
+    /**
+     * Returns all the account information as a string.
+     * @return account information as a string
+     */
+    @Override
+    public String toString() {
+        //acct type:: FN LN DOB :: balance $00.00 :: location
+        if(this.closed) {
+            return getType() + "::" + holder.toString() + "::balance $" + balance
+                    + getIsLoyal() + "CLOSED::";
+        }
+        return getType() + "::" + holder.toString() + "::balance $" + balance
+                + getIsLoyal() + "::withdrawal: ";
     }
 }
 

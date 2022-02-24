@@ -82,7 +82,7 @@ public class AccountDatabaseTest {
         assertTrue(accountDatabase.close(moneymarket));
     }
 
-    /*
+
     @Test
     public void print() {
         //test print method
@@ -102,8 +102,14 @@ public class AccountDatabaseTest {
         Profile p3 = new Profile("John", "Doe", d3);
         Account moneymarket = new MoneyMarket(p1, 100, false, true);
 
+        //open a savings account
+        Date d4 = new Date("10/10/2000");
+        Profile p4 = new Profile("Peter", "Griffin", d4);
+        Account savings = new Savings(p1, 100, false, false);
+
         db.open(checkings);
         db.open(collegecheckings);
+        db.open(savings);
         db.open(moneymarket);
 
         db.print();
@@ -143,7 +149,7 @@ public class AccountDatabaseTest {
 
         Date d1 = new Date("11/10/2001");
         Profile p1 = new Profile("Sebastian", "Carrasco", d1);
-        Account checkings = new Checking(p1, 100, false);
+        Account checkings = new Checking(p1, 1001, false);
 
         //open college checkings account
         Date d2 = new Date("12/15/2000");
@@ -161,5 +167,5 @@ public class AccountDatabaseTest {
 
         db.printFeeAndInterest();
     }
-     */
+
 }
