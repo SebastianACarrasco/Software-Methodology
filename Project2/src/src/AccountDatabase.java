@@ -13,7 +13,7 @@ public class AccountDatabase {
     private Account [] accounts;
     private int numAcct;
     private static final int NOT_FOUND = -1;
-
+    int numberOfWithdrawals = 0;
 
     /**
      * Constructor for the AccountDatabase class.
@@ -139,6 +139,7 @@ public class AccountDatabase {
             //defined by profile and balance and we can get the balance by
             // encapsulate it by getting an instance of account from outside.
             // when the bank teller class
+            numberOfWithdrawals++;
             return true;
         }
         return false;
