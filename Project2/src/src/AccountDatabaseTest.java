@@ -84,6 +84,26 @@ public class AccountDatabaseTest {
 
 
     @Test
+    public void reOpen() {
+        AccountDatabase accountDatabase = new AccountDatabase();
+
+        //close checkings
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("Sebastian", "Carrasco", d1);
+        Account checkings = new Checking(p1, 100, false);
+        accountDatabase.open(checkings);
+
+        accountDatabase.print();
+
+        accountDatabase.close(checkings);
+        accountDatabase.print();
+
+        checkings.balance = 500;
+        accountDatabase.print();
+    }
+
+    /*
+    @Test
     public void print() {
         //test print method
         AccountDatabase db = new AccountDatabase();
@@ -167,5 +187,28 @@ public class AccountDatabaseTest {
 
         db.printFeeAndInterest();
     }
+
+    @Test
+    public void equals() {
+        AccountDatabase db = new AccountDatabase();
+
+        Date d0 = new Date("11/10/2001");
+        Profile p0 = new Profile("Sebastian", "Carrasco", d0);
+        Account checkings = new Checking(p0, 1001, false);
+
+        Date d1 = new Date("11/10/2001");
+        Profile p1 = new Profile("John", "Doe", d1);
+        Account checkings2 = new Checking(p1, 1001, false);
+
+        //open a money market account
+        Date d3 = new Date("10/10/2000");
+        Profile p3 = new Profile("Sebastian", "Carrasco", d3);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+
+        assertTrue(checkings.equals(checkings));
+        assertTrue(moneymarket.equals(moneymarket));
+        assertFalse(checkings.equals(checkings2));
+    }
+    */
 
 }
