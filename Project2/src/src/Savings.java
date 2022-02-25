@@ -90,6 +90,25 @@ public class Savings extends Account {
     }
 
     /**
+     * Checks if two accounts are equal.
+     * @param obj
+     * @return true if the object are equal false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Account) {
+            Savings other = (Savings) obj;
+            if (!this.getType().equals(other.getType())) {
+                return false;
+            }
+            if(!this.holder.equals(other.holder)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Gets the account type, used from Account abstract class.
      * @return account type as String
      */

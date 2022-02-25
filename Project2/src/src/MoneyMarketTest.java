@@ -21,6 +21,6 @@ public class MoneyMarketTest {
         Date d2 = new Date("10/10/2001");
         Profile p2 = new Profile("John", "Doe", d2);
         Account moneymarket2 = new MoneyMarket(p3, 100, false, false);
-        assertEquals(moneymarket.balance*0.008/12, moneymarket.monthlyInterest(), 0.001);
+        assertEquals(moneymarket2.balance*0.008/12, moneymarket2.monthlyInterest(), 0.001);
     }
 }

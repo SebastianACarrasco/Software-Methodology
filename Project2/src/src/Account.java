@@ -33,8 +33,7 @@ public abstract class Account {
     }
 
     /**
-     * Checks if two accounts are equal. This method is generalized for all the
-     * different types of accounts under this abstract class.
+     * Checks if two accounts are equal.
      * @param obj
      * @return true if the object are equal false otherwise.
      */
@@ -59,7 +58,7 @@ public abstract class Account {
      */
     @Override
     public String toString() {
-        if(this.closed) {
+        if(closed) {
             return getType() + "::" + holder.toString() + ":: balance $" + balance
                     + "::CLOSED";
         }

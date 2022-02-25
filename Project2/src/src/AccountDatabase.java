@@ -25,6 +25,18 @@ public class AccountDatabase {
     }
 
     /**
+     * Helper method to check if database is empty. It will be empty if the
+     * first index is null because the array is initialized to size 4.
+     * @return true if database is empty, false if not
+     */
+    public boolean isEmpty() {
+        if (this.accounts[0] == null) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Finds an account in the database
      * @param account
      * @return index of account in the array if found, -1 if not found
@@ -122,7 +134,11 @@ public class AccountDatabase {
      */
     public void deposit(Account account) {
         int index = this.find(account);
-        if (index != NOT_FOUND) {
+        if (index != NOT_FOUND && account.isClosed()) {
+            this.accounts[index].closed = false;
+            this.accounts[index].deposit(account.balance);
+
+        } else if (index != NOT_FOUND) {
             accounts[index].deposit(account.balance);
         }
     }
