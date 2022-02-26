@@ -168,11 +168,16 @@ public class AccountDatabase {
             //defined by profile and balance and we can get the balance by
             // encapsulate it by getting an instance of account from outside.
             // when the bank teller class
+            /*
+            if(accounts[index].getType().equals("Money Market")){
+                accounts[index].countWithdrawal();
+            }
+
+             */
             numberOfWithdrawals++;
             return true;
         }
         return false;
-
     }
 
     /**

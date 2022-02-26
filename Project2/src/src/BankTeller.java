@@ -69,11 +69,13 @@ public class BankTeller {
         }
     }
 
+
     /**
      * Validates location input from user.
      * @param location
      * @return true is location is valid, false otherwise.
      */
+
     private boolean isValidLocation(int location){
         if(location == NEWBRUNSWICK || location == NEWARK || location == CAMDEN){
             return true;
@@ -164,7 +166,9 @@ public class BankTeller {
 
             }
         }
+
          */
+
         System.out.println("Account opened"); //if all cases fail then acct valid
     }
 
@@ -313,8 +317,6 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
-
-
     }
 
     /**
@@ -327,9 +329,8 @@ public class BankTeller {
             return false;
         }
     }
-
-
 }
+
 
 
 

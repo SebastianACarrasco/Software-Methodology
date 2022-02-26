@@ -45,7 +45,7 @@ public class Profile {
 
     public boolean equals(Profile profile) {
         if (profile.fName.equals(this.fName) && profile.lName.equals(this.lName)
-                && profile.dob == (this.dob)) {
+                && profile.dob.compareTo(this.dob) == 0 ){
             return true; //the profiles are the same
         }
         return false;//the profiles are different.One or more attributes are not the same

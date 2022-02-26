@@ -73,25 +73,6 @@ public class MoneyMarket extends Savings{
     }
 
     /**
-     * Checks if two accounts are equal.
-     * @param obj
-     * @return true if the object are equal false otherwise.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof MoneyMarket) {
-            MoneyMarket other = (MoneyMarket) obj;
-            if (!this.getType().equals(other.getType())) {
-                return false;
-            }
-            if(!this.holder.equals(other.holder)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * helper method to keep track of how many withdrawals have been made
      */
     public void countWithdrawal() {
