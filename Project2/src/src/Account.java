@@ -41,14 +41,12 @@ public abstract class Account {
     public boolean equals(Object obj) {
         if(obj instanceof Account) {
             Account other = (Account) obj;
-            if (!this.getType().equals(other.getType())) {
-                return false;
-            }
-            if(!this.holder.equals(other.holder)) {
-                return false;
+            if (this.getType().equals(other.getType()) &&
+                    this.holder.equals(other.holder)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
