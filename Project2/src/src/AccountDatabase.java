@@ -82,6 +82,19 @@ public class AccountDatabase {
     }
 
     /**
+     * Helper method used to see if there is an account in the database of the
+     * same type already in existence because find method is private
+     * @return 1 if there is an account of the same type, 0 if not
+     */
+    public int findDupe(Account account) {
+        int index = this.find(account);
+        if(index != NOT_FOUND && this.accounts[index].equals(account)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
      * Helper method that sets loyal to false when closing an account
      * @param account
      */

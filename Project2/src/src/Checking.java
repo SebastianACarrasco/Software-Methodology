@@ -59,7 +59,7 @@ public class Checking extends Account{
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Account) {
+        if(obj instanceof Checking) {
             Checking other = (Checking) obj;
             if (!this.getType().equals(other.getType())) {
                 return false;

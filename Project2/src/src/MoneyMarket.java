@@ -69,7 +69,7 @@ public class MoneyMarket extends Savings{
      */
     @Override
     public String getType() {
-        return "Money Market";
+        return "MoneyMarket";
     }
 
     /**
@@ -79,7 +79,7 @@ public class MoneyMarket extends Savings{
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Account) {
+        if(obj instanceof MoneyMarket) {
             MoneyMarket other = (MoneyMarket) obj;
             if (!this.getType().equals(other.getType())) {
                 return false;
