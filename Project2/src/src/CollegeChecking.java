@@ -54,7 +54,7 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public String getType() {
-        return "College Checkings";
+        return "CollegeCheckings";
     }
 
 
@@ -82,7 +82,7 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Account) {
+        if(obj instanceof CollegeChecking) {
             CollegeChecking other = (CollegeChecking) obj;
             if (!this.getType().equals(other.getType())) {
                 return false;

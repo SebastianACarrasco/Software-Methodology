@@ -2,7 +2,6 @@ package src;
 
 /**
  * Driver class for Project 2.
- *
  * @author Sebastian Carrasco, Rachael Chin
  */
 
