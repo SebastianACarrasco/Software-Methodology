@@ -78,7 +78,9 @@ public class AccountDatabase {
      * @return true if account is successfully added, false if not
      */
     public boolean open(Account account) {
-        if (this.find(account) == NOT_FOUND) {
+        int index = this.find(account);
+        if(index != NOT_FOUND && accounts[index].)
+        if (index == NOT_FOUND) {
             for(int i = 0; i < this.numAcct; i++) {
                 if(this.accounts[i] == null) {
                     this.accounts[i] = account;

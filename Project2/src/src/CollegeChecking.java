@@ -6,7 +6,7 @@ package src;
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class CollegeChecking extends Checking {
-    private double balance;
+    //private double balance;
     private int location;
     private static final double INTEREST = 0.0025/12;
     private static final double COLLEGEFEE = 0.0;
