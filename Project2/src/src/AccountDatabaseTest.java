@@ -31,7 +31,7 @@ public class AccountDatabaseTest {
         //open a money market account
         Date d3 = new Date("10/10/2000");
         Profile p3 = new Profile("John", "Doe", d3);
-        Account moneymarket = new MoneyMarket(p3, 10000, false, true);
+        Account moneymarket = new MoneyMarket(p3, 10000, false, true, 0);
         assertTrue(accountDatabase.open(moneymarket));
 
         //open a savings account
@@ -73,7 +73,7 @@ public class AccountDatabaseTest {
         //close money market
         Date d4 = new Date("11/10/2001");
         Profile p4 = new Profile("Sebastian", "Carrasco", d1);
-        Account moneymarket = new MoneyMarket(p1, 100, false, true);
+        Account moneymarket = new MoneyMarket(p1, 100, false, true, 0);
         accountDatabase.open(moneymarket);
         assertTrue(accountDatabase.close(moneymarket));
     }
