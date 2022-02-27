@@ -40,30 +40,44 @@ public class BankTeller {
             StringTokenizer str = new StringTokenizer(sc.nextLine());
             terminalInput = new String[str.countTokens()];
 
-            for(int i = 0; i < terminalInput.length; i++) {
-                terminalInput[i] = str.nextToken();
-            }
+            try {
+                for (int i = 0; i < terminalInput.length; i++) {
+                    terminalInput[i] = str.nextToken();
+                }
 
-            switch(terminalInput[0]) {
-                case "O": openAccount(terminalInput);
-                    break;
-                case "C": closeAccount(terminalInput);
-                    break;
-                case "D": depositAccount(terminalInput);
-                    break;
-                case "W": withdrawAccount(terminalInput);
-                    break;
-                case "P": printAccount();
-                    break;
-                case "PT": printByAccountType();
-                    break;
-                case "PI": printWithInterestAndFees();
-                    break;
-                case "UB": updateAccountBalance(terminalInput);
-                    break;
-                case "Q": System.out.println("Bank Teller is terminated.");
-                    break;
-                default: System.out.println("Invalid command!");
+                switch (terminalInput[0]) {
+                    case "O":
+                        openAccount(terminalInput);
+                        break;
+                    case "C":
+                        closeAccount(terminalInput);
+                        break;
+                    case "D":
+                        depositAccount(terminalInput);
+                        break;
+                    case "W":
+                        withdrawAccount(terminalInput);
+                        break;
+                    case "P":
+                        printAccount();
+                        break;
+                    case "PT":
+                        printByAccountType();
+                        break;
+                    case "PI":
+                        printWithInterestAndFees();
+                        break;
+                    case "UB":
+                        updateAccountBalance(terminalInput);
+                        break;
+                    case "Q":
+                        System.out.println("Bank Teller is terminated.");
+                        break;
+                    default:
+                        System.out.println("Invalid command!");
+                }
+            } catch (RuntimeException e){
+                System.out.println("Input is empty try again.");
             }
         }
     }
