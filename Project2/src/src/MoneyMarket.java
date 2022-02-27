@@ -68,6 +68,14 @@ public class MoneyMarket extends Savings{
         return "MoneyMarket";
     }
 
+
+    public String getIsLoyal() {
+        if(this.balance < MIN_BALANCE) {
+            return "";
+        } else {
+            return "::loyal";
+        }
+    }
     /**
      * Returns all the account information as a string.
      * @return account information as a string

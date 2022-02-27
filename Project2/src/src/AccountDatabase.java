@@ -79,9 +79,6 @@ public class AccountDatabase {
      */
     public boolean open(Account account) {
         int index = this.find(account);
-        //if(index == NOT_FOUND && account.getType().equals("Checking")) {
-        //    return false; //can't open C if they have a CC account
-        //}
         if (index == NOT_FOUND) {
             for(int i = 0; i < this.numAcct; i++) {
                 if(this.accounts[i] == null) {
@@ -202,10 +199,6 @@ public class AccountDatabase {
             return true;
         }
         return false;
-    }
-
-    public int getNumberOfWithdrawals() {
-        return numberOfWithdrawals;
     }
 
     /**

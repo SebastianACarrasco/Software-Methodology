@@ -55,7 +55,8 @@ public class Savings extends Account {
             return getType() + "::" + holder.toString() + "::balance $" + balance
                     + getIsLoyal() + ":: CLOSED";
         }
-        return getType() + "::" + holder.toString() + "::balance $" + balance;
+        return getType() + "::" + holder.toString() + "::balance $" + balance
+                + getIsLoyal();
     }
 
 
