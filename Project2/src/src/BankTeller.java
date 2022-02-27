@@ -19,8 +19,6 @@ public class BankTeller {
     private static final int MIN_BAL_ACCT = 1;
     private static final int MAX_INPUT_SIZE = 7;
     private static final int SUB_MAX_INPUT_SIZE = 6;
-    private static final int MAX_MM_INPUT_SIZE = 8;
-    private int numberOfWithdrawals = 0;
     private int location;
     private int find;
     private double balance;
@@ -140,7 +138,7 @@ public class BankTeller {
                 find = db.findDupe(c);
                 if(find == 1) {
                     System.out.println(profile.getfName() + " " + profile.getlName()
-                            + " " + profile.getDob() + " same account(type) is in the database.");
+                            + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
                 } else {
                     db.open(c);
                     System.out.println("Account opened.");
@@ -165,7 +163,7 @@ public class BankTeller {
                 find = db.findDupe(mm);
                 if(find == 1) {
                     System.out.println(profile.getfName() + " " + profile.getlName()
-                            + " " + profile.getDob() + "same account(type) is in database.");
+                            + " " + profile.getDob() + "same account(" + mm.getType() + ") is in database.");
                 } else {
                     db.open(mm);
                     System.out.println("Account opened.");
@@ -178,7 +176,7 @@ public class BankTeller {
                     find = db.findDupe(cc);
                     if (find == 1) {
                         System.out.println(profile.getfName() + " " + profile.getlName()
-                                + " " + profile.getDob() + "same account(type) is in database.");
+                                + " " + profile.getDob() + "same account(" + cc.getType() + ") is in database.");
                     } else {
                         db.open(cc);
                         System.out.println("Account opened.");
@@ -194,7 +192,7 @@ public class BankTeller {
                 find = db.findDupe(s);
                 if(find == 1) {
                     System.out.println(profile.getfName() + " " + profile.getlName()
-                            + " " + profile.getDob() + "same account(type) is in database.");
+                            + " " + profile.getDob() + "same account(" + s.getType() + ") is in database.");
                 } else {
                     db.open(s);
                     System.out.println("Account opened");
@@ -213,8 +211,11 @@ public class BankTeller {
         }
 
         Account acct = createAccountForProcessing(inputArray);
-        db.close(acct);
-        System.out.println("Account closed.");
+        if(db.close(acct)) {
+            System.out.println("Account closed.");
+        } else {
+            System.out.println("Account not found.");
+        }
     }
 
 
@@ -264,8 +265,11 @@ public class BankTeller {
             System.out.println("Withdraw - amount cannot be 0 or negative.");
         }
 
-        db.withdraw(acct);
-        System.out.println("Withdrawal - balance updated.");
+        if(db.withdraw(acct)) {
+            System.out.println("Withdrawal - balance updated.");
+        } else {
+            System.out.println("Non existing account");
+        }
     }
 
     /**
