@@ -23,7 +23,7 @@ public class CollegeChecking extends Checking {
     public CollegeChecking (Profile holder, double balance, boolean closed,
                              int location){
         super(holder, balance, closed);
-        this.balance = balance;
+        //this.balance = balance;
         this.location = location; //assuming location is correct
     }
 

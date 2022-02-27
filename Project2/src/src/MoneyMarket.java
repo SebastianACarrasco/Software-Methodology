@@ -8,6 +8,7 @@ package src;
 public class MoneyMarket extends Savings{
     //private double balance; // redundant only in account
     //private boolean isLoyal; // redundant only in savings
+    private int numberOfWithdrawals;
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
@@ -21,10 +22,11 @@ public class MoneyMarket extends Savings{
      * @param balance for how much balance remains in the account
      * @param closed whether or not the account is closed
      */
-    public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
+    public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal, int numberOfWithdrawals) {
         super(holder, balance, closed, isLoyal);
-        this.balance = balance;
+        //this.balance = balance;
         this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
+        this.numberOfWithdrawals = numberOfWithdrawals;
     }
 
 
@@ -51,8 +53,7 @@ public class MoneyMarket extends Savings{
      */
     @Override
     public double fee() {
-        //if (this.balance >= MIN_BALANCE && numberOfWithdrawals > MAXWITHDRAWALS) {
-        if (this.balance >= MIN_BALANCE) {
+        if (this.balance >= MIN_BALANCE && numberOfWithdrawals <= MAXWITHDRAWALS) {
             return MIN_FEE;
         } else {
             //case if the balance <2500 or if the number of withdrawals > 3
@@ -82,7 +83,7 @@ public class MoneyMarket extends Savings{
                     + getIsLoyal() + "::CLOSED";
         }
         return getType() + "::" + holder.toString() + "::balance $" + balance
-                + getIsLoyal() + "::withdrawal: ";
+                + getIsLoyal() + "::withdrawal: " + numberOfWithdrawals;
     }
 
 }
