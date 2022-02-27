@@ -62,6 +62,15 @@ public class AccountDatabase {
         this.numAcct = this.accounts.length;
     }
 
+    public void updateAllBalances() {
+        for(int i = 0; i < this.numAcct; i++) {
+            if(this.accounts[i] != null) {
+                this.accounts[i].fee();
+                this.accounts[i].monthlyInterest();
+            }
+        }
+    }
+
     /**
      * Opens a new account in the database with the given account type if
      * it is not already in the database
@@ -95,6 +104,17 @@ public class AccountDatabase {
     }
 
     /**
+     * helper method to checks to see if account is closed or not
+     * @return true if account is closed false otherwise
+     */
+    public boolean isClosed(Account account) {
+        if(account.closed) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Helper method that sets loyal to false when closing an account
      * @param account
      */
@@ -102,13 +122,13 @@ public class AccountDatabase {
         int index = this.find(account);
         if (this.accounts[index].getType().equals("MoneyMarket")){
             MoneyMarket mm = (MoneyMarket) account;
-            if(mm.isClosed()) {
+            if(isClosed(mm)) {
                 mm.setLoyal(false);
                 return mm;
             }
         } else if (this.accounts[index].getType().equals("Savings")) {
             Savings s = (Savings) account;
-            if(s.isClosed()) {
+            if(isClosed(s)) {
                 s.setLoyal(false);
                 return s;
             }
@@ -147,7 +167,7 @@ public class AccountDatabase {
      */
     public void deposit(Account account) {
         int index = this.find(account);
-        if (index != NOT_FOUND && account.isClosed()) {
+        if (index != NOT_FOUND && isClosed(account)) {
             this.accounts[index].closed = false;
             this.accounts[index].deposit(account.balance);
 
@@ -178,6 +198,10 @@ public class AccountDatabase {
             return true;
         }
         return false;
+    }
+
+    public int getNumberOfWithdrawals() {
+        return numberOfWithdrawals;
     }
 
     /**
