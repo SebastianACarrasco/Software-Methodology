@@ -40,18 +40,6 @@ public class AccountDatabaseTest {
         Account savings = new Savings(p4, 100, false, true);
         assertTrue(accountDatabase.open(savings));
 
-        //negative balance
-        Date d5 = new Date("1/1/2005");
-        Profile p5 = new Profile("Timothy", "Carrasco", d5);
-        Account balance = new Checking(p5, -100, false);
-        assertFalse(accountDatabase.open(balance));
-
-        //wrong location
-        //Date d6 = new Date("11/10/2001");
-        //Profile p6 = new Profile("Sebastian", "Carrasco", d1);
-        //Account location = new CollegeChecking(p1, 100, false, 4);
-        //assertFalse(accountDatabase.open(location));
-
 
     }
 
@@ -105,6 +93,7 @@ public class AccountDatabaseTest {
         accountDatabase.print();
 
         checkings.balance = 500;
+        //checkings.closed = false;
         accountDatabase.print();
     }
 
