@@ -72,17 +72,6 @@ public abstract class Account {
             this.balance -= amount;
     }
 
-    /**
-     * helper method to checks to see if account is closed or not
-     * @return true if account is closed false otherwise
-     */
-    public boolean isClosed() {
-        if(this.closed) {
-            return true;
-        }
-        return false;
-    }
-
 
     /**
      * Deposits the amount holders input. Generalized for
@@ -90,6 +79,7 @@ public abstract class Account {
      * @param amount to deposit
      */
     public void deposit(double amount) {
+        if(this.closed) { this.closed = false; }
         this.balance += amount;
     }
 
