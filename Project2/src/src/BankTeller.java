@@ -159,7 +159,7 @@ public class BankTeller {
                     System.out.println("Amount invalid. Minimum balance for Money Market account is $2500");
                     return;
                 }
-                MoneyMarket mm = new MoneyMarket(profile, balance, false, true);
+                MoneyMarket mm = new MoneyMarket(profile, balance, false, true, 0);
                 find = db.findDupe(mm);
                 if(find == 1) {
                     System.out.println(mm.toString() + "same account(type) is in database.");
@@ -319,7 +319,7 @@ public class BankTeller {
                 acct = new Checking(profile, balance, false);
                 break;
             case "MM":
-                acct = new MoneyMarket(profile, balance, false, true);
+                acct = new MoneyMarket(profile, balance, false, true, 0);
                 break;
             case "CC":
                 int location = Integer.parseInt(inputArray[6]);
