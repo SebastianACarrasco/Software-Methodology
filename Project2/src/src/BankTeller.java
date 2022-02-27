@@ -19,6 +19,8 @@ public class BankTeller {
     private static final int MIN_BAL_ACCT = 1;
     private static final int MAX_INPUT_SIZE = 7;
     private static final int SUB_MAX_INPUT_SIZE = 6;
+    private static final int MAX_MM_INPUT_SIZE = 8;
+    private int numberOfWithdrawals = 0;
     private int location;
     private int find;
     private double balance;
@@ -33,7 +35,7 @@ public class BankTeller {
      * Main method that runs the entire program.
      */
     public void run() {
-        System.out.println("Bank Teller is running.");
+        System.out.println("Bank Teller is running.\n");
         Scanner sc = new Scanner(System.in);
 
         while(sc.hasNextLine()) {
@@ -76,9 +78,7 @@ public class BankTeller {
                     default:
                         System.out.println("Invalid command!");
                 }
-            } catch (RuntimeException e){
-                System.out.println("Input is empty try again.");
-            }
+            } catch (RuntimeException e){ }
         }
     }
 
@@ -97,30 +97,31 @@ public class BankTeller {
     }
 
     /**
-     * Opens an account for the user.
+     * Opens an account for the user. This method is separated into its individual
+     * accounts to make it easier to read and understand.
      */
     private void openAccount(String[] inputArray) {
         if(inputArray.length < 6) {
-            System.out.println("Missing data for opening account");
+            System.out.println("Missing data for opening an account");
             return;
         }
 
         acctType = inputArray[1];
         try {
             balance = Double.parseDouble(inputArray[5]);
+            date = new Date(inputArray[4]);
+            profile = new Profile(inputArray[2], inputArray[3], date);
+
+            if (balance < MIN_BAL_ACCT) {
+                System.out.println("Initial deposit cannot be 0 or negative.");
+                return;
+            }
+            if (!date.isValid()) {
+                System.out.println("Date of birth invalid.");
+                return;
+            }
         } catch(NumberFormatException e) {
             System.out.println("Not a valid amount");
-        }
-        date = new Date(inputArray[4]);
-        profile = new Profile(inputArray[2], inputArray[3], date);
-
-        if(balance < MIN_BAL_ACCT) {
-            System.out.println("Amount invalid. Initial deposit cannot be less than $1");
-            return;
-        }
-        if(!date.isValid()) {
-            System.out.println("Date invalid. Please enter date in the format MM/DD/YYYY");
-            return;
         }
 
         //we're doing this below because they have different input sizes
@@ -138,10 +139,11 @@ public class BankTeller {
                 Checking c = new Checking(profile, balance, false);
                 find = db.findDupe(c);
                 if(find == 1) {
-                    System.out.println(c.toString() + " same account(type) is in database.");
+                    System.out.println(profile.getfName() + " " + profile.getlName()
+                            + " " + profile.getDob() + " same account(type) is in the database.");
                 } else {
                     db.open(c);
-                    System.out.println("Account opened");
+                    System.out.println("Account opened.");
                 }
 
             }
@@ -153,33 +155,36 @@ public class BankTeller {
      * open method. It deals with Money Market, Savings, and College Checkings.
      */
     private void openAllAccountsButCheckings(String[] inputArray) {
-        if(inputArray.length == MAX_INPUT_SIZE) {
+        if(inputArray.length == MAX_INPUT_SIZE){// || inputArray.length == MAX_MM_INPUT_SIZE) {
             if(acctType.equals("MM")) {
                 if(balance < MIN_BAL) {
-                    System.out.println("Amount invalid. Minimum balance for Money Market account is $2500");
+                    System.out.println("Minimum of $2500 to open a Money Market account.");
                     return;
                 }
                 MoneyMarket mm = new MoneyMarket(profile, balance, false, true, 0);
                 find = db.findDupe(mm);
                 if(find == 1) {
-                    System.out.println(mm.toString() + "same account(type) is in database.");
+                    System.out.println(profile.getfName() + " " + profile.getlName()
+                            + " " + profile.getDob() + "same account(type) is in database.");
                 } else {
                     db.open(mm);
-                    System.out.println("Account opened");
+                    System.out.println("Account opened.");
                 }
             } else if(acctType.equals("CC")) {
-                if(isValidLocation(Integer.parseInt(inputArray[6]))) {
-                    location = Integer.parseInt(inputArray[6]);
+                int loc = Integer.parseInt(inputArray[6]);
+                if(isValidLocation(loc)) {
+                    location = loc;
                     CollegeChecking cc = new CollegeChecking(profile, balance, false, location);
                     find = db.findDupe(cc);
                     if (find == 1) {
-                        System.out.println(cc.toString() + "same account(type) is in database.");
+                        System.out.println(profile.getfName() + " " + profile.getlName()
+                                + " " + profile.getDob() + "same account(type) is in database.");
                     } else {
                         db.open(cc);
-                        System.out.println("Account opened");
+                        System.out.println("Account opened.");
                     }
                 } else {
-                    System.out.println("Invalid location.");
+                    System.out.println("Invalid campus code.");
                 }
             } else if(acctType.equals("S")) {
                 //1 = loyal, 0 = not loyal
@@ -188,7 +193,8 @@ public class BankTeller {
                 Savings s = new Savings(profile, balance, false, isLoyal);
                 find = db.findDupe(s);
                 if(find == 1) {
-                    System.out.println(s.toString() + "same account(type) is in database.");
+                    System.out.println(profile.getfName() + " " + profile.getlName()
+                            + " " + profile.getDob() + "same account(type) is in database.");
                 } else {
                     db.open(s);
                     System.out.println("Account opened");
@@ -202,13 +208,13 @@ public class BankTeller {
      */
     private void closeAccount(String[] inputArray) {
         if(db.isEmpty()) {
-            System.out.print("Account database is empty.");
+            System.out.print("Account database is empty!");
             return;
         }
 
         Account acct = createAccountForProcessing(inputArray);
         db.close(acct);
-        System.out.println("Account closed");
+        System.out.println("Account closed.");
     }
 
 
@@ -220,10 +226,19 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
+        try {
+            double amount = Double.parseDouble(inputArray[5]);
+        } catch (NumberFormatException e) {
+            System.out.println("Not a valid amount.");
+        }
+        if(Double.parseDouble(inputArray[5]) < 1) {
+            System.out.println("Deposit - amount cannot be 0 or negative.");
+            return;
+        }
 
         Account acct = createAccountForProcessing(inputArray);
         db.deposit(acct);
-        System.out.println("Deposit successful");
+        System.out.println("Deposit - balance updated.");
 
     }
 
@@ -235,9 +250,22 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
+        double amount = 0;
+        try {
+            amount = Double.parseDouble(inputArray[5]);
+        } catch (NumberFormatException e) {
+            System.out.println("Not a valid amount.");
+        }
         Account acct = createAccountForProcessing(inputArray);
+        if(amount > acct.balance) {
+            System.out.println("Withdraw - insufficient funds.");
+        }
+        if(amount < 1) {
+            System.out.println("Withdraw - amount cannot be 0 or negative.");
+        }
+
         db.withdraw(acct);
-        System.out.println("Withdrawal successful");
+        System.out.println("Withdrawal - balance updated.");
     }
 
     /**
@@ -248,7 +276,7 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
-
+        System.out.println("\n*list of accounts in database*");
         db.print();
     }
 
@@ -260,7 +288,7 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
-
+        System.out.println("\n*list of accounts by account type*");
         db.printByAccountType();
     }
 
@@ -273,6 +301,7 @@ public class BankTeller {
             return;
         }
 
+        System.out.println("\n*list of accounts with fees and monthly interests*");
         db.printFeeAndInterest();
     }
 
@@ -314,7 +343,7 @@ public class BankTeller {
         profile = new Profile(inputArray[2], inputArray[3], date);
         Account acct;
 
-        switch(inputArray[1]) {
+        switch(acctType) {
             case "C":
                 acct = new Checking(profile, balance, false);
                 break;
