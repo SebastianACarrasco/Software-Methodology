@@ -61,11 +61,9 @@ public class BankTeller {
                     break;
                 case "UB": updateAccountBalance(terminalInput);
                     break;
-                case "Q":
-                    System.out.println("Bank Teller is terminated.");
+                case "Q": System.out.println("Bank Teller is terminated.");
                     break;
-                default:
-                    System.out.println("Invalid command!");
+                default: System.out.println("Invalid command!");
             }
         }
     }

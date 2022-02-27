@@ -79,6 +79,7 @@ public abstract class Account {
      * @param amount to deposit
      */
     public void deposit(double amount) {
+        if(this.closed) { this.closed = false; }
         this.balance += amount;
     }
 

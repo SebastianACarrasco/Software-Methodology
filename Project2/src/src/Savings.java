@@ -9,7 +9,6 @@ package src;
  */
 
 public class Savings extends Account {
-    //private double balance;
     protected boolean isLoyal;
     private static final double MIN_BALANCE = 300;
     private static final double LOYAL_INTEREST = 0.0045;
@@ -24,7 +23,6 @@ public class Savings extends Account {
      */
     public Savings(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed);
-        //this.balance = balance;
         this.isLoyal = isLoyal;
     }
 

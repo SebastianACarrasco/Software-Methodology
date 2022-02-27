@@ -40,6 +40,8 @@ public class AccountDatabaseTest {
         Account savings = new Savings(p4, 100, false, true);
         assertTrue(accountDatabase.open(savings));
 
+        accountDatabase.print();
+
 
     }
 
@@ -76,7 +78,7 @@ public class AccountDatabaseTest {
         assertTrue(accountDatabase.close(moneymarket));
     }
 
-
+    /*
     @Test
     public void reOpen() {
         AccountDatabase accountDatabase = new AccountDatabase();
@@ -97,7 +99,7 @@ public class AccountDatabaseTest {
         accountDatabase.print();
     }
 
-    /*
+
     @Test
     public void print() {
         //test print method

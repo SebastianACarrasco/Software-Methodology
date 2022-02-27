@@ -6,9 +6,8 @@ package src;
  * @author Seabstian Carrasco, Rachael Chin
  */
 public class MoneyMarket extends Savings{
-
-    private double balance; // redundant only in account
-    private boolean isLoyal; // redundant only in savings
+    //private double balance; // redundant only in account
+    //private boolean isLoyal; // redundant only in savings
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
