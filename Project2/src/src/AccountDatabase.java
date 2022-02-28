@@ -13,7 +13,7 @@ public class AccountDatabase {
     private Account [] accounts;
     private int numAcct;
     private static final int NOT_FOUND = -1;
-    int numberOfWithdrawals = 0;
+    public int numberOfWithdrawals = 0;
 
     /**
      * Constructor for the AccountDatabase class.
