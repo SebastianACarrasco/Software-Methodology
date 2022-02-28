@@ -79,20 +79,21 @@ public class AccountDatabase {
      */
     public boolean open(Account account) {
         int index = this.find(account);
-        if (index == NOT_FOUND) {
+        boolean isCC = account.getType().equals("College Checking");
+
+        if(isCC && index == NOT_FOUND) {
+            for(int i = 0; i < this.numAcct; i++) {
+                if(this.accounts[i].holder.equals(account.holder)
+                        && this.accounts[i].getType().equals("Checking")) {
+                    return false;
+                }
+            }
+        } else if (index == NOT_FOUND) {
             for(int i = 0; i < this.numAcct; i++) {
                 if(this.accounts[i] == null) {
                     this.accounts[i] = account;
                     grow();
                     return true;
-                }
-            }
-        } else {
-            if(account.getType().equals("College Checking")){
-                if(this.accounts[index].holder == account.holder){
-                    if(accounts[index].getType().equals("Checking")){
-                        return false;
-                    }
                 }
             }
         }
