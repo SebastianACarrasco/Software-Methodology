@@ -7,5 +7,7 @@ S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 J
 Project2/src/src/Date.java,d/d/dd18d89e9386e131a983d491c3e9b2a7a90ef67a
-Q
-!Project2/src/src/RunProject2.java,9/b/9b93e3bf2d421192cca13b4222f86bc1512d8d69
+U
+%Project2/src/src/CollegeChecking.java,7/f/7f41a34de0f1b7850cb9c3b6b3475d5d8f8a456b
+M
+Project2/src/src/Profile.java,d/3/d38c72870515c190ec856b72c3e68f6a1c4b9400
