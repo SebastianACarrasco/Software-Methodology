@@ -87,6 +87,14 @@ public class AccountDatabase {
                     return true;
                 }
             }
+        } else {
+            if(account.getType().equals("College Checking")){
+                if(this.accounts[index].holder == account.holder){
+                    if(accounts[index].getType().equals("Checking")){
+                        return false;
+                    }
+                }
+            }
         }
         return false; //account already exists
     }
