@@ -24,3 +24,5 @@ public class MoneyMarketTest {
         assertEquals(moneymarket2.balance*0.008/12, moneymarket2.monthlyInterest(), 0.001);
     }
 }
+
+

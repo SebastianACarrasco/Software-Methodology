@@ -168,7 +168,7 @@ public class AccountDatabase {
      */
     public void deposit(Account account) {
         int index = this.find(account);
-        if (index != NOT_FOUND && isClosed(account)) {
+        if (index != NOT_FOUND && account.closed == true) {
             this.accounts[index].closed = false;
             this.accounts[index].deposit(account.balance);
 
@@ -184,7 +184,8 @@ public class AccountDatabase {
      */
     public boolean withdraw(Account account) {
         int index = this.find(account);
-        if (index != NOT_FOUND && account.balance > 0) {
+        if (index != NOT_FOUND && account.balance > 0
+                && !(account.balance > accounts[index].balance)) {
             accounts[index].withdraw(account.balance);
             //defined by profile and balance and we can get the balance by
             // encapsulate it by getting an instance of account from outside.

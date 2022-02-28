@@ -21,6 +21,7 @@ public class Checking extends Account{
      */
     public Checking (Profile holder, double balance, boolean closed) {
         super(holder, balance, closed);
+
     }
 
     /**
@@ -58,4 +59,9 @@ public class Checking extends Account{
         return "Checking";
     }
 
+
+
 }
+
+
+
