@@ -158,6 +158,10 @@ public class AccountDatabase {
         if (index != NOT_FOUND) {
             this.accounts[index].balance = 0;
 
+            if(this.accounts[index].getType().equals("MoneyMarket")) {
+                accounts[index].numberOfWithdrawals = 0;
+            }
+
             if(this.accounts[index].getType().equals("Savings")
                     || this.accounts[index].getType().equals("MoneyMarket")) {
                 //need to set isLoyal to false after closing
