@@ -13,7 +13,7 @@ public abstract class Account {
     protected Profile holder;
     protected boolean closed;
     protected double balance;
-    //int numberOfWithdrawals = 0;
+    public int numberOfWithdrawals = 0;
 
 
     /**
@@ -69,7 +69,8 @@ public abstract class Account {
      * @param amount to withdraw
      */
     public void withdraw(double amount) {
-            this.balance -= amount;
+        numberOfWithdrawals++;
+        this.balance -= amount;
     }
 
 

@@ -6,7 +6,6 @@ package src;
  * @author Seabstian Carrasco, Rachael Chin
  */
 public class MoneyMarket extends Savings{
-    private int numberOfWithdrawals;
     private static final double FEE = 10.0;
     private static final double MIN_FEE = 0.0;
     private static final double MIN_BALANCE = 2500.0;
@@ -76,6 +75,8 @@ public class MoneyMarket extends Savings{
             return "::loyal";
         }
     }
+
+
     /**
      * Returns all the account information as a string.
      * @return account information as a string

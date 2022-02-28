@@ -13,7 +13,6 @@ public class AccountDatabase {
     private Account [] accounts;
     private int numAcct;
     private static final int NOT_FOUND = -1;
-    public int numberOfWithdrawals = 0;
 
     /**
      * Constructor for the AccountDatabase class.
@@ -23,6 +22,7 @@ public class AccountDatabase {
         this.accounts = new Account[4];
         this.numAcct = this.accounts.length;
     }
+
 
     /**
      * Helper method to check if database is empty. It will be empty if the
@@ -195,7 +195,7 @@ public class AccountDatabase {
             }
 
              */
-            numberOfWithdrawals++;
+            //numberOfWithdrawals++;
             return true;
         }
         return false;
