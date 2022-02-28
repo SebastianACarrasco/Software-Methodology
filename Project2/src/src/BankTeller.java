@@ -36,11 +36,16 @@ public class BankTeller {
         System.out.println("Bank Teller is running.\n");
         Scanner sc = new Scanner(System.in);
 
-        while(sc.hasNextLine()) {
-            StringTokenizer str = new StringTokenizer(sc.nextLine());
-            terminalInput = new String[str.countTokens()];
+            while (sc.hasNextLine()) {
+                StringTokenizer str = new StringTokenizer(sc.nextLine());
+                terminalInput = new String[str.countTokens()];
 
-            try {
+                for (int i = 0; i < terminalInput.length; i++) {
+                    terminalInput[i] = str.nextToken();
+                }
+
+                /*
+                try {
                 for (int i = 0; i < terminalInput.length; i++) {
                     terminalInput[i] = str.nextToken();
                 }
@@ -76,8 +81,40 @@ public class BankTeller {
                     default:
                         System.out.println("Invalid command!");
                 }
-            } catch (RuntimeException e){ }
-        }
+                } catch (RuntimeException e){
+                    System.out.println("i hate this!");
+                }
+
+                 */
+
+                try {
+                    if(terminalInput[0].equals("O")) {
+                        openAccount(terminalInput);
+                    } else if(terminalInput[0].equals("C")) {
+                        closeAccount(terminalInput);
+                    } else if(terminalInput[0].equals("D")) {
+                        depositAccount(terminalInput);
+                    } else if(terminalInput[0].equals("W")) {
+                        withdrawAccount(terminalInput);
+                    } else if(terminalInput[0].equals("P")) {
+                        printAccount();
+                    } else if(terminalInput[0].equals("PT")) {
+                        printByAccountType();
+                    } else if(terminalInput[0].equals("PI")) {
+                        printWithInterestAndFees();
+                    } else if(terminalInput[0].equals("UB")) {
+                        updateAccountBalance(terminalInput);
+                    } else if(terminalInput[0].equals("Q")) {
+                        System.out.println("Bank Teller is terminated.");
+                    } else {
+                        System.out.println("Invalid command!");
+                    }
+                } catch (RuntimeException e) {
+                    System.out.println("I hate this");
+                }
+
+
+            }
     }
 
 
@@ -123,8 +160,11 @@ public class BankTeller {
         }
 
         //we're doing this below because they have different input sizes
-        openAllAccountsButCheckings(inputArray);
-        openCheckings(inputArray);
+        if(acctType.equals("C")) {
+            openCheckings(inputArray);
+        } else {
+            openAllAccountsButCheckings(inputArray);
+        }
     }
 
     /**
@@ -171,12 +211,15 @@ public class BankTeller {
             } else if(acctType.equals("CC")) {
                 int loc = Integer.parseInt(inputArray[6]);
                 if(isValidLocation(loc)) {
-                    location = loc;
-                    CollegeChecking cc = new CollegeChecking(profile, balance, false, location);
+                    CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
+
                     find = db.findDupe(cc);
                     if (find == 1) {
                         System.out.println(profile.getfName() + " " + profile.getlName()
                                 + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
+                    } else if(!db.open(cc)) {
+                        System.out.println("Cannot open CC because user has a C account");
+
                     } else {
                         db.open(cc);
                         System.out.println("Account opened.");
@@ -199,7 +242,7 @@ public class BankTeller {
                 }
             }
         } else {
-            System.out.println("Invalid command!");
+            System.out.println("Invalid command! ");
         }
     }
 
@@ -212,7 +255,7 @@ public class BankTeller {
             return;
         }
 
-        if(inputArray.length == SUB_MAX_INPUT_SIZE-1) {
+        if(inputArray.length == (SUB_MAX_INPUT_SIZE-1)) {
             Account acct = createAccountForProcessing(inputArray);
             if (db.close(acct)) {
                 System.out.println("Account closed.");
@@ -233,20 +276,22 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
-        try {
-            double amount = Double.parseDouble(inputArray[5]);
-        } catch (NumberFormatException e) {
-            System.out.println("Not a valid amount.");
-        }
-        if(Double.parseDouble(inputArray[5]) < 1) {
-            System.out.println("Deposit - amount cannot be 0 or negative.");
-            return;
-        }
+        if(inputArray.length == (SUB_MAX_INPUT_SIZE)) {
+            try {
+                double amount = Double.parseDouble(inputArray[5]);
+            } catch (NumberFormatException e) {
+                System.out.println("Not a valid amount.");
+                return;
+            }
+            if (Double.parseDouble(inputArray[5]) < 1) {
+                System.out.println("Deposit - amount cannot be 0 or negative.");
+                return;
+            }
 
-        Account acct = createAccountForProcessing(inputArray);
-
-        db.deposit(acct);
-        System.out.println("Deposit - balance updated.");
+            Account acct = createAccountForProcessing(inputArray);
+            db.deposit(acct);
+            System.out.println("Deposit - balance updated.");
+        }
 
     }
 
@@ -259,19 +304,25 @@ public class BankTeller {
             return;
         }
         double amount = 0;
-        try {
-            amount = Double.parseDouble(inputArray[5]);
-        } catch (NumberFormatException e) {
-            System.out.println("Not a valid amount.");
-        }
-        Account acct = createAccountForProcessing(inputArray);
-        if(amount < 1) {
-            System.out.println("Withdraw - amount cannot be 0 or negative.");
-        } else if(db.withdraw(acct)) {
-            if(acct.getType().equals("MM")) { acct.numberOfWithdrawals++;}
-            System.out.println("Withdrawal - balance updated.");
-        } else {
-            System.out.println("Withdrawal - insufficient funds.");
+        if(inputArray.length == (SUB_MAX_INPUT_SIZE)) {
+            try {
+                amount = Double.parseDouble(inputArray[5]);
+            } catch (NumberFormatException e) {
+                System.out.println("Not a valid amount.");
+                return;
+            }
+            Account acct = createAccountForProcessing(inputArray);
+
+            if (amount < 1) {
+                System.out.println("Withdraw - amount cannot be 0 or negative.");
+            } else if (db.withdraw(acct)) {
+                if (acct.getType().equals("MM")) {
+                    acct.numberOfWithdrawals++;
+                }
+                System.out.println("Withdrawal - balance updated.");
+            } else {
+                System.out.println("Withdrawal - insufficient funds.");
+            }
         }
     }
 
@@ -285,6 +336,7 @@ public class BankTeller {
         }
         System.out.println("\n*list of accounts in database*");
         db.print();
+        System.out.println("\n*end of list*");
     }
 
     /**
@@ -297,6 +349,7 @@ public class BankTeller {
         }
         System.out.println("\n*list of accounts by account type*");
         db.printByAccountType();
+        System.out.println("\n*end of list*");
     }
 
     /**
@@ -310,6 +363,7 @@ public class BankTeller {
 
         System.out.println("\n*list of accounts with fees and monthly interests*");
         db.printFeeAndInterest();
+        System.out.println("\n*end of list*");
     }
 
     /**
@@ -358,13 +412,23 @@ public class BankTeller {
                 acct = new MoneyMarket(profile, balance, false, true, 0);
                 break;
             case "CC":
-                int location = Integer.parseInt(inputArray[6]);
-                acct = new CollegeChecking(profile, balance, false, location);
-                break;
+                if(inputArray.length == MAX_INPUT_SIZE) {
+                    int location = Integer.parseInt(inputArray[6]);
+                    acct = new CollegeChecking(profile, balance, false, location);
+                    break;
+                } else {
+                    acct = new CollegeChecking(profile, balance, false, location);
+                    break;
+                }
             case "S":
-                int loyal = Integer.parseInt(inputArray[6]);
-                acct = new Savings(profile, balance, false, isLoyal(loyal));
-                break;
+                if(inputArray.length == MAX_INPUT_SIZE) {
+                    int loyal = Integer.parseInt(inputArray[6]);
+                    acct = new Savings(profile, balance, false, isLoyal(loyal));
+                    break;
+                } else {
+                    acct = new Savings(profile, balance, false, isLoyal(loyal));
+                    break;
+                }
             default:
                 acct = null;
         }

@@ -44,7 +44,9 @@ public class Profile {
      */
 
     public boolean equals(Profile profile) {
-        if (profile.fName.equals(this.fName) && profile.lName.equals(this.lName)
+        //if (profile.fName.equals(this.fName) && profile.lName.equals(this.lName)
+        if(profile.fName.toUpperCase().equals(fName.toUpperCase())
+                && profile.lName.toUpperCase().equals(lName.toUpperCase())
                 && profile.dob.compareTo(this.dob) == 0 ){
             return true; //the profiles are the same
         }
