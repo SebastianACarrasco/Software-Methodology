@@ -80,10 +80,10 @@ public class CollegeChecking extends Checking {
     public String toString() {
         //acct type:: FN LN DOB :: balance $00.00 :: location
         if(this.closed) {
-            return getType() + "::" + holder.toString() + "::balance $" + balance
+            return getType() + "::" + holder.toString() + "::balance $" + String.format("%.2f",balance)
                     + " CLOSED::" + getLocation();
         }
-        return getType() + "::" + holder.toString() + "::balance $" + balance + "::"
+        return getType() + "::" + holder.toString() + "::balance $" + String.format("%.2f",balance) + "::"
                 + getLocation();
     }
 }
