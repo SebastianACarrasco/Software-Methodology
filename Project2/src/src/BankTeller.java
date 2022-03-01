@@ -111,51 +111,14 @@ public class BankTeller {
     }
 
     /**
-     * Opens an account for the user. This method is separated into its individual
-     * accounts to make it easier to read and understand.
-     */
-    /*
-    private void openAccount(String[] inputArray) {
-        if(inputArray.length < 6) {
-            System.out.println("Missing data for opening an account");
-            return;
-        }
-
-        acctType = inputArray[1];
-        try {
-            balance = Double.parseDouble(inputArray[5]);
-            date = new Date(inputArray[4]);
-            profile = new Profile(inputArray[2], inputArray[3], date);
-
-            if (balance < MIN_BAL_ACCT) {
-                System.out.println("Initial deposit cannot be 0 or negative.");
-                return;
-            }
-            if (!date.isValid()) {
-                System.out.println("Date of birth invalid.");
-                return;
-            }
-        } catch(NumberFormatException e) {
-            System.out.println("Not a valid amount");
-        }
-
-        //we're doing this below because they have different input sizes
-        if(acctType.equals("C")) {
-            openCheckings(inputArray);
-        } else {
-            openAllAccountsButCheckings(inputArray);
-        }
-    }
-
-     */
-
-    /**
      * Helper method for openAccount(). It deals with Checking accounts.
      */
     private void openChecking(String[] inputArray) {
         if(inputArray.length == SUB_MAX_INPUT_SIZE) {
             balance = Double.parseDouble(inputArray[5]);
             dob = new Date(inputArray[4]);
+            if(!dob.isValid()) {System.out.println("Invalid date"); return;}
+
             profile = new Profile(inputArray[2], inputArray[3], dob);
 
             Checking c = new Checking(profile, balance, false);
@@ -181,6 +144,7 @@ public class BankTeller {
             if (isValidLocation(loc)) {
                 balance = Double.parseDouble(inputArray[5]);
                 dob = new Date(inputArray[4]);
+                if(!dob.isValid()) {System.out.println("Invalid date"); return;}
                 profile = new Profile(inputArray[2], inputArray[3], dob);
                 CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
 
@@ -212,6 +176,7 @@ public class BankTeller {
             boolean isLoyal = isLoyal(loyal);
             balance = Double.parseDouble(inputArray[5]);
             dob = new Date(inputArray[4]);
+            if(!dob.isValid()) {System.out.println("Invalid date"); return;}
             profile = new Profile(inputArray[2], inputArray[3], dob);
 
             Savings s = new Savings(profile, balance, false, isLoyal);
@@ -233,9 +198,10 @@ public class BankTeller {
      * @param inputArray
      */
     private void openMoneyMarket(String[] inputArray) {
-        if (inputArray.length == SUB_MAX_INPUT_SIZE) {
+        if (inputArray.length == MAX_INPUT_SIZE) {
             balance = Double.parseDouble(inputArray[5]);
             dob = new Date(inputArray[4]);
+            if(!dob.isValid()) {System.out.println("Invalid date"); return;}
             profile = new Profile(inputArray[2], inputArray[3], dob);
 
             if (balance < MIN_BAL) {
@@ -256,67 +222,6 @@ public class BankTeller {
             System.out.println("Missing data for opening a Money Market account");
         }
     }
-
-    /**
-     * Helper method for openAccount() that shortens the length of the
-     * open method. It deals with Money Market, Savings, and College Checkings.
-     */
-    /*
-    private void openAllAccountsButCheckings(String[] inputArray) {
-        if(inputArray.length == MAX_INPUT_SIZE){
-            if(acctType.equals("MM")) {
-                if(balance < MIN_BAL) {
-                    System.out.println("Minimum of $2500 to open a Money Market account.");
-                    return;
-                }
-                MoneyMarket mm = new MoneyMarket(profile, balance, false, true, 0);
-                find = db.findDupe(mm);
-                if(find == 1) {
-                    System.out.println(profile.getfName() + " " + profile.getlName()
-                            + " " + profile.getDob() + " same account(" + mm.getType() + ") is in database.");
-                } else {
-                    db.open(mm);
-                    System.out.println("Account opened.");
-                }
-            } else if(acctType.equals("CC")) {
-                int loc = Integer.parseInt(inputArray[6]);
-                if(isValidLocation(loc)) {
-                    CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
-
-                    find = db.findDupe(cc);
-                    if (find == 1) {
-                        System.out.println(profile.getfName() + " " + profile.getlName()
-                                + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
-                    } else if(!db.open(cc)) {
-                        System.out.println("Cannot open CC because user has a C account");
-
-                    } else {
-                        db.open(cc);
-                        System.out.println("Account opened.");
-                    }
-                } else {
-                    System.out.println("Invalid campus code.");
-                }
-            } else if(acctType.equals("S")) {
-                //1 = loyal, 0 = not loyal
-                loyal = Integer.parseInt(inputArray[6]);
-                boolean isLoyal = isLoyal(loyal);
-                Savings s = new Savings(profile, balance, false, isLoyal);
-                find = db.findDupe(s);
-                if(find == 1) {
-                    System.out.println(profile.getfName() + " " + profile.getlName()
-                            + " " + profile.getDob() + " same account(" + s.getType() + ") is in database.");
-                } else {
-                    db.open(s);
-                    System.out.println("Account opened");
-                }
-            }
-        } else {
-            System.out.println("Invalid command! ");
-        }
-    }
-
-     */
 
     /**
      * Closes an account for the user.
@@ -510,23 +415,22 @@ public class BankTeller {
      */
     private Account createAccountForClosing(String[] inputArray) {
         acctType = inputArray[1];
-        balance = Double.parseDouble(inputArray[5]);
         dob = new Date(inputArray[4]);
         profile = new Profile(inputArray[2], inputArray[3], dob);
         Account acct;
 
         switch(acctType) {
             case "C":
-                acct = new Checking(profile, balance, true);
+                acct = new Checking(profile, 0, true);
                 break;
             case "MM":
-                acct = new MoneyMarket(profile, balance, true, false, 0);
+                acct = new MoneyMarket(profile, 0, true, false, 0);
                 break;
             case "CC":
-                acct = new CollegeChecking(profile, balance, true, 0);
+                acct = new CollegeChecking(profile, 0, true, 0);
                 break;
             case "S":
-                acct = new Savings(profile, balance, true, false);
+                acct = new Savings(profile, 0, true, false);
                 break;
             default:
                 acct = null;
