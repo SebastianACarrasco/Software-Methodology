@@ -396,8 +396,10 @@ public class BankTeller {
                     acct.numberOfWithdrawals++;
                 }
                 System.out.println("Withdrawal - balance updated.");
-            } else {
+            } else if (!db.withdraw(acct)){
                 System.out.println("Withdrawal - insufficient funds.");
+            } else {
+                System.out.println("Withdrawal-Cannot do it");
             }
         } else {
             System.out.println("Missing data for withdrawing money.");
