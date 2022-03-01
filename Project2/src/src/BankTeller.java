@@ -71,6 +71,7 @@ public class BankTeller {
                     updateAccountBalance(terminalInput);
                 } else if (terminalInput[0].equals("Q")) {
                     System.out.println("Bank Teller is terminated.");
+                    System.exit(0);
                 } else {
                     System.out.println("Invalid command!");
                 }
@@ -83,6 +84,16 @@ public class BankTeller {
     private void openAccount() {
         if (terminalInput.length < 6) {
             System.out.println("Missing data for opening an account");
+            return;
+        }
+
+        try {
+            if (Double.parseDouble(terminalInput[5]) < 1) {
+                System.out.println("Initial deposit cannot be 0 or negative");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Not a valid amount.");
             return;
         }
 
@@ -117,7 +128,7 @@ public class BankTeller {
         if(inputArray.length == SUB_MAX_INPUT_SIZE) {
             balance = Double.parseDouble(inputArray[5]);
             dob = new Date(inputArray[4]);
-            if(!dob.isValid()) {System.out.println("Invalid date"); return;}
+            if(!dob.isValid()) {System.out.println("Date of Birth invalid"); return;}
 
             profile = new Profile(inputArray[2], inputArray[3], dob);
 
@@ -144,7 +155,7 @@ public class BankTeller {
             if (isValidLocation(loc)) {
                 balance = Double.parseDouble(inputArray[5]);
                 dob = new Date(inputArray[4]);
-                if(!dob.isValid()) {System.out.println("Invalid date"); return;}
+                if(!dob.isValid()) {System.out.println("Date of Birth invalid"); return;}
                 profile = new Profile(inputArray[2], inputArray[3], dob);
                 CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
 
@@ -176,7 +187,7 @@ public class BankTeller {
             boolean isLoyal = isLoyal(loyal);
             balance = Double.parseDouble(inputArray[5]);
             dob = new Date(inputArray[4]);
-            if(!dob.isValid()) {System.out.println("Invalid date"); return;}
+            if(!dob.isValid()) {System.out.println("Date of Birth invalid"); return;}
             profile = new Profile(inputArray[2], inputArray[3], dob);
 
             Savings s = new Savings(profile, balance, false, isLoyal);
@@ -198,10 +209,10 @@ public class BankTeller {
      * @param inputArray
      */
     private void openMoneyMarket(String[] inputArray) {
-        if (inputArray.length == MAX_INPUT_SIZE) {
+        if (inputArray.length == SUB_MAX_INPUT_SIZE) {
             balance = Double.parseDouble(inputArray[5]);
             dob = new Date(inputArray[4]);
-            if(!dob.isValid()) {System.out.println("Invalid date"); return;}
+            if(!dob.isValid()) {System.out.println("Date of Birth invalid"); return;}
             profile = new Profile(inputArray[2], inputArray[3], dob);
 
             if (balance < MIN_BAL) {
@@ -361,7 +372,9 @@ public class BankTeller {
         }
 
         db.updateAllBalances();
+        System.out.println("*list of accounts with updated balance");
         db.printFeeAndInterest();
+        System.out.println("*end of list");
 
     }
 
