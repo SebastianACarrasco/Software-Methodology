@@ -418,6 +418,7 @@ public class BankTeller {
      * Helper method that creates an instance of account in terminal and
      * is used for depositing into an account.
      * @param inputArray
+     * @return Account
      */
     private Account createAccountForDepositingAndWithdrawing(String[] inputArray) {
         acctType = inputArray[1];
