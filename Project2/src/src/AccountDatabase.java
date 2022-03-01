@@ -67,8 +67,8 @@ public class AccountDatabase {
     public void updateAllBalances() {
         for(int i = 0; i < this.numAcct; i++) {
             if(this.accounts[i] != null) {
-                this.accounts[i].fee();
-                this.accounts[i].monthlyInterest();
+                this.accounts[i].balance = this.accounts[i].balance -
+                        this.accounts[i].fee() + this.accounts[i].monthlyInterest();
             }
         }
     }
