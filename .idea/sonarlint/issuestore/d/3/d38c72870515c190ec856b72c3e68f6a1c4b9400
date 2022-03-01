@@ -1,0 +1,10 @@
+
+k
+java:S1201."UEither override Object.equals(Object), or rename the method to prevent any confusion.(Ş­Âå
+W
+java:S11260"AReplace this if-then-else statement by a single return statement.(ğĞ”Á
+Q	java:S125/"<This block of commented-out lines of code should be removed.(ØÜÂ
+€
+java:S11570"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(ğĞ”Á8ûÃÖõó/
+…
+java:S11571"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(¼èÁÀşÿÿÿÿ8—éÖõó/

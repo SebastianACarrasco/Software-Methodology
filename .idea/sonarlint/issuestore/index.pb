@@ -23,3 +23,5 @@ N
 Project2/src/src/Checking.java,a/e/ae7c8526e0ce290a7250044c9307ef7e5938b876
 M
 Project2/src/src/Profile.java,d/3/d38c72870515c190ec856b72c3e68f6a1c4b9400
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
