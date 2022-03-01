@@ -81,6 +81,9 @@ public class BankTeller {
         }
     }
 
+    /**
+     * private method that will open an account, or will display for missing data and invalid input
+     */
     private void openAccount() {
         if (terminalInput.length < 6) {
             System.out.println("Missing data for opening an account");
@@ -108,7 +111,6 @@ public class BankTeller {
         }
     }
 
-
     /**
      * Validates location input from user.
      * @param location
@@ -123,6 +125,7 @@ public class BankTeller {
 
     /**
      * Helper method for openAccount(). It deals with Checking accounts.
+     * @param inputArray
      */
     private void openChecking(String[] inputArray) {
         if(inputArray.length == SUB_MAX_INPUT_SIZE) {
@@ -148,6 +151,7 @@ public class BankTeller {
 
     /**
      * Helper method for openAccount(). It deals with College Checking accounts.
+     * @param inputArray
      */
     private void openCollegeChecking(String[] inputArray) {
         if(inputArray.length == MAX_INPUT_SIZE) {
@@ -236,6 +240,7 @@ public class BankTeller {
 
     /**
      * Closes an account for the user.
+     * @param inputArray
      */
     private void closeAccount(String[] inputArray) {
         if(db.isEmpty()) {
@@ -260,6 +265,7 @@ public class BankTeller {
 
     /**
      * Deposit money into an account.
+     * @param inputArray
      */
     private void depositAccount(String[] inputArray) {
         if(db.isEmpty()) {
@@ -297,6 +303,7 @@ public class BankTeller {
 
     /**
      * Withdraw money from an account.
+     * @param inputArray
      */
     private void withdrawAccount(String[] inputArray) {
         if(db.isEmpty()) {
@@ -380,6 +387,7 @@ public class BankTeller {
 
     /**
      * Updates the balance of an existing account.
+     * @param inputArray
      */
     private void updateAccountBalance(String[] inputArray) {
         if(db.isEmpty()) {
@@ -396,6 +404,7 @@ public class BankTeller {
 
     /**
      * Helper method to check if account is loyal or not
+     * @param loyal
      */
     private boolean isLoyal(int loyal) {
         if(loyal == 1) {
@@ -408,6 +417,8 @@ public class BankTeller {
     /**
      * Helper method that creates an instance of account in terminal and
      * is used for depositing into an account.
+     * @param inputArray
+     * @return Account
      */
     private Account createAccountForDepositingAndWithdrawing(String[] inputArray) {
         acctType = inputArray[1];
