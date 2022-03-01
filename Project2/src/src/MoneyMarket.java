@@ -18,13 +18,14 @@ public class MoneyMarket extends Savings{
      * @param holder for the profile holder
      * @param balance for how much balance remains in the account
      * @param closed whether or not the account is closed
+     * @param isLoyal of type boolean
+     * @param numberOfWithdrawals of type int
      */
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal, int numberOfWithdrawals) {
         super(holder, balance, closed, isLoyal);
         this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
         this.numberOfWithdrawals = numberOfWithdrawals;
     }
-
 
     /**
      * Helps with finding interest rate depending on account information and
@@ -67,7 +68,10 @@ public class MoneyMarket extends Savings{
         return "MoneyMarket";
     }
 
-
+    /**
+     * Checks if a customer is loyal or not
+     * @return a String whether or not the customer is loyal
+     */
     public String getIsLoyal() {
         if(this.balance < MIN_BALANCE) {
             return "";
@@ -75,7 +79,6 @@ public class MoneyMarket extends Savings{
             return "::loyal";
         }
     }
-
 
     /**
      * Returns all the account information as a string.
@@ -91,7 +94,6 @@ public class MoneyMarket extends Savings{
         return getType() + "::" + holder.toString() + "::balance $" + balance
                 + getIsLoyal() + "::withdrawal: " + numberOfWithdrawals;
     }
-
 }
 
 

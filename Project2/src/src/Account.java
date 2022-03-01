@@ -22,9 +22,9 @@ public abstract class Account {
      * account balance, and if the account is closed or not. This class carries
      * generalized methods for all the different types of accounts and
      * constructor.
-     * @param holder
-     * @param balance
-     * @param closed
+     * @param holder of type Profile
+     * @param balance of type double
+     * @param closed of type boolean
      */
     public Account(Profile holder, double balance, boolean closed) {
         this.holder = holder;
@@ -73,7 +73,6 @@ public abstract class Account {
         this.balance -= amount;
     }
 
-
     /**
      * Deposits the amount holders input. Generalized for
      * all the different types of accounts.
@@ -102,8 +101,6 @@ public abstract class Account {
      */
     public abstract String getType(); //return the account type (class name)
 
-    //have a get balance getter method gets the amount to withdraw or deposit -> we
-    // do this using bank teller so when bank teller bc every account would have a withdraw or deposit and amount value
 }
 
 

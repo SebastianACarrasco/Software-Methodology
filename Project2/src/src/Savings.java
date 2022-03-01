@@ -17,9 +17,10 @@ public class Savings extends Account {
 
     /**
      * Constructor for Savings class that takes information from account class
-     * @param holder
-     * @param balance
-     * @param closed
+     * @param holder of type Profile
+     * @param balance of type double
+     * @param closed of type boolean
+     * @param isLoyal of type boolean
      */
     public Savings(Profile holder, double balance, boolean closed, boolean isLoyal) {
         super(holder, balance, closed);
@@ -58,7 +59,6 @@ public class Savings extends Account {
         return getType() + "::" + holder.toString() + "::balance $" + balance
                 + getIsLoyal();
     }
-
 
     /**
      * Helps with finding interest rate depending on account information and
