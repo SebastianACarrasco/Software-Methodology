@@ -19,12 +19,16 @@ public class BankTeller {
     private static final int MIN_BAL_ACCT = 1;
     private static final int MAX_INPUT_SIZE = 7;
     private static final int SUB_MAX_INPUT_SIZE = 6;
+    private static final int CLOSE_MAX_INPUT_SIZE = 5;
     private int location;
     private int find;
     private double balance;
     private int loyal;
     private String acctType;
     private Profile profile;
+    private String fn;
+    private String ln;
+    private Date dob;
     private Date date;
     private String[] terminalInput;
     public AccountDatabase db = new AccountDatabase();
@@ -36,85 +40,61 @@ public class BankTeller {
         System.out.println("Bank Teller is running.\n");
         Scanner sc = new Scanner(System.in);
 
-            while (sc.hasNextLine()) {
-                StringTokenizer str = new StringTokenizer(sc.nextLine());
-                terminalInput = new String[str.countTokens()];
 
-                for (int i = 0; i < terminalInput.length; i++) {
-                    terminalInput[i] = str.nextToken();
-                }
+        while (sc.hasNextLine()) {
+            StringTokenizer str = new StringTokenizer(sc.nextLine());
+            terminalInput = new String[str.countTokens()];
+            int count = 0;
 
-                /*
-                try {
-                for (int i = 0; i < terminalInput.length; i++) {
-                    terminalInput[i] = str.nextToken();
-                }
-
-                switch (terminalInput[0]) {
-                    case "O":
-                        openAccount(terminalInput);
-                        break;
-                    case "C":
-                        closeAccount(terminalInput);
-                        break;
-                    case "D":
-                        depositAccount(terminalInput);
-                        break;
-                    case "W":
-                        withdrawAccount(terminalInput);
-                        break;
-                    case "P":
-                        printAccount();
-                        break;
-                    case "PT":
-                        printByAccountType();
-                        break;
-                    case "PI":
-                        printWithInterestAndFees();
-                        break;
-                    case "UB":
-                        updateAccountBalance(terminalInput);
-                        break;
-                    case "Q":
-                        System.out.println("Bank Teller is terminated.");
-                        break;
-                    default:
-                        System.out.println("Invalid command!");
-                }
-                } catch (RuntimeException e){
-                    System.out.println("i hate this!");
-                }
-
-                 */
-
-                try {
-                    if(terminalInput[0].equals("O")) {
-                        openAccount(terminalInput);
-                    } else if(terminalInput[0].equals("C")) {
-                        closeAccount(terminalInput);
-                    } else if(terminalInput[0].equals("D")) {
-                        depositAccount(terminalInput);
-                    } else if(terminalInput[0].equals("W")) {
-                        withdrawAccount(terminalInput);
-                    } else if(terminalInput[0].equals("P")) {
-                        printAccount();
-                    } else if(terminalInput[0].equals("PT")) {
-                        printByAccountType();
-                    } else if(terminalInput[0].equals("PI")) {
-                        printWithInterestAndFees();
-                    } else if(terminalInput[0].equals("UB")) {
-                        updateAccountBalance(terminalInput);
-                    } else if(terminalInput[0].equals("Q")) {
-                        System.out.println("Bank Teller is terminated.");
-                    } else {
-                        System.out.println("Invalid command!");
-                    }
-                } catch (RuntimeException e) {
-                    System.out.println("I hate this");
-                }
-
-
+            while (str.hasMoreTokens()) {
+                terminalInput[count] = str.nextToken();
+                count++;
             }
+            if (count == 0) continue;
+
+            try {
+                if (terminalInput[0].equals("O")) {
+                    openAccount();
+                } else if (terminalInput[0].equals("C")) {
+                    closeAccount(terminalInput);
+                } else if (terminalInput[0].equals("D")) {
+                    depositAccount(terminalInput);
+                } else if (terminalInput[0].equals("W")) {
+                    withdrawAccount(terminalInput);
+                } else if (terminalInput[0].equals("P")) {
+                    printAccount();
+                } else if (terminalInput[0].equals("PT")) {
+                    printByAccountType();
+                } else if (terminalInput[0].equals("PI")) {
+                    printWithInterestAndFees();
+                } else if (terminalInput[0].equals("UB")) {
+                    updateAccountBalance(terminalInput);
+                } else if (terminalInput[0].equals("Q")) {
+                    System.out.println("Bank Teller is terminated.");
+                } else {
+                    System.out.println("Invalid command!");
+                }
+            } catch (RuntimeException e) {
+                System.out.println("I hate this");
+            }
+        }
+    }
+
+    private void openAccount() {
+        if (terminalInput.length < 6) {
+            System.out.println("Missing data for opening an account");
+            return;
+        }
+
+        if (terminalInput[1].equals("C")) {
+            openChecking(terminalInput);
+        } else if(terminalInput[1].equals("CC")) {
+            openCollegeChecking(terminalInput);
+        } else if(terminalInput[1].equals("S")) {
+            openSavings(terminalInput);
+        } else if(terminalInput[1].equals("MM")) {
+            openMoneyMarket(terminalInput);
+        }
     }
 
 
@@ -123,7 +103,6 @@ public class BankTeller {
      * @param location
      * @return true is location is valid, false otherwise.
      */
-
     private boolean isValidLocation(int location){
         if(location == NEWBRUNSWICK || location == NEWARK || location == CAMDEN){
             return true;
@@ -135,6 +114,7 @@ public class BankTeller {
      * Opens an account for the user. This method is separated into its individual
      * accounts to make it easier to read and understand.
      */
+    /*
     private void openAccount(String[] inputArray) {
         if(inputArray.length < 6) {
             System.out.println("Missing data for opening an account");
@@ -167,24 +147,113 @@ public class BankTeller {
         }
     }
 
-    /**
-     * Helper method for openAccount() that shortens the length of the
-     * open method. It deals with Checking accounts.
      */
-    private void openCheckings(String[] inputArray) {
+
+    /**
+     * Helper method for openAccount(). It deals with Checking accounts.
+     */
+    private void openChecking(String[] inputArray) {
         if(inputArray.length == SUB_MAX_INPUT_SIZE) {
-            if(acctType.equals("C")) {
-                Checking c = new Checking(profile, balance, false);
-                find = db.findDupe(c);
-                if(find == 1) {
+            balance = Double.parseDouble(inputArray[5]);
+            dob = new Date(inputArray[4]);
+            profile = new Profile(inputArray[2], inputArray[3], dob);
+
+            Checking c = new Checking(profile, balance, false);
+            find = db.findDupe(c);
+            if(find == 1) {
+                System.out.println(profile.getfName() + " " + profile.getlName()
+                        + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
+            } else {
+                db.open(c);
+                System.out.println("Account opened.");
+            }
+        } else {
+            System.out.println("Missing data for opening an account");
+        }
+    }
+
+    /**
+     * Helper method for openAccount(). It deals with College Checking accounts.
+     */
+    private void openCollegeChecking(String[] inputArray) {
+        if(inputArray.length == MAX_INPUT_SIZE) {
+            int loc = Integer.parseInt(inputArray[6]);
+            if (isValidLocation(loc)) {
+                balance = Double.parseDouble(inputArray[5]);
+                dob = new Date(inputArray[4]);
+                profile = new Profile(inputArray[2], inputArray[3], dob);
+                CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
+
+                find = db.findDupe(cc);
+                if (find == 1) {
                     System.out.println(profile.getfName() + " " + profile.getlName()
-                            + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
+                            + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
+                } else if (!db.open(cc)) {
+                    System.out.println("Cannot open CC because user has a C account");
+
                 } else {
-                    db.open(c);
+                    db.open(cc);
                     System.out.println("Account opened.");
                 }
-
             }
+        } else {
+            System.out.println("Invalid campus code.");
+        }
+    }
+
+    /**
+     * Helper method for openAccount(). It deals with Savings accounts.
+     * @param inputArray
+     */
+    private void openSavings(String[] inputArray) {
+        if(inputArray.length == MAX_INPUT_SIZE) {
+            //1 = loyal, 0 = not loyal
+            loyal = Integer.parseInt(inputArray[6]);
+            boolean isLoyal = isLoyal(loyal);
+            balance = Double.parseDouble(inputArray[5]);
+            dob = new Date(inputArray[4]);
+            profile = new Profile(inputArray[2], inputArray[3], dob);
+
+            Savings s = new Savings(profile, balance, false, isLoyal);
+            find = db.findDupe(s);
+            if (find == 1) {
+                System.out.println(profile.getfName() + " " + profile.getlName()
+                        + " " + profile.getDob() + " same account(" + s.getType() + ") is in database.");
+            } else {
+                db.open(s);
+                System.out.println("Account opened");
+            }
+        } else {
+            System.out.println("Missing data for opening a Savings account");
+        }
+    }
+
+    /**
+     * Helper method for openAccount(). It deals with Money Market accounts.
+     * @param inputArray
+     */
+    private void openMoneyMarket(String[] inputArray) {
+        if (inputArray.length == SUB_MAX_INPUT_SIZE) {
+            balance = Double.parseDouble(inputArray[5]);
+            dob = new Date(inputArray[4]);
+            profile = new Profile(inputArray[2], inputArray[3], dob);
+
+            if (balance < MIN_BAL) {
+                System.out.println("Minimum of $2500 to open a Money Market account.");
+                return;
+            }
+
+            MoneyMarket mm = new MoneyMarket(profile, balance, false, true, 0);
+            find = db.findDupe(mm);
+            if (find == 1) {
+                System.out.println(profile.getfName() + " " + profile.getlName()
+                        + " " + profile.getDob() + " same account(" + mm.getType() + ") is in database.");
+            } else {
+                db.open(mm);
+                System.out.println("Account opened.");
+            }
+        } else {
+            System.out.println("Missing data for opening a Money Market account");
         }
     }
 
@@ -192,6 +261,7 @@ public class BankTeller {
      * Helper method for openAccount() that shortens the length of the
      * open method. It deals with Money Market, Savings, and College Checkings.
      */
+    /*
     private void openAllAccountsButCheckings(String[] inputArray) {
         if(inputArray.length == MAX_INPUT_SIZE){
             if(acctType.equals("MM")) {
@@ -246,6 +316,8 @@ public class BankTeller {
         }
     }
 
+     */
+
     /**
      * Closes an account for the user.
      */
@@ -255,15 +327,15 @@ public class BankTeller {
             return;
         }
 
-        if(inputArray.length == (SUB_MAX_INPUT_SIZE-1)) {
-            Account acct = createAccountForProcessing(inputArray);
+        if(inputArray.length == CLOSE_MAX_INPUT_SIZE) {
+            Account acct = createAccountForClosing(inputArray);
             if (db.close(acct)) {
                 System.out.println("Account closed.");
             } else {
                 System.out.println("Account not found.");
             }
         } else {
-            System.out.println("Invalid command!");
+            System.out.println("Missing data for closing an account.");
         }
     }
 
@@ -276,7 +348,8 @@ public class BankTeller {
             System.out.println("Account database is empty.");
             return;
         }
-        if(inputArray.length == (SUB_MAX_INPUT_SIZE)) {
+
+        if(inputArray.length == SUB_MAX_INPUT_SIZE) {
             try {
                 double amount = Double.parseDouble(inputArray[5]);
             } catch (NumberFormatException e) {
@@ -288,9 +361,11 @@ public class BankTeller {
                 return;
             }
 
-            Account acct = createAccountForProcessing(inputArray);
+            Account acct = createAccountForDepositingAndWithdrawing(inputArray);
             db.deposit(acct);
             System.out.println("Deposit - balance updated.");
+        } else {
+            System.out.println("Missing data for depositing money.");
         }
 
     }
@@ -304,17 +379,18 @@ public class BankTeller {
             return;
         }
         double amount = 0;
-        if(inputArray.length == (SUB_MAX_INPUT_SIZE)) {
+        if(inputArray.length == SUB_MAX_INPUT_SIZE) {
             try {
                 amount = Double.parseDouble(inputArray[5]);
             } catch (NumberFormatException e) {
                 System.out.println("Not a valid amount.");
                 return;
             }
-            Account acct = createAccountForProcessing(inputArray);
+            Account acct = createAccountForDepositingAndWithdrawing(inputArray);
 
             if (amount < 1) {
                 System.out.println("Withdraw - amount cannot be 0 or negative.");
+                return;
             } else if (db.withdraw(acct)) {
                 if (acct.getType().equals("MM")) {
                     acct.numberOfWithdrawals++;
@@ -323,6 +399,8 @@ public class BankTeller {
             } else {
                 System.out.println("Withdrawal - insufficient funds.");
             }
+        } else {
+            System.out.println("Missing data for withdrawing money.");
         }
     }
 
@@ -336,7 +414,7 @@ public class BankTeller {
         }
         System.out.println("\n*list of accounts in database*");
         db.print();
-        System.out.println("\n*end of list*");
+        System.out.println("*end of list*");
     }
 
     /**
@@ -349,7 +427,7 @@ public class BankTeller {
         }
         System.out.println("\n*list of accounts by account type*");
         db.printByAccountType();
-        System.out.println("\n*end of list*");
+        System.out.println("*end of list*");
     }
 
     /**
@@ -393,15 +471,13 @@ public class BankTeller {
 
     /**
      * Helper method that creates an instance of account in terminal and
-     * is used to process the account internally.
-     * @param inputArray
-     * @return Account
+     * is used for depositing into an account.
      */
-    private Account createAccountForProcessing(String[] inputArray) {
+    private Account createAccountForDepositingAndWithdrawing(String[] inputArray) {
         acctType = inputArray[1];
         balance = Double.parseDouble(inputArray[5]);
-        date = new Date(inputArray[4]);
-        profile = new Profile(inputArray[2], inputArray[3], date);
+        dob = new Date(inputArray[4]);
+        profile = new Profile(inputArray[2], inputArray[3], dob);
         Account acct;
 
         switch(acctType) {
@@ -412,23 +488,44 @@ public class BankTeller {
                 acct = new MoneyMarket(profile, balance, false, true, 0);
                 break;
             case "CC":
-                if(inputArray.length == MAX_INPUT_SIZE) {
-                    int location = Integer.parseInt(inputArray[6]);
-                    acct = new CollegeChecking(profile, balance, false, location);
-                    break;
-                } else {
-                    acct = new CollegeChecking(profile, balance, false, location);
-                    break;
-                }
+                acct = new CollegeChecking(profile, balance, false, 0);
+                break;
             case "S":
-                if(inputArray.length == MAX_INPUT_SIZE) {
-                    int loyal = Integer.parseInt(inputArray[6]);
-                    acct = new Savings(profile, balance, false, isLoyal(loyal));
-                    break;
-                } else {
-                    acct = new Savings(profile, balance, false, isLoyal(loyal));
-                    break;
-                }
+                acct = new Savings(profile, balance, false, false);
+                break;
+            default:
+                acct = null;
+        }
+
+        return acct;
+    }
+
+    /**
+     * Helper method that creates an instance of account in terminal and
+     * is used to close an account.
+     * @param inputArray
+     * @return Account
+     */
+    private Account createAccountForClosing(String[] inputArray) {
+        acctType = inputArray[1];
+        balance = Double.parseDouble(inputArray[5]);
+        dob = new Date(inputArray[4]);
+        profile = new Profile(inputArray[2], inputArray[3], dob);
+        Account acct;
+
+        switch(acctType) {
+            case "C":
+                acct = new Checking(profile, balance, true);
+                break;
+            case "MM":
+                acct = new MoneyMarket(profile, balance, true, false, 0);
+                break;
+            case "CC":
+                acct = new CollegeChecking(profile, balance, true, 0);
+                break;
+            case "S":
+                acct = new Savings(profile, balance, true, false);
+                break;
             default:
                 acct = null;
         }
