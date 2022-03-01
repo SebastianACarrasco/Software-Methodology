@@ -23,7 +23,6 @@ public class AccountDatabase {
         this.numAcct = this.accounts.length;
     }
 
-
     /**
      * Helper method to check if database is empty. It will be empty if the
      * first index is null because the array is initialized to size 4.
@@ -62,6 +61,9 @@ public class AccountDatabase {
         this.numAcct = this.accounts.length;
     }
 
+    /**
+     * This method updates all balances by calling in the fees and interest rates again
+     */
     public void updateAllBalances() {
         for(int i = 0; i < this.numAcct; i++) {
             if(this.accounts[i] != null) {
@@ -147,7 +149,6 @@ public class AccountDatabase {
         return account;
     }
 
-
     /**
      * Closes an account in the database
      * @param account
@@ -200,16 +201,6 @@ public class AccountDatabase {
         if (index != NOT_FOUND && account.balance > 0
                 && !(account.balance > accounts[index].balance)) {
             accounts[index].withdraw(account.balance);
-            //defined by profile and balance and we can get the balance by
-            // encapsulate it by getting an instance of account from outside.
-            // when the bank teller class
-            /*
-            if(accounts[index].getType().equals("Money Market")){
-                accounts[index].countWithdrawal();
-            }
-
-             */
-            //numberOfWithdrawals++;
             return true;
         }
         return false;

@@ -33,6 +33,10 @@ public class DateTest {
         //checks for negatives
         Date date9 = new Date("2/-1/2021");
         assertFalse(date9.isValid());
+
+        //checks for date beyond 2022
+        Date date10 = new Date("1/1/2023");
+        assertFalse(date10.isValid());
     }
 }
 

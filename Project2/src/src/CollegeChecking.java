@@ -6,7 +6,7 @@ package src;
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class CollegeChecking extends Checking {
-    //private double balance;
+
     private int location;
     private static final double INTEREST = 0.0025/12;
     private static final double COLLEGEFEE = 0.0;
@@ -63,7 +63,6 @@ public class CollegeChecking extends Checking {
      */
 
     public String getLocation() {
-        //to get the location we need to create an instance of that object and then try to get the location it will work
         if (location == NEWBRUNSWICK) {
             return "New Brunswick";
         } else if (location == NEWARK) {
@@ -71,7 +70,6 @@ public class CollegeChecking extends Checking {
         } else {
             return "Camden";
         }
-
     }
 
     /**
@@ -88,6 +86,5 @@ public class CollegeChecking extends Checking {
         return getType() + "::" + holder.toString() + "::balance $" + balance + "::"
                 + getLocation();
     }
-
 }
 

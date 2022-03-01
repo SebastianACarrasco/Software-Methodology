@@ -39,10 +39,9 @@ public class Profile {
      * The equals method checks to see if the given patient is the same as the
      * current profile
      * @param profile is an object of type patient
-     * @return an integer where is the profile are the same, we return 0, and
-     * if not we return 1
+     * @return a boolean where is the profile are the same, we return true, and
+     * if not we return false
      */
-
     public boolean equals(Profile profile) {
         //if (profile.fName.equals(this.fName) && profile.lName.equals(this.lName)
         if(profile.fName.toUpperCase().equals(fName.toUpperCase())
@@ -60,6 +59,7 @@ public class Profile {
     public String getlName() {
             return this.lName;
         }
+
     /**
      * public getter method to return the  first name
      * @return a String of last Name
