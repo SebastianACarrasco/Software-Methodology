@@ -35,6 +35,7 @@ public class Date {
     public static final int DAYS30 = 30;
     public static final int FEBDAYS = 28;
     public static final int LEAPFEB = 29;
+    public static final int MAXYEAR = 2022;
 
     /**
      * take “mm/dd/yyyy” and create a Date object
@@ -101,7 +102,10 @@ public class Date {
     public boolean isValid() {
         if (this.month < JAN || this.month > DEC) {
             return false;
-        } else {
+        } else if (this.year > MAXYEAR) {
+            return false;
+        }
+        else {
             if (this.day <= 0) {
                 return false;
             } else if (this.month == JAN || this.month == MAR || this.month == MAY || this.month == JUL
