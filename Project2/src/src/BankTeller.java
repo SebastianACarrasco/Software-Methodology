@@ -247,6 +247,8 @@ public class BankTeller {
             Account acct = createAccountForClosing(inputArray);
             if (db.close(acct)) {
                 System.out.println("Account closed.");
+            } else if (!db.close(acct)) {
+                System.out.println("Account is closed already.");
             } else {
                 System.out.println("Account not found.");
             }
@@ -276,8 +278,15 @@ public class BankTeller {
                 System.out.println("Deposit - amount cannot be 0 or negative.");
                 return;
             }
-
             Account acct = createAccountForDepositingAndWithdrawing(inputArray);
+
+            if(db.findDupe(acct) == 0) {
+                System.out.println(profile.getfName() + " " + profile.getlName()
+                        + " " + profile.getDob() + " " + acct.getType()
+                        + "is not in database.");
+                return;
+            }
+
             db.deposit(acct);
             System.out.println("Deposit - balance updated.");
         } else {
@@ -303,6 +312,13 @@ public class BankTeller {
                 return;
             }
             Account acct = createAccountForDepositingAndWithdrawing(inputArray);
+
+            if(db.findDupe(acct) == 0) {
+                System.out.println(profile.getfName() + " " + profile.getlName()
+                        + " " + profile.getDob() + " " + acct.getType()
+                        + "is not in database.");
+                return;
+            }
 
             if (amount < 1) {
                 System.out.println("Withdraw - amount cannot be 0 or negative.");
