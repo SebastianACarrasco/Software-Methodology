@@ -135,7 +135,7 @@ public class AccountDatabase {
      */
     public Account setLoyalFalse(Account account) {
         int index = this.find(account);
-        if (this.accounts[index].getType().equals("MoneyMarket")){
+        if (this.accounts[index].getType().equals("Money Market Savings")){
             MoneyMarket mm = (MoneyMarket) account;
             if(isClosed(mm)) {
                 mm.setLoyal(false);
@@ -162,12 +162,12 @@ public class AccountDatabase {
         if (index != NOT_FOUND) {
             this.accounts[index].balance = 0;
 
-            if(this.accounts[index].getType().equals("MoneyMarket")) {
+            if(this.accounts[index].getType().equals("Money Market Savings")) {
                 accounts[index].numberOfWithdrawals = 0;
             }
 
             if(this.accounts[index].getType().equals("Savings")
-                    || this.accounts[index].getType().equals("MoneyMarket")) {
+                    || this.accounts[index].getType().equals("Money Market Savings")) {
                 //need to set isLoyal to false after closing
                 accounts[index] = setLoyalFalse(accounts[index]);
             }
