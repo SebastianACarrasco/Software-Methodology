@@ -64,11 +64,11 @@ public class CollegeChecking extends Checking {
 
     public String getLocation() {
         if (location == NEWBRUNSWICK) {
-            return "New Brunswick";
+            return "NEW_BRUNSWICK";
         } else if (location == NEWARK) {
-            return "Newark";
+            return "NEWARK";
         } else {
-            return "Camden";
+            return "CAMDEN";
         }
     }
 

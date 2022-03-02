@@ -77,7 +77,7 @@ public class BankTeller {
                 }
             } catch (RuntimeException e) {
                 System.out.println("I hate this");
-            }
+           }
         }
     }
 
@@ -174,9 +174,9 @@ public class BankTeller {
                     db.open(cc);
                     System.out.println("Account opened.");
                 }
+            } else {
+                System.out.println("Invalid campus code.");
             }
-        } else {
-            System.out.println("Invalid campus code.");
         }
     }
 
@@ -250,10 +250,10 @@ public class BankTeller {
 
         if(inputArray.length == CLOSE_MAX_INPUT_SIZE) {
             Account acct = createAccountForClosing(inputArray);
-            if (db.close(acct)) {
-                System.out.println("Account closed.");
-            } else if (!db.close(acct)) {
+            if (!db.close(acct)) {
                 System.out.println("Account is closed already.");
+            } else if (db.close(acct)) {
+                System.out.println("Account closed.");
             } else {
                 System.out.println("Account not found.");
             }
@@ -289,7 +289,7 @@ public class BankTeller {
             if(db.findDupe(acct) == 0) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " " + acct.getType()
-                        + "is not in database.");
+                        + " is not in database.");
                 return;
             }
 
@@ -355,7 +355,7 @@ public class BankTeller {
         }
         System.out.println("\n*list of accounts in database*");
         db.print();
-        System.out.println("*end of list*");
+        System.out.println("*end of list*\n");
     }
 
     /**
@@ -368,7 +368,7 @@ public class BankTeller {
         }
         System.out.println("\n*list of accounts by account type*");
         db.printByAccountType();
-        System.out.println("*end of list*");
+        System.out.println("*end of list*\n");
     }
 
     /**
@@ -380,9 +380,9 @@ public class BankTeller {
             return;
         }
 
-        System.out.println("\n*list of accounts with fees and monthly interests*");
+        System.out.println("*list of accounts with fees and monthly interests*");
         db.printFeeAndInterest();
-        System.out.println("\n*end of list*");
+        System.out.println("*end of list*\n");
     }
 
     /**
@@ -398,7 +398,7 @@ public class BankTeller {
         db.updateAllBalances();
         System.out.println("*list of accounts with updated balance");
         db.printFeeAndInterest();
-        System.out.println("*end of list");
+        System.out.println("*end of list\n");
 
     }
 

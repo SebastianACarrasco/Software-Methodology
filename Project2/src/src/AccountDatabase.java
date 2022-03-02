@@ -86,15 +86,15 @@ public class AccountDatabase {
         int index = this.find(account);
         boolean isCC = account.getType().equals("CollegeCheckings");
 
-
         if(isCC && index == NOT_FOUND) {
             for(int i = 0; i < this.numAcct; i++) {
-                if(this.accounts[i].holder.equals(account.holder)
+                if(this.accounts[i] != null && this.accounts[i].holder.equals(account.holder)
                         && this.accounts[i].getType().equals("Checking")) {
                     return false;
                 }
             }
-        } else if (index == NOT_FOUND) {
+        }
+        if (index == NOT_FOUND) {
             for(int i = 0; i < this.numAcct; i++) {
                 if(this.accounts[i] == null) {
                     this.accounts[i] = account;
@@ -113,8 +113,8 @@ public class AccountDatabase {
      */
     public int findDupe(Account account) {
         int index = this.find(account);
-        if(index != NOT_FOUND && this.accounts[index].equals(account)
-                && !this.accounts[index].closed) {
+        if(index != NOT_FOUND && this.accounts[index].equals(account)) {
+                //&& !this.accounts[index].closed) {
             return 1;
         }
         return 0;
@@ -187,7 +187,9 @@ public class AccountDatabase {
      */
     public void deposit(Account account) {
         int index = this.find(account);
-        if (index != NOT_FOUND && account.closed == true) {
+
+        //checks if account is already in database
+        if(this.accounts[index].equals(account) && this.accounts[index].closed) {
             this.accounts[index].closed = false;
             this.accounts[index].deposit(account.balance);
 
