@@ -4,6 +4,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for the monthlyInterest method in the Money Market class.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
+
 public class MoneyMarketTest {
 
     @Test

@@ -4,6 +4,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for the open and close methods in the Account Database class.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
+
 public class AccountDatabaseTest {
 
     @Test

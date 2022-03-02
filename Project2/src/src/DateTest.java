@@ -2,6 +2,12 @@ package src;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for the isValid method in the Date class.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
+
 public class DateTest {
 
     @org.junit.Test
