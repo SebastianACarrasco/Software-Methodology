@@ -56,7 +56,7 @@ public abstract class Account {
      */
     @Override
     public String toString() {
-        if(closed) {
+        if(this.closed) {
             return getType() + "::" + holder.toString() + ":: balance $" + String.format("%.2f",balance)
                     + "::CLOSED";
         }

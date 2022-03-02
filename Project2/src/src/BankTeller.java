@@ -77,7 +77,6 @@ public class BankTeller {
                     updateAccountBalance(terminalInput);
                 } else if (terminalInput[INPUT_COMMAND].equals("Q")) {
                     System.out.println("Bank Teller is terminated.");
-                    System.exit(0);
                 } else {
                     System.out.println("Invalid command!");
                 }
@@ -98,7 +97,8 @@ public class BankTeller {
         }
 
         try {
-            if (Double.parseDouble(terminalInput[INPUT_BALANCE]) < MIN_BALANCE) {
+            double amount = Double.parseDouble(terminalInput[INPUT_BALANCE]);
+            if (amount < MIN_BALANCE) {
                 System.out.println("Initial deposit cannot be 0 or negative");
                 return;
             }
@@ -285,7 +285,7 @@ public class BankTeller {
 
         if(inputArray.length == SUB_MAX_INPUT_SIZE) {
             try {
-                double amount = Double.parseDouble(inputArray[5]);
+                double amount = Double.parseDouble(inputArray[INPUT_BALANCE]);
             } catch (NumberFormatException e) {
                 System.out.println("Not a valid amount.");
                 return;
@@ -294,6 +294,7 @@ public class BankTeller {
                 System.out.println("Deposit - amount cannot be 0 or negative.");
                 return;
             }
+
             Account acct = createAccountForDepositingAndWithdrawing(inputArray);
 
             if(db.findDupe(acct) == NO_DUPE) {
@@ -303,6 +304,11 @@ public class BankTeller {
                 return;
             }
 
+            if(acct.closed) {
+                db.deposit(acct);
+                System.out.println("Account reopened.");
+                return;
+            }
             db.deposit(acct);
             System.out.println("Deposit - balance updated.");
         } else {
@@ -340,15 +346,14 @@ public class BankTeller {
             if (amount < MIN_BALANCE) {
                 System.out.println("Withdraw - amount cannot be 0 or negative.");
                 return;
-            } else if (db.withdraw(acct)) {
+            }
+            if (db.withdraw(acct)) {
                 if (acct.getType().equals("MM")) {
                     acct.numberOfWithdrawals++;
                 }
                 System.out.println("Withdrawal - balance updated.");
             } else if (!db.withdraw(acct)){
                 System.out.println("Withdrawal - insufficient funds.");
-            } else {
-                System.out.println("Withdrawal-Cannot do it");
             }
         } else {
             System.out.println("Missing data for withdrawing money.");

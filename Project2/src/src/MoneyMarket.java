@@ -26,7 +26,8 @@ public class MoneyMarket extends Savings{
         this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
     }
 
-    public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal, int numberOfWithdrawals) {
+    public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal,
+                       int numberOfWithdrawals) {
         super(holder, balance, closed, isLoyal);
         this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
         this.numberOfWithdrawals = numberOfWithdrawals;
@@ -94,7 +95,7 @@ public class MoneyMarket extends Savings{
         //acct type:: FN LN DOB :: balance $00.00 :: location
         if(this.closed) {
             return getType() + "::" + holder.toString() + "::balance $" + String.format("%.2f",balance)
-                    + getIsLoyal() + "::CLOSED";
+                    + getIsLoyal() + "::CLOSED" + "::withdrawal: " + numberOfWithdrawals;
         }
         return getType() + "::" + holder.toString() + "::balance $" + String.format("%.2f",balance)
                 + getIsLoyal() + "::withdrawal: " + numberOfWithdrawals;

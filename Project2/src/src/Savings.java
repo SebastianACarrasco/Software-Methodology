@@ -53,10 +53,10 @@ public class Savings extends Account {
     @Override
     public String toString() {
         if(this.closed) {
-            return getType() + "::" + holder.toString() + "::balance $" + balance
+            return getType() + "::" + holder.toString() + "::balance $" + String.format("%.2f",balance)
                     + getIsLoyal() + ":: CLOSED";
         }
-        return getType() + "::" + holder.toString() + "::balance $" + balance
+        return getType() + "::" + holder.toString() + "::balance $" + String.format("%.2f",balance)
                 + getIsLoyal();
     }
 

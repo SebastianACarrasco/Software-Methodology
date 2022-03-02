@@ -7,5 +7,3 @@ J
 Project2/src/src/Date.java,d/d/dd18d89e9386e131a983d491c3e9b2a7a90ef67a
 Q
 !Project2/src/src/RunProject2.java,9/b/9b93e3bf2d421192cca13b4222f86bc1512d8d69
-N
-Project2/src/src/Checking.java,a/e/ae7c8526e0ce290a7250044c9307ef7e5938b876
