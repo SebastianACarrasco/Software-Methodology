@@ -77,6 +77,7 @@ public class BankTeller {
                     updateAccountBalance(terminalInput);
                 } else if (terminalInput[INPUT_COMMAND].equals("Q")) {
                     System.out.println("Bank Teller is terminated.");
+                    System.exit(0);
                 } else {
                     System.out.println("Invalid command!");
                 }
