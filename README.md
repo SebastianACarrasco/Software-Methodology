@@ -10,7 +10,7 @@ account database, which may include 4 different types of bank accounts listed in
 hold different types of accounts. The interest rates and fee schedules are different based on the account types and
 account options.
 
-##Project 3
+## Project 3
 You will revamp the user interface for the software you developed in Project 2, to develop a GUI (graphical user
 interface) with JavaFX. The GUI shall replace the BankTeller class in Project 2 and handle the banking transactions
 entered by the user. The GUI version must meet ALL the functional requirements stated in Project 2 description.
