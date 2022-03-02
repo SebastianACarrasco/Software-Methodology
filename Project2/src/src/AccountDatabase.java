@@ -13,7 +13,6 @@ public class AccountDatabase {
     private Account [] accounts;
     private int numAcct;
     private static final int NOT_FOUND = -1;
-    private static final int MM_MIN_BALANCE = 2500;
 
     /**
      * Constructor for the AccountDatabase class.
@@ -114,7 +113,6 @@ public class AccountDatabase {
     public int findDupe(Account account) {
         int index = this.find(account);
         if(index != NOT_FOUND && this.accounts[index].equals(account)) {
-                //&& !this.accounts[index].closed) {
             return 1;
         }
         return 0;
@@ -192,7 +190,6 @@ public class AccountDatabase {
         if(this.accounts[index].equals(account) && this.accounts[index].closed) {
             this.accounts[index].closed = false;
             this.accounts[index].deposit(account.balance);
-
         }
         if (index != NOT_FOUND) {
             accounts[index].deposit(account.balance);
