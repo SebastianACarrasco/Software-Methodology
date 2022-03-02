@@ -19,8 +19,13 @@ public class MoneyMarket extends Savings{
      * @param balance for how much balance remains in the account
      * @param closed whether or not the account is closed
      * @param isLoyal of type boolean
-     * @param numberOfWithdrawals of type int
      */
+
+    public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal) {
+        super(holder, balance, closed, isLoyal);
+        this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
+    }
+
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal, int numberOfWithdrawals) {
         super(holder, balance, closed, isLoyal);
         this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller

@@ -137,7 +137,9 @@ public class BankTeller {
 
             Checking c = new Checking(profile, balance, false);
             find = db.findDupe(c);
-            if(find == 1) {
+            if(find == 1 && !c.closed) {
+                System.out.println("Account reopened.");
+            } else if(find == 1) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
             } else {
@@ -164,11 +166,14 @@ public class BankTeller {
                 CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
 
                 find = db.findDupe(cc);
-                if (find == 1) {
+                if(find == 1 && !cc.closed) {
+                    System.out.println("Account reopened.");
+                } else if (find == 1) {
                     System.out.println(profile.getfName() + " " + profile.getlName()
                             + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
                 } else if (!db.open(cc)) {
-                    System.out.println("Cannot open CC because user has a C account");
+                    System.out.println(profile.getfName() + " " + profile.getlName()
+                            + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
 
                 } else {
                     db.open(cc);
@@ -196,7 +201,9 @@ public class BankTeller {
 
             Savings s = new Savings(profile, balance, false, isLoyal);
             find = db.findDupe(s);
-            if (find == 1) {
+            if(find == 1 && !s.closed) {
+                System.out.println("Account reopened.");
+            } else if (find == 1) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " same account(" + s.getType() + ") is in database.");
             } else {
@@ -225,8 +232,11 @@ public class BankTeller {
             }
 
             MoneyMarket mm = new MoneyMarket(profile, balance, false, true, 0);
+
             find = db.findDupe(mm);
-            if (find == 1) {
+            if(find == 1 && !mm.closed) {
+                System.out.println("Account reopened.");
+            } else if (find == 1) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " same account(" + mm.getType() + ") is in database.");
             } else {
@@ -397,7 +407,7 @@ public class BankTeller {
 
         db.updateAllBalances();
         System.out.println("*list of accounts with updated balance");
-        db.printFeeAndInterest();
+        db.print();
         System.out.println("*end of list\n");
 
     }
@@ -432,7 +442,7 @@ public class BankTeller {
                 acct = new Checking(profile, balance, false);
                 break;
             case "MM":
-                acct = new MoneyMarket(profile, balance, false, true, 0);
+                acct = new MoneyMarket(profile, balance, false, false);
                 break;
             case "CC":
                 acct = new CollegeChecking(profile, balance, false, 0);
@@ -464,7 +474,7 @@ public class BankTeller {
                 acct = new Checking(profile, 0, true);
                 break;
             case "MM":
-                acct = new MoneyMarket(profile, 0, true, false, 0);
+                acct = new MoneyMarket(profile, 0, true, false);
                 break;
             case "CC":
                 acct = new CollegeChecking(profile, 0, true, 0);

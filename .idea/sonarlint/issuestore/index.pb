@@ -13,11 +13,5 @@ U
 %Project2/src/src/MoneyMarketTest.java,d/d/ddf25f080924d571a214abe789cbbd9d5cffa560
 N
 Project2/src/src/Checking.java,a/e/ae7c8526e0ce290a7250044c9307ef7e5938b876
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 M
 Project2/src/src/Profile.java,d/3/d38c72870515c190ec856b72c3e68f6a1c4b9400
-M
-Project2/src/src/Savings.java,b/f/bf8d09b85cf5ed3a055a8e0aee093f7e51b82036
-Q
-!Project2/src/src/MoneyMarket.java,0/b/0b18318b00d67cf8e349a7198d36dc998f57ff32

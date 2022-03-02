@@ -193,7 +193,8 @@ public class AccountDatabase {
             this.accounts[index].closed = false;
             this.accounts[index].deposit(account.balance);
 
-        } else if (index != NOT_FOUND) {
+        }
+        if (index != NOT_FOUND) {
             accounts[index].deposit(account.balance);
         }
     }
@@ -206,7 +207,8 @@ public class AccountDatabase {
     public boolean withdraw(Account account) {
         int index = this.find(account);
         if (index != NOT_FOUND && account.balance > 0
-                && !(account.balance > accounts[index].balance)) {
+                && !(account.balance > accounts[index].balance)
+                && accounts[index].balance - account.balance > 0) {
             accounts[index].withdraw(account.balance);
             return true;
         }
