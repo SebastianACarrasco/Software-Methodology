@@ -145,7 +145,11 @@ public class BankTeller {
 
             Checking c = new Checking(profile, balance, false);
             find = db.findDupe(c);
-            if(find == FOUND_DUPE) {
+
+            if(db.findClosedProfile(c)) {
+                db.open(c);
+                System.out.println("Account reopened.");
+            } else if(find == FOUND_DUPE) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
             } else {
@@ -173,7 +177,12 @@ public class BankTeller {
                 CollegeChecking cc = new CollegeChecking(profile, balance, false, loc);
 
                 find = db.findDupe(cc);
-                if (find == FOUND_DUPE) {
+
+                if(db.findClosedProfile(cc)) {
+                    db.open(cc);
+                    System.out.println("Account reopened.");
+                } else
+                    if (find == FOUND_DUPE) {
                     System.out.println(profile.getfName() + " " + profile.getlName()
                             + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
                 } else if (!db.open(cc)) {
@@ -206,7 +215,11 @@ public class BankTeller {
 
             Savings s = new Savings(profile, balance, false, isLoyal);
             find = db.findDupe(s);
-            if (find == FOUND_DUPE) {
+            if(db.findClosedProfile(s)) {
+                db.open(s);
+                System.out.println("Account reopened.");
+            } else
+                if (find == FOUND_DUPE) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " same account(" + s.getType() + ") is in database.");
             } else {
@@ -237,7 +250,12 @@ public class BankTeller {
             MoneyMarket mm = new MoneyMarket(profile, balance, false, true, 0);
 
             find = db.findDupe(mm);
-            if (find == FOUND_DUPE) {
+
+            if(db.findClosedProfile(mm)) {
+                db.open(mm);
+                System.out.println("Account reopened.");
+            } else
+                if (find == FOUND_DUPE) {
                 System.out.println(profile.getfName() + " " + profile.getlName()
                         + " " + profile.getDob() + " same account(" + mm.getType() + ") is in database.");
             } else {

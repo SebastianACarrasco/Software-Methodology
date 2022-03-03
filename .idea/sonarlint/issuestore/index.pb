@@ -9,12 +9,8 @@ M
 Project2/src/src/Profile.java,d/3/d38c72870515c190ec856b72c3e68f6a1c4b9400
 U
 %Project2/src/src/CollegeChecking.java,7/f/7f41a34de0f1b7850cb9c3b6b3475d5d8f8a456b
-N
-Project2/src/src/Checking.java,a/e/ae7c8526e0ce290a7250044c9307ef7e5938b876
 M
 Project2/src/src/Account.java,1/8/18e001f83dd8bee16d870c68afdfca2244268ad9
-U
-%Project2/src/src/AccountDatabase.java,1/e/1e978dd7f9ba52342748e28312c9cbdf7c1f1e97
 M
 Project2/src/src/Savings.java,b/f/bf8d09b85cf5ed3a055a8e0aee093f7e51b82036
 Y

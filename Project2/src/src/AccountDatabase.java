@@ -102,7 +102,27 @@ public class AccountDatabase {
                 }
             }
         }
+        if(index != NOT_FOUND && this.accounts[index].closed) {
+            this.accounts[index] = account;
+            return true;
+        }
         return false; //account already exists
+    }
+
+    /**
+     * Helper method that returns a matching profile already in the database and
+     * that is  closed.
+     * @param account
+     * @return true if profile is found and closed, false if not
+     */
+    public boolean findClosedProfile(Account account) {
+        int index = this.find(account);
+            if (index != NOT_FOUND && this.accounts[index].holder.equals(account.holder)
+                    && this.accounts[index].getType().equals(account.getType())
+                    && this.accounts[index].closed) {
+                return true;
+            }
+        return false;
     }
 
     /**
