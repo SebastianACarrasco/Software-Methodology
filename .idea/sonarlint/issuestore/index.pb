@@ -27,3 +27,9 @@ P
  Project2/src/src/BankTeller.java,e/3/e331f3749ece336b5a1ea754ba18ae39bc1b3333
 U
 %Project2/src/src/AccountDatabase.java,1/e/1e978dd7f9ba52342748e28312c9cbdf7c1f1e97
+Q
+!Project2/Software-Methodology.iml,f/f/fff2319b1181705cd8326c44ab133df03e48c6e6
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+=
+Project3/pro3,0/d/0db9192fd942c0c79729d4ff89e0d78f8a998fed
