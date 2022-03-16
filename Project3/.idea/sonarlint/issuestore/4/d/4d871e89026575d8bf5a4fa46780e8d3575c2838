@@ -1,0 +1,17 @@
+
+\
+java:S1126 "AReplace this if-then-else statement by a single return statement.(—Õ¦Ùúÿÿÿÿ
+t
+java:S3012:"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(¡ê©Çøÿÿÿÿ
+m
+java:S3776T"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¬šô’øÿÿÿÿ
+\
+java:S1126x"AReplace this if-then-else statement by a single return statement.(Ç¡»ûÿÿÿÿ
+]
+java:S1126’"AReplace this if-then-else statement by a single return statement.(îğşùÿÿÿÿ
+O	java:S106ğ"9Replace this use of System.out or System.err by a logger.(éÂÁ‹
+O	java:S106Œ"9Replace this use of System.out or System.err by a logger.(™³ğÓ
+k
+java:S1192"UDefine a constant instead of duplicating this literal "Money Market Savings" 3 times.(ö“æD
+J
+java:S1066F"/Merge this if statement with the enclosing one.(ÓĞõ¯şÿÿÿÿ
