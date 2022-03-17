@@ -26,6 +26,15 @@ public class MoneyMarket extends Savings{
         this.isLoyal = isLoyal; //loyal customer by default but we put that in bankteller
     }
 
+    /**
+     * Constructor for CollegeChecking class that takes information from account class
+     * with added number of withdrawals parameter.
+     * @param holder
+     * @param balance
+     * @param closed
+     * @param isLoyal
+     * @param numberOfWithdrawals
+     */
     public MoneyMarket(Profile holder, double balance, boolean closed, boolean isLoyal,
                        int numberOfWithdrawals) {
         super(holder, balance, closed, isLoyal);

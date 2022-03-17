@@ -1,8 +1,4 @@
 package com.example.project3;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-
 /**
  * This is an array based container database for accounts with all the different
  * types of accounts. This class also prints all the accounts depending on the
@@ -16,8 +12,6 @@ public class AccountDatabase {
     private Account [] accounts;
     private int numAcct;
     private static final int NOT_FOUND = -1;
-    @FXML
-    private TextArea information;
 
     /**
      * Constructor for the AccountDatabase class.
@@ -239,19 +233,21 @@ public class AccountDatabase {
     /**
      * Prints all the accounts in the database
      */
-    public void print() {
+    public String[] print() {
+        String[] output = new String[numAcct];
         for (int i = 0; i < this.numAcct; i++) {
             if(this.accounts[i] != null) {
-                //System.out.println(this.accounts[i].toString());
-                information.appendText(this.accounts[i].toString() + "\n");
+                output[i] = this.accounts[i].toString() + "\n";
             }
         }
+        return output;
     }
 
     /**
      * Prints all the accounts in the database by order of account type.
      */
-    public void printByAccountType() {
+    public String[] printByAccountType() {
+        String[] output;
         for (int j = 0; j < numAcct; j++) {
             for (int i = j + 1; i < numAcct; i++) {
                 if (this.accounts[i] != null
@@ -262,27 +258,25 @@ public class AccountDatabase {
                 }
             }
         }
-        print();
+        output = print();
+        return output;
     }
 
     /**
      * Prints the fee and interest of all the accounts in the database
      */
-    public void printFeeAndInterest() {
+    public String[] printFeeAndInterest() {
+        String[] output = new String[numAcct];
         for (int i = 0; i < this.numAcct; i++) {
             if(this.accounts[i] != null) {
-                /*System.out.println(this.accounts[i].toString()
-                  + " fee $" + String.format("%.2f",this.accounts[i].fee())
-                  + " :: monthly interest $"
-                  + String.format("%.2f",this.accounts[i].monthlyInterest()));
-
-                 */
-                information.appendText(this.accounts[i].toString()
+                output[i] = this.accounts[i].toString()
                         + " fee $" + String.format("%.2f",this.accounts[i].fee())
                         + " :: monthly interest $"
-                        + String.format("%.2f",this.accounts[i].monthlyInterest()) + "\n");
+                        + String.format("%.2f",this.accounts[i].monthlyInterest()) + "\n";
             }
         }
+
+        return output;
     }
 }
 
