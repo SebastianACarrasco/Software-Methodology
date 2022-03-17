@@ -29,8 +29,6 @@ t
 D.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml,b/3/b381eacf50d7dd4d801526eee698668bc5ceb20f
 <
 Project3.iml,7/1/71e2305c135e9dca458e1bb0b0e38c98f1128172
-g
-7src/main/java/com/example/project3/AccountDatabase.java,4/d/4d871e89026575d8bf5a4fa46780e8d3575c2838
 `
 0src/main/java/com/example/project3/Checking.java,a/f/afe939aa830b48d20730ecfa125f2b4745bfdebd
 \

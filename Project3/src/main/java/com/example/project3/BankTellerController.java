@@ -28,7 +28,9 @@ public class BankTellerController {
     private Date date;
     public AccountDatabase db = new AccountDatabase();
     @FXML
-    private RadioButton acctType;
+    private RadioButton acctType, loyal, nb, camden, newark;
+    @FXML
+    private RadioButton moneymarket, savings, collegechecking, checkings;
     @FXML
     private TextField fn, ln, amount;
     @FXML
@@ -78,18 +80,117 @@ public class BankTellerController {
     public void openAccount(ActionEvent event) {
 
         this.profile = new Profile(firstName, lastName, date);
-        Checking c = new Checking(profile, totalAmount, false);
-        find = db.findDupe(c);
-        if (db.findClosedProfile(c)) {
-            db.open(c);
-            information.appendText("Account opened \n");
-        } else if (find == FOUND_DUPE) {
-            information.appendText(profile.getfName() + " " + profile.getlName()
-                    + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
-        } else {
-            db.open(c);
-            information.appendText("Account opened \n");
-        }
+        //if(acctType.equals("checkings")) {
+        if (checkings.isSelected()) {
+            Checking c = new Checking(profile, totalAmount, false);
+            find = db.findDupe(c);
+            if (db.findClosedProfile(c)) {
+                db.open(c);
+                information.appendText("Account opened \n");
+            } else if (find == FOUND_DUPE) {
+                information.appendText(profile.getfName() + " " + profile.getlName()
+                        + " " + profile.getDob() + " same account(" + c.getType() + ") is in the database.");
+            } else {
+                db.open(c);
+                information.appendText("Account opened \n");
+            }
+        } else
+
+
+            //if(acctType.equals("savings")) {
+            if (savings.isSelected()) {
+                boolean isLoyal = false;
+                loyal.setDisable(false);
+                if (loyal.isSelected()) {
+                    isLoyal = true;
+                }
+
+                Savings s = new Savings(profile, totalAmount, false, isLoyal);
+                find = db.findDupe(s);
+                if (db.findClosedProfile(s)) {
+                    db.open(s);
+                    information.appendText("Account opened \n");
+                } else if (find == FOUND_DUPE) {
+                    information.appendText(profile.getfName() + " " + profile.getlName()
+                            + " " + profile.getDob() + " same account(" + s.getType() + ") is in the database.");
+                } else {
+                    db.open(s);
+                    information.appendText("Account opened \n");
+                }
+                } else
+
+
+                    //if(acctType.equals("moneymarket")) {
+                    if (moneymarket.isSelected()) {
+                        nb.setDisable(false);
+                        camden.setDisable(false);
+                        newark.setDisable(false);
+                        if (totalAmount < MIN_BAL) {
+                            information.appendText("Minimum of $2500 to open a Money Market account.");
+                            return;
+                        }
+                        MoneyMarket mm = new MoneyMarket(profile, totalAmount, false, true);
+                        find = db.findDupe(mm);
+                        if (db.findClosedProfile(mm)) {
+                            db.open(mm);
+                            information.appendText("Account opened \n");
+                        } else if (find == FOUND_DUPE) {
+                            information.appendText(profile.getfName() + " " + profile.getlName()
+                                    + " " + profile.getDob() + " same account(" + mm.getType() + ") is in the database.");
+                        } else {
+                            db.open(mm);
+                            information.appendText("Account opened \n");
+                        }
+
+                    } else
+
+
+                        //if(acctType.equals("collegechecking")) {
+                        if (collegechecking.isSelected()) {
+                            int loc = 0;
+                            if (nb.isSelected()) {
+                                loc = 0;
+                            } else if (camden.isSelected()) {
+                                loc = 1;
+                            } else if (newark.isSelected()) {
+                                loc = 2;
+                            }
+
+                            CollegeChecking cc = new CollegeChecking(profile, totalAmount, false, loc);
+
+                            find = db.findDupe(cc);
+
+                            if (db.findClosedProfile(cc)) {
+                                db.open(cc);
+                                information.appendText("Account reopened.");
+                            } else if (find == FOUND_DUPE) {
+                                information.appendText(profile.getfName() + " " + profile.getlName()
+                                        + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
+                            } else if (!db.open(cc)) {
+                                System.out.println(profile.getfName() + " " + profile.getlName()
+                                        + " " + profile.getDob() + " same account(" + cc.getType() + ") is in database.");
+
+                            } else {
+                                db.open(cc);
+                                information.appendText("Account opened.");
+                            }
+                        }
+
+                //clear fields
+                fn.clear();
+                ln.clear();
+                amount.clear();
+                moneymarket.setSelected(false);
+                savings.setSelected(false);
+                collegechecking.setSelected(false);
+                loyal.setSelected(false);
+                nb.setSelected(false);
+                camden.setSelected(false);
+                newark.setSelected(false);
+                nb.setDisable(true);
+                camden.setDisable(true);
+                newark.setDisable(true);
+                loyal.setDisable(true);
     }
 }
 
