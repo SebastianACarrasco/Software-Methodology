@@ -14,13 +14,13 @@ import java.util.StringTokenizer;
 public class BankTellerController {
     private static final int NEW_BRUNSWICK = 0;
     private static final int NEWARK = 1;
-    private static final int Camden = 2;
     private static final int NO_DUPE = 0;
     private static final int MIN_BALANCE = 1;
     private static final int CAMDEN = 2;
     private static final int MIN_BAL = 2500;
     private static final int FOUND_DUPE = 1;
     private int find;
+    private boolean closing;
     private String firstName;
     private String lastName;
     private Profile profile;
@@ -32,30 +32,57 @@ public class BankTellerController {
     @FXML
     private RadioButton moneymarket, savings, collegechecking, checkings;
     @FXML
-    private RadioButton savingstab2, mmTab2, ccTab2, checkingTab2;
+    private RadioButton savingsFromWithdrawDeposit;
     @FXML
-    private TextField fn, fnTab2, ln, lnTab2, amount, amountTab2;
+    private RadioButton mmFromWithdrawDeposit;
+    @FXML
+    private RadioButton ccFromWithdrawDeposit;
+    @FXML
+    private RadioButton checkingFromWithdrawDeposit;
+    @FXML
+    private TextField fn, ln, amount;
+    @FXML
+    private TextField fnFromWithdrawDeposit, lnFromWithdrawDeposit;
+    @FXML
+    private TextField amountWithdrawDeposit;
     @FXML
     private TextArea information, printInfo, transactions;
     @FXML
-    private DatePicker dob, dobTab2;
+    private DatePicker dob, dobFromWithdrawDeposit;
+
+    /**
+     * Helper method to setup a temp account which is used for open/close.
+     */
+    private Account setupAccount() {
+        Account setup = null;
+        if (savings.isSelected() && !isInputNull()) {
+            setup = new Savings(profile, totalAmount, false, false);
+        } else if (moneymarket.isSelected() && !isInputNull()) {
+            setup = new MoneyMarket(profile, totalAmount, false, false);
+        } else if (collegechecking.isSelected() && !isInputNull()) {
+            setup = new CollegeChecking(profile, totalAmount, false, 0);
+        } else if(checkings.isSelected() && !isInputNull()) {
+            setup = new Checking(profile, totalAmount, false);
+        }
+        return setup;
+    }
 
 
     /**
-     * Helper method to setup a temp account which is used to deposit and withdraw.
+     * Helper method to setup a temp account which is used for deposit/withdraw.
      */
-    private Account setupAccount() {
-        Account tmp = null;
-        if (savings.isSelected() && !isInputNull()) {
-            tmp = new Savings(profile, totalAmount, false, false);
-        } else if (moneymarket.isSelected() && !isInputNull()) {
-            tmp = new MoneyMarket(profile, totalAmount, false, false);
-        } else if (collegechecking.isSelected() && !isInputNull()) {
-            tmp = new CollegeChecking(profile, totalAmount, false, 0);
-        } else if(checkings.isSelected() && !isInputNull()) {
-            tmp = new Checking(profile, totalAmount, false);
+    private Account setupAccountFromWithdrawDeposit() {
+        Account setup = null;
+        if (savingsFromWithdrawDeposit.isSelected() && !isInputNullFromWithdrawDeposit()) {
+            setup = new Savings(profile, totalAmount, false, false);
+        } else if (mmFromWithdrawDeposit.isSelected() && !isInputNullFromWithdrawDeposit()) {
+            setup = new MoneyMarket(profile, totalAmount, false, false);
+        } else if (ccFromWithdrawDeposit.isSelected() && !isInputNullFromWithdrawDeposit()) {
+            setup = new CollegeChecking(profile, totalAmount, false, 0);
+        } else if(checkingFromWithdrawDeposit.isSelected() && !isInputNullFromWithdrawDeposit()) {
+            setup = new Checking(profile, totalAmount, false);
         }
-        return tmp;
+        return setup;
     }
 
     /**
@@ -70,7 +97,21 @@ public class BankTellerController {
     }
 
     /**
-     * Resets all fields to default states.
+     * Resets all fields to default states for the deposit/withdraw tab.
+     */
+    private void resetFormFromWithdrawDeposit() {
+        fnFromWithdrawDeposit.clear();
+        lnFromWithdrawDeposit.clear();
+        amountWithdrawDeposit.clear();
+        mmFromWithdrawDeposit.setSelected(false);
+        savingsFromWithdrawDeposit.setSelected(false);
+        ccFromWithdrawDeposit.setSelected(false);
+        checkingFromWithdrawDeposit.setSelected(false);
+    }
+
+
+    /**
+     * Resets all fields to default states for the open/close tab.
      */
     private void resetForm() {
         fn.clear();
@@ -94,8 +135,25 @@ public class BankTellerController {
      * @return true if any inputs are null and false if they are not
      */
     private boolean isInputNull() {
-        if(fn.getText().isEmpty() || ln.getText().isEmpty() || dob.getValue() == null
-                || amount.getText().isEmpty()) {
+        if(!closing) {
+            if (fn.getText().isEmpty() || ln.getText().isEmpty() || dob.getValue() == null
+                    || amount.getText().isEmpty()) {
+                return true;
+            }
+        } else {
+            if (fn.getText().isEmpty() || ln.getText().isEmpty() || dob.getValue() == null)
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks for user input and if anything is null for the deposit/withdraw tab.
+     * @return true if any inputs are null and false if they are not
+     */
+    private boolean isInputNullFromWithdrawDeposit() {
+        if(fnFromWithdrawDeposit.getText().isEmpty() || lnFromWithdrawDeposit.getText().isEmpty() || dobFromWithdrawDeposit.getValue() == null
+                || amountWithdrawDeposit.getText().isEmpty()) {
             return true;
         } else {
             return false;
@@ -118,8 +176,8 @@ public class BankTellerController {
      * @param event
      */
     @FXML
-    public void getFirstNameTab2(ActionEvent event) {
-        String tmp = fnTab2.getText();
+    public void getFirstNameFromWithdrawDeposit(ActionEvent event) {
+        String tmp = fnFromWithdrawDeposit.getText();
         StringTokenizer st = new StringTokenizer(tmp);
         this.firstName = st.nextToken();
 
@@ -141,8 +199,8 @@ public class BankTellerController {
      * @param event
      */
     @FXML
-    public void getLastNameTab2(ActionEvent event) {
-        String tmp = lnTab2.getText();
+    public void getLastNameFromWithdrawDeposit(ActionEvent event) {
+        String tmp = lnFromWithdrawDeposit.getText();
         StringTokenizer st = new StringTokenizer(tmp);
         this.lastName = st.nextToken();
     }
@@ -152,9 +210,9 @@ public class BankTellerController {
      * @param event
      */
     @FXML
-    public void getDOBTab2(ActionEvent event) {
+    public void getDOBFromWithdrawDeposit(ActionEvent event) {
         //yyyy-mm-dd to mm/dd/yyyy
-        StringTokenizer st = new StringTokenizer(dobTab2.getValue().toString(), "/");
+        StringTokenizer st = new StringTokenizer(dobFromWithdrawDeposit.getValue().toString(), "-");
         String year = st.nextToken();
         String month = st.nextToken();
         String day = st.nextToken();
@@ -169,7 +227,7 @@ public class BankTellerController {
     @FXML
     public void getDOB(ActionEvent event) {
         //yyyy-mm-dd to mm/dd/yyyy
-        StringTokenizer st = new StringTokenizer(dob.getValue().toString(), "/");
+        StringTokenizer st = new StringTokenizer(dob.getValue().toString(), "-");
         String year = st.nextToken();
         String month = st.nextToken();
         String day = st.nextToken();
@@ -181,8 +239,8 @@ public class BankTellerController {
      * @param event
      */
     @FXML
-    public void getAmountTab2(ActionEvent event) {
-        this.totalAmount = Double.parseDouble(amountTab2.getText());
+    public void getAmountFromWithdrawDeposit(ActionEvent event) {
+        this.totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
     }
 
     /**
@@ -361,6 +419,9 @@ public class BankTellerController {
             loc = CAMDEN;
         } else if (newark.isSelected()) {
             loc = NEWARK;
+        } else {
+            information.appendText("Please select a location.\n");
+            return;
         }
 
         CollegeChecking cc = new CollegeChecking(profile, totalAmount, false, loc);
@@ -411,16 +472,17 @@ public class BankTellerController {
             information.appendText("Account database is empty!");
             return;
         }
-
+        closing = true;
         Account tmp = setupAccount();
         if(tmp == null) {
             information.appendText("Missing information for closing.\n");
+            return;
         }
-
         if (!db.close(tmp)) {
             information.appendText("Account is closed already.\n");
         } else if (db.close(tmp)) {
             information.appendText("Account closed.\n");
+            resetForm();
         } else {
             information.appendText("Account not found.\n");
         }
@@ -507,10 +569,10 @@ public class BankTellerController {
      */
     @FXML
     public void depositFromAccount(ActionEvent event) {
-        getFirstNameTab2(event);
-        getLastNameTab2(event);
-        getDOBTab2(event);
-        getAmountTab2(event);
+        getFirstNameFromWithdrawDeposit(event);
+        getLastNameFromWithdrawDeposit(event);
+        getDOBFromWithdrawDeposit(event);
+        getAmountFromWithdrawDeposit(event);
         if(!date.isValid()) {
             transactions.appendText("Date of birth Invalid\n");
             return;
@@ -520,21 +582,22 @@ public class BankTellerController {
             return;
         }
         try {
-            totalAmount = Double.parseDouble(amountTab2.getText());
+            if(!(totalAmount == 0))
+                totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
         } catch (NumberFormatException e) {
             transactions.appendText("Not a valid amount.\n");
             return;
         }
-        if (Double.parseDouble(amountTab2.getText()) < MIN_BALANCE) {
+        if (Double.parseDouble(amountWithdrawDeposit.getText()) < MIN_BALANCE) {
             transactions.appendText("Deposit - amount cannot be 0 or negative.\n");
             return;
         }
 
-        Account tmp = setupAccount();
+        Account tmp = setupAccountFromWithdrawDeposit();
         if(tmp == null) {
-            information.appendText("Missing information for depositing.\n");
+            transactions.appendText("Missing information for depositing.\n");
+            return;
         }
-
         if(db.findDupe(tmp) == NO_DUPE) {
             transactions.appendText(profile.getfName() + " " + profile.getlName()
                     + " " + profile.getDob() + " " + tmp.getType()
@@ -543,11 +606,12 @@ public class BankTellerController {
         }
         if(tmp.closed) {
             db.deposit(tmp);
-            System.out.println("Account reopened.\n");
+            transactions.appendText("Account reopened.\n");
             return;
         }
         db.deposit(tmp);
-        System.out.println("Deposit - balance updated.\n");
+        transactions.appendText("Deposit - balance updated.\n");
+        resetFormFromWithdrawDeposit();
     }
 
     /**
@@ -561,15 +625,16 @@ public class BankTellerController {
             return;
         }
         try {
-            totalAmount = Double.parseDouble(amountTab2.getText());
+            totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
         } catch (NumberFormatException e) {
             transactions.appendText("Not a valid amount.\n");
             return;
         }
 
-        Account tmp = setupAccount();
+        Account tmp = setupAccountFromWithdrawDeposit();
         if(tmp == null) {
-            information.appendText("Missing information for withdrawing.\n");
+            transactions.appendText("Missing information for withdrawing.\n");
+            return;
         }
 
         if(db.findDupe(tmp) == NO_DUPE) {
@@ -589,8 +654,9 @@ public class BankTellerController {
             }
             transactions.appendText("Withdrawal - balance updated.\n");
         } else if (!db.withdraw(tmp)){
-            System.out.println("Withdrawal - insufficient funds.\n");
+            transactions.appendText("Withdrawal - insufficient funds.\n");
         }
+        resetFormFromWithdrawDeposit();
     }
 
 }
