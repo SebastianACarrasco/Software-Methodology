@@ -467,13 +467,18 @@ public class BankTellerController {
      * locating existing and nonexisting accounts as well as misinputs.
      */
     @FXML
-    public void closeAccount() {
+    public void closeAccount(ActionEvent event) {
         if (db.isEmpty()) {
             information.appendText("Account database is empty!");
             return;
         }
-        closing = true;
+        this.closing = true;
+        getFirstName(event);
+        getLastName(event);
+        getDOB(event);
+        this.profile = new Profile(this.firstName,this.lastName, this.date);
         Account tmp = setupAccount();
+
         if(tmp == null) {
             information.appendText("Missing information for closing.\n");
             return;
@@ -569,6 +574,14 @@ public class BankTellerController {
      */
     @FXML
     public void depositFromAccount(ActionEvent event) {
+        if(db.isEmpty()) {
+            transactions.appendText("Account database is empty.\n");
+            return;
+        }
+        if(isInputNullFromWithdrawDeposit()) {
+            transactions.appendText("Please fill out all fields\n");
+            return;
+        }
         getFirstNameFromWithdrawDeposit(event);
         getLastNameFromWithdrawDeposit(event);
         getDOBFromWithdrawDeposit(event);
@@ -577,6 +590,7 @@ public class BankTellerController {
             transactions.appendText("Date of birth Invalid\n");
             return;
         }
+        this.profile = new Profile(this.firstName,this.lastName, this.date);
         if (db.isEmpty()) {
             transactions.appendText("Account database is empty.\n");
             return;
@@ -594,13 +608,14 @@ public class BankTellerController {
         }
 
         Account tmp = setupAccountFromWithdrawDeposit();
+
         if(tmp == null) {
             transactions.appendText("Missing information for depositing.\n");
             return;
         }
         if(db.findDupe(tmp) == NO_DUPE) {
             transactions.appendText(profile.getfName() + " " + profile.getlName()
-                    + " " + profile.getDob() + " " + tmp.getType()
+                    + " (" + profile.getDob() + ") " + tmp.getType()
                     + " is not in database.\n");
             return;
         }
@@ -617,12 +632,24 @@ public class BankTellerController {
     /**
      * Withdraws money from an account and takes care of edge cases such as
      * not a valid amount or withdrawing from nonexisting acount.
+     * @param event
      */
     @FXML
-    public void withdrawFromAccount() {
+    public void withdrawFromAccount(ActionEvent event) {
         if(db.isEmpty()) {
             transactions.appendText("Account database is empty.\n");
             return;
+        }
+        if(isInputNullFromWithdrawDeposit()) {
+            transactions.appendText("Please fill out all fields\n");
+            return;
+        }
+        getFirstNameFromWithdrawDeposit(event);
+        getLastNameFromWithdrawDeposit(event);
+        getDOBFromWithdrawDeposit(event);
+        getAmountFromWithdrawDeposit(event);
+        if(!date.isValid()) {
+            transactions.appendText("Date of birth Invalid\n");
         }
         try {
             totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
