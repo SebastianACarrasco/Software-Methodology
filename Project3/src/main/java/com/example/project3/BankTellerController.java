@@ -6,7 +6,7 @@ package com.example.project3;
  * @author Sebastian Carrasco, Rachael Chin
  */
 
-import javafx.event.ActionEvent;
+//import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.StringTokenizer;
@@ -51,7 +51,7 @@ public class BankTellerController {
     private DatePicker dob, dobFromWithdrawDeposit;
 
     /**
-     * Helper method to setup a temp account which is used for open/close.
+     * Helper method to set up a temp account which is used for open/close.
      */
     private Account setupAccount() {
         Account setup = null;
@@ -69,7 +69,8 @@ public class BankTellerController {
 
 
     /**
-     * Helper method to setup a temp account which is used for deposit/withdraw.
+     * Helper method to set up a temp account which is used for deposit/withdraw
+     * because both tabs have different ID's.
      */
     private Account setupAccountFromWithdrawDeposit() {
         Account setup = null;
@@ -148,7 +149,8 @@ public class BankTellerController {
     }
 
     /**
-     * Checks for user input and if anything is null for the deposit/withdraw tab.
+     * Checks for user input and if anything is null for the deposit/withdraw tab
+     * because it has different ID's from open/close tab.
      * @return true if any inputs are null and false if they are not
      */
     private boolean isInputNullFromWithdrawDeposit() {
@@ -162,10 +164,9 @@ public class BankTellerController {
 
     /**
      * Getter for first name in text field.
-     * @param event
      */
     @FXML
-    public void getFirstName(ActionEvent event) {
+    public void getFirstName() {
         String tmp = fn.getText();
         StringTokenizer st = new StringTokenizer(tmp);
         this.firstName = st.nextToken();
@@ -173,10 +174,9 @@ public class BankTellerController {
 
     /**
      * Getter for first name in text field for deposit/withdraw.
-     * @param event
      */
     @FXML
-    public void getFirstNameFromWithdrawDeposit(ActionEvent event) {
+    public void getFirstNameFromWithdrawDeposit() {
         String tmp = fnFromWithdrawDeposit.getText();
         StringTokenizer st = new StringTokenizer(tmp);
         this.firstName = st.nextToken();
@@ -185,10 +185,9 @@ public class BankTellerController {
 
     /**
      * Getter for last name in text field.
-     * @param event
      */
     @FXML
-    public void getLastName(ActionEvent event) {
+    public void getLastName() {
         String tmp = ln.getText();
         StringTokenizer st = new StringTokenizer(tmp);
         this.lastName = st.nextToken();
@@ -196,21 +195,20 @@ public class BankTellerController {
 
     /**
      * Getter for last name in text field for deposit/withdraw.
-     * @param event
      */
     @FXML
-    public void getLastNameFromWithdrawDeposit(ActionEvent event) {
+    public void getLastNameFromWithdrawDeposit() {
         String tmp = lnFromWithdrawDeposit.getText();
         StringTokenizer st = new StringTokenizer(tmp);
         this.lastName = st.nextToken();
     }
 
     /**
-     * Getter for dob in text field for deposit/withdraw.
-     * @param event
+     * Getter for dob in text field for deposit/withdraw. Tokenizes the date for input
+     * into database and check for validation.
      */
     @FXML
-    public void getDOBFromWithdrawDeposit(ActionEvent event) {
+    public void getDOBFromWithdrawDeposit() {
         //yyyy-mm-dd to mm/dd/yyyy
         StringTokenizer st = new StringTokenizer(dobFromWithdrawDeposit.getValue().toString(), "-");
         String year = st.nextToken();
@@ -222,10 +220,9 @@ public class BankTellerController {
     /**
      * Getter for date of birth in date picker. Tokenizes the date for input
      * into database and check for validation.
-     * @param event
      */
     @FXML
-    public void getDOB(ActionEvent event) {
+    public void getDOB() {
         //yyyy-mm-dd to mm/dd/yyyy
         StringTokenizer st = new StringTokenizer(dob.getValue().toString(), "-");
         String year = st.nextToken();
@@ -235,27 +232,35 @@ public class BankTellerController {
     }
 
     /**
-     * Getter for amount in text field.
-     * @param event
+     * Getter for amount in text field from Withdraw/Deposit tab.
      */
     @FXML
-    public void getAmountFromWithdrawDeposit(ActionEvent event) {
-        this.totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
+    public void getAmountFromWithdrawDeposit() {
+        try {
+            this.totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
+        } catch (NumberFormatException e) {
+            information.appendText("Please enter a valid amount.\n");
+        }
     }
 
     /**
-     * Getter for amount in text field.
-     * @param event
+     * Getter for amount in text field in open/close tab.
      */
     @FXML
-    public void getAmount(ActionEvent event) {
-        this.totalAmount = Double.parseDouble(amount.getText());
+    public void getAmount() {
+        try {
+            this.totalAmount = Double.parseDouble(amount.getText());
+        } catch (NumberFormatException e) {
+            information.appendText("Please enter a valid amount.\n");
+            this.totalAmount = 0;
+        }
     }
 
     /**
      * Checks if the CC radio button is not selected to trigger other radio
      * buttons that work with CC.
      */
+    /*
     @FXML
     public void ccNotSelected() {
         if(!collegechecking.isSelected()) {
@@ -263,10 +268,13 @@ public class BankTellerController {
         }
     }
 
+     */
+
     /**
      * Checks if the Savings radio button is not selected to trigger other radio
      * buttons that work with Savings.
      */
+    /*
     @FXML
     public void savingsNotSelected() {
         if(!savings.isSelected()) {
@@ -274,11 +282,14 @@ public class BankTellerController {
         }
     }
 
+     */
+
     /**
      * Checks if any other radio button but Savings or CC are selected
      * because Savings and CC have their own method as they have other
      * dependencies with other radio buttons. Disables if not Savings or CC.
      */
+    /*
     @FXML
     public void notSavingsOrCC() {
         if(moneymarket.isSelected()) {
@@ -287,6 +298,8 @@ public class BankTellerController {
             disableRadioButtons();
         }
     }
+
+     */
 
     /**
      * Checks if CC radio button is selected to trigger other radio buttons that
@@ -320,30 +333,24 @@ public class BankTellerController {
     /**
      * Opens new account into the database. This method takes care of date and
      * initial deposit edge cases.
-     * @param event
      */
     @FXML
-    public void openAccount(ActionEvent event) {
+    public void openAccount() {
         if(isInputNull()) {
             information.appendText("Please fill out all fields\n");
             return;
         }
-        getFirstName(event);
-        getLastName(event);
-        getDOB(event);
-        getAmount(event);
+        getFirstName();
+        getLastName();
+        getDOB();
+        getAmount();
         if(!date.isValid()) {
             information.appendText("Date of birth Invalid\n");
             return;
         }
 
-        try {
-            if (this.totalAmount < MIN_BALANCE) {
-                information.appendText("Initial deposit cannot be 0 or negative \n");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            information.appendText("Not a valid amount \n");
+        if (this.totalAmount < MIN_BALANCE) {
+            information.appendText("Initial deposit cannot be 0 or negative \n");
             return;
         }
 
@@ -467,15 +474,15 @@ public class BankTellerController {
      * locating existing and nonexisting accounts as well as misinputs.
      */
     @FXML
-    public void closeAccount(ActionEvent event) {
+    public void closeAccount() {
         if (db.isEmpty()) {
             information.appendText("Account database is empty!");
             return;
         }
         this.closing = true;
-        getFirstName(event);
-        getLastName(event);
-        getDOB(event);
+        getFirstName();
+        getLastName();
+        getDOB();
         this.profile = new Profile(this.firstName,this.lastName, this.date);
         Account tmp = setupAccount();
 
@@ -570,10 +577,9 @@ public class BankTellerController {
     /**
      * Deposits money into an account and takes care of edge cases such as
      * not a valid amount or reopening existing accounts.
-     * @param event
      */
     @FXML
-    public void depositFromAccount(ActionEvent event) {
+    public void depositFromAccount() {
         if(db.isEmpty()) {
             transactions.appendText("Account database is empty.\n");
             return;
@@ -582,10 +588,10 @@ public class BankTellerController {
             transactions.appendText("Please fill out all fields\n");
             return;
         }
-        getFirstNameFromWithdrawDeposit(event);
-        getLastNameFromWithdrawDeposit(event);
-        getDOBFromWithdrawDeposit(event);
-        getAmountFromWithdrawDeposit(event);
+        getFirstNameFromWithdrawDeposit();
+        getLastNameFromWithdrawDeposit();
+        getDOBFromWithdrawDeposit();
+        getAmountFromWithdrawDeposit();
         if(!date.isValid()) {
             transactions.appendText("Date of birth Invalid\n");
             return;
@@ -595,20 +601,20 @@ public class BankTellerController {
             transactions.appendText("Account database is empty.\n");
             return;
         }
+
         try {
-            if(!(totalAmount == 0))
+            if(totalAmount >= MIN_BALANCE)
                 totalAmount = Double.parseDouble(amountWithdrawDeposit.getText());
+            else {
+                transactions.appendText("Deposit - amount cannot be 0 or negative.\n");
+                return;
+            }
         } catch (NumberFormatException e) {
             transactions.appendText("Not a valid amount.\n");
             return;
         }
-        if (Double.parseDouble(amountWithdrawDeposit.getText()) < MIN_BALANCE) {
-            transactions.appendText("Deposit - amount cannot be 0 or negative.\n");
-            return;
-        }
 
         Account tmp = setupAccountFromWithdrawDeposit();
-
         if(tmp == null) {
             transactions.appendText("Missing information for depositing.\n");
             return;
@@ -632,10 +638,9 @@ public class BankTellerController {
     /**
      * Withdraws money from an account and takes care of edge cases such as
      * not a valid amount or withdrawing from nonexisting acount.
-     * @param event
      */
     @FXML
-    public void withdrawFromAccount(ActionEvent event) {
+    public void withdrawFromAccount() {
         if(db.isEmpty()) {
             transactions.appendText("Account database is empty.\n");
             return;
@@ -644,10 +649,10 @@ public class BankTellerController {
             transactions.appendText("Please fill out all fields\n");
             return;
         }
-        getFirstNameFromWithdrawDeposit(event);
-        getLastNameFromWithdrawDeposit(event);
-        getDOBFromWithdrawDeposit(event);
-        getAmountFromWithdrawDeposit(event);
+        getFirstNameFromWithdrawDeposit();
+        getLastNameFromWithdrawDeposit();
+        getDOBFromWithdrawDeposit();
+        getAmountFromWithdrawDeposit();
         if(!date.isValid()) {
             transactions.appendText("Date of birth Invalid\n");
         }
@@ -664,17 +669,18 @@ public class BankTellerController {
             return;
         }
 
-        if(db.findDupe(tmp) == NO_DUPE) {
-            transactions.appendText(profile.getfName() + " " + profile.getlName()
-                    + " " + profile.getDob() + " " + tmp.getType()
-                    + "is not in database.\n");
-            return;
-        }
-
         if (totalAmount < MIN_BALANCE) {
             transactions.appendText("Withdraw - amount cannot be 0 or negative.\n");
             return;
         }
+
+        if(db.findDupe(tmp) == NO_DUPE) {
+            transactions.appendText(profile.getfName() + " " + profile.getlName()
+                    + " (" + profile.getDob() + ") " + tmp.getType()
+                    + "is not in database.\n");
+            return;
+        }
+
         if (db.withdraw(tmp)) {
             if (tmp.getType().equals("MM")) {
                 tmp.numberOfWithdrawals++;
