@@ -6,7 +6,7 @@ package com.example.project3;
  * @author Sebastian Carrasco, Rachael Chin
  */
 
-//import javafx.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.StringTokenizer;
@@ -260,7 +260,7 @@ public class BankTellerController {
      * Checks if the CC radio button is not selected to trigger other radio
      * buttons that work with CC.
      */
-    /*
+
     @FXML
     public void ccNotSelected() {
         if(!collegechecking.isSelected()) {
@@ -268,13 +268,12 @@ public class BankTellerController {
         }
     }
 
-     */
 
     /**
      * Checks if the Savings radio button is not selected to trigger other radio
      * buttons that work with Savings.
      */
-    /*
+
     @FXML
     public void savingsNotSelected() {
         if(!savings.isSelected()) {
@@ -282,24 +281,19 @@ public class BankTellerController {
         }
     }
 
-     */
-
     /**
      * Checks if any other radio button but Savings or CC are selected
      * because Savings and CC have their own method as they have other
      * dependencies with other radio buttons. Disables if not Savings or CC.
      */
-    /*
     @FXML
-    public void notSavingsOrCC() {
-        if(moneymarket.isSelected()) {
+    public void notSavingsOrCC(ActionEvent  event) {
+        if (moneymarket.isSelected()) {
             disableRadioButtons();
-        } else if(checkings.isSelected()) {
+        } else if (checkings.isSelected()) {
             disableRadioButtons();
         }
     }
-
-     */
 
     /**
      * Checks if CC radio button is selected to trigger other radio buttons that
