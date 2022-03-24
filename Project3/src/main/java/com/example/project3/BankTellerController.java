@@ -285,6 +285,7 @@ public class BankTellerController {
      * Checks if any other radio button but Savings or CC are selected
      * because Savings and CC have their own method as they have other
      * dependencies with other radio buttons. Disables if not Savings or CC.
+     * @param event of type ActionEvent
      */
     @FXML
     public void notSavingsOrCC(ActionEvent  event) {
@@ -332,6 +333,7 @@ public class BankTellerController {
     public void openAccount() {
         if(isInputNull()) {
             information.appendText("Please fill out all fields\n");
+            resetForm();
             return;
         }
         getFirstName();
