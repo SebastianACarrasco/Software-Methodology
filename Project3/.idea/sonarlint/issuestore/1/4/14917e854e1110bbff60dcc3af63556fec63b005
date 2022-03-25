@@ -1,0 +1,48 @@
+
+e
+java:S1845"PRename field "camden" to prevent any misunderstanding/clash with field "CAMDEN".(Ä¸°
+e
+java:S1845"PRename field "newark" to prevent any misunderstanding/clash with field "NEWARK".(Ä¸°
+T
+java:S1659"?Declare "nb" and all following declarations on a separate line.(Ä¸°
+Z
+java:S1659 "DDeclare "savings" and all following declarations on a separate line.(·»Ÿ‰
+Z
+java:S1659*"?Declare "ln" and all following declarations on a separate line.(„”½ùÿÿÿÿ
+N
+java:S1659,"3Declare "lnFromWithdrawDeposit" on a separate line.(ò„İÂúÿÿÿÿ
+\
+java:S16590"FDeclare "printInfo" and all following declarations on a separate line.(Ãæç×
+J
+java:S16592"4Declare "dobFromWithdrawDeposit" on a separate line.(ÂÊ—†
+]
+java:S1126œ"AReplace this if-then-else statement by a single return statement.(‹¨¹üÿÿÿÿÿ
+j
+java:S1871¥"MThis branch's code block is the same as the block for the branch on line 291.(œ÷²58íÁèóû/
+9
+java:S3626Ì"Remove this redundant jump.(ûÁİ…8Îöüüú/
+q
+java:S1192û"SDefine a constant instead of duplicating this literal "Account reopened 
+" 3 times.(”¢¤ú8ìöüüú/
+l
+java:S1192ˆ"ODefine a constant instead of duplicating this literal "*end of list*
+" 3 times.(ÿãğ8íöüüú/
+
+java:S1192Î"\Define a constant instead of duplicating this literal "Please fill out all fields
+" 4 times.(äö™Öúÿÿÿÿ8ºÂèóû/
+r
+java:S1192ş"ODefine a constant instead of duplicating this literal " same account(" 5 times.(Œ¸ŸÎùÿÿÿÿ8îöüüú/
+
+java:S1192ş"\Define a constant instead of duplicating this literal "Account database is empty.
+" 7 times.(ù­¸çúÿÿÿÿ8îöüüú/
+z
+java:S1192ş"WDefine a constant instead of duplicating this literal ") is in the database.
+" 3 times.(Œ¸ŸÎùÿÿÿÿ8îöüüú/
+u
+java:S1192×"WDefine a constant instead of duplicating this literal "Date of birth Invalid
+" 3 times.(ş¼é8îöüüú/
+o
+java:S1192"QDefine a constant instead of duplicating this literal "Account opened 
+" 3 times.(¿–èó8ïöüüú/
+i
+java:S1104"NMake db a static final constant or non-public and provide accessors if needed.(€Ì‹²ıÿÿÿÿ

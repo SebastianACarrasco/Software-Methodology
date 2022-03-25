@@ -1,0 +1,15 @@
+
+\
+java:S1126"AReplace this if-then-else statement by a single return statement.(—Õ¦Ùúÿÿÿÿ
+t
+java:S30129"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(¡ê©Çøÿÿÿÿ
+m
+java:S3776S"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¬šô’øÿÿÿÿ
+\
+java:S1126w"AReplace this if-then-else statement by a single return statement.(Ç¡»ûÿÿÿÿ
+]
+java:S1126‘"AReplace this if-then-else statement by a single return statement.(îğşùÿÿÿÿ
+k
+java:S1192"UDefine a constant instead of duplicating this literal "Money Market Savings" 3 times.(ö“æD
+J
+java:S1066E"/Merge this if statement with the enclosing one.(ÓĞõ¯şÿÿÿÿ

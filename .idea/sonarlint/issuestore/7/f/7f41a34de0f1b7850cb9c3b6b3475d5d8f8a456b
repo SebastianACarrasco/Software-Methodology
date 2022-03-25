@@ -1,0 +1,9 @@
+
+M
+java:S2160"+Override the "equals" method in this class.(ÍÒûÿÿÿÿ8áåŒäó/
+”
+java:S1845"yRename field "INTEREST" to prevent any misunderstanding/clash with field "interest" defined in superclass "src.Checking".(×Ü­ıÿÿÿÿÿ
+E
+java:S1068"*Remove this unused "CAMDEN" private field.(ö‰³ìùÿÿÿÿ
+u
+java:S1488$"`Immediately return this expression instead of assigning it to the temporary variable "interest".(È¶¡#
