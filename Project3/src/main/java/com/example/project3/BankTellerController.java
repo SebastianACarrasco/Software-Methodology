@@ -1,16 +1,15 @@
 package com.example.project3;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import java.util.StringTokenizer;
+
 /**
  * This is the controller class for the BankTeller. Here we deal with program
  * handling and user input from GUI.
  *
  * @author Sebastian Carrasco, Rachael Chin
  */
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import java.util.StringTokenizer;
-
 public class BankTellerController {
     private static final int NEW_BRUNSWICK = 0;
     private static final int NEWARK = 1;
