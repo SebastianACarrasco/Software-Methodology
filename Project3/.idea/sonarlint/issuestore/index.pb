@@ -49,5 +49,3 @@ g
 7src/main/java/com/example/project3/AccountDatabase.java,4/d/4d871e89026575d8bf5a4fa46780e8d3575c2838
 \
 ,src/main/java/com/example/project3/Date.java,9/e/9e017a22ce88df4fe011604367ffcf220173d2a0
-f
-6src/main/java/com/example/project3/BankTellerMain.java,8/d/8dd266976628c682b6f60c28d374748a42348669

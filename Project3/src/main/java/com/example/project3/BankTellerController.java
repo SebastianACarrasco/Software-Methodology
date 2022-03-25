@@ -472,7 +472,12 @@ public class BankTellerController {
     @FXML
     public void closeAccount() {
         if (db.isEmpty()) {
-            information.appendText("Account database is empty!");
+            information.appendText("Account database is empty!\n");
+            return;
+        }
+        if(isInputNull()) {
+            information.appendText("Please fill out all fields\n");
+            resetForm();
             return;
         }
         this.closing = true;
