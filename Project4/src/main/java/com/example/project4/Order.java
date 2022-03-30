@@ -1,5 +1,5 @@
 package com.example.project4;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Keeps the list of menu items added to the order as well as provides a
@@ -9,15 +9,15 @@ import java.util.HashMap;
  */
 public class Order implements Customizable {
     private static final double TAXRATE = 0.06625;
-    private static int id = 1;
-    private HashMap<Integer, MenuItem> order;
+    //private static int id = 0;
+    private ArrayList<MenuItem> items;
 
     /**
      * Constructor for Order
      */
     public Order() {
-        id++;
-        order = new HashMap<>();
+        //id++; //increment id each time a new order is created
+        items = new ArrayList<>();
     }
 
     /**
@@ -30,7 +30,7 @@ public class Order implements Customizable {
         boolean added = false;
 
         if (o instanceof MenuItem) {
-            order.put(id, (MenuItem) o);
+            items.add((MenuItem) o);
             added = true;
         }
         return added;
@@ -46,48 +46,53 @@ public class Order implements Customizable {
         boolean removed = false;
 
         if (obj instanceof MenuItem) {
-            order.remove(id);
-            removed = true;
+            if(items.contains(obj)) {
+                items.remove(obj);
+                removed = true;
+            }
         }
         return removed;
     }
 
     /**
-     * Helper method to calculate tax after subtotal of order
-     * @return
-     */
-    private double taxes(double total) {
-        return total * TAXRATE;
-    }
-
-    /**
-     * Returns subtotal of the order. Gets itemPrice from each menu item
+     * Returns subtotal of the order with tax. Gets itemPrice from each menu item
      * @return subtotal of the order
      */
-    public double subTotal() {
-        int total = 0;
-        for (MenuItem item : order.values()) {
-            total += item.itemPrice();
+    public double subTotalWithTax() {
+        double subTotal = 0;
+        for (MenuItem item : items) {
+            subTotal += item.itemPrice();
         }
-        return taxes(total);
+        return subTotal * TAXRATE;
     }
 
     /**
-     * Getter for the order id
-     * @return order id
+     * Getter for the arraylist which contains all the menu items.
+     * @return arraylist of menu items
      */
-    public int getId() {
-        return this.id;
+    public ArrayList<MenuItem> getItems() {
+        return items;
     }
 
     /**
-     * toString method for Order. Prints the order thats stored in a hashmap
-     * @return
+     * Adds a menu item to the order
+     * @param items
+     */
+    public void setItems(MenuItem items) {
+        this.items.add(items);
+    }
+
+    /**
+     * toString method for Order. Prints the order
+     * @return string representation of the order
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (MenuItem item : order.values()) {
+
+        double total = subTotalWithTax();
+        sb.append(String.format("%.2f", total) + " ");
+        for (MenuItem item : items) {
             sb.append(item.toString()).append("\n");
         }
         return sb.toString();
