@@ -31,14 +31,8 @@ j
 Project4.iml,5/7/5752f7c0de8a1f3193c3a931fccefb9c7974f712
 N
 src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
-^
-.src/main/java/com/example/project4/Coffee.java,3/0/30f5181eac0c8a4485b762502c6417bf255df07e
-^
-.src/main/java/com/example/project4/Donuts.java,f/d/fd9f421a2aca076be81b911d2a3192ecda014259
 j
 :src/main/java/com/example/project4/mainViewController.java,7/7/777de305c59be3f37225ed9ec93c67ea9c9e3e85
-]
--src/main/java/com/example/project4/Order.java,3/e/3ec732c23fb045babf8210b47c9e993eaa9cc835
 q
 Asrc/main/java/com/example/project4/OrderBasketViewController.java,9/6/96992cf94b4b17a8269c645219cef824e1cdba72
 t
@@ -47,7 +41,5 @@ t
 Dsrc/main/java/com/example/project4/OrderingDonutsViewController.java,3/a/3aa31ab974467066763231b20bba6f9281e8ce11
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-c
-3src/main/java/com/example/project4/StoreOrders.java,2/e/2e03913c72a1c7fc6cf0e1576bf01218081dddee
 p
 @src/main/java/com/example/project4/StoreOrderViewController.java,c/6/c630b7e7c153a9ab6812439a77d20f4bc4a0826b
