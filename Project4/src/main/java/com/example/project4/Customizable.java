@@ -1,7 +1,7 @@
 package com.example.project4;
 
 /**
- * Interface class for adding and removing from menu for all classes
+ * Interface class for adding and removing either from an order or toppings
  *
  * @author Sebastian Carrasco, Rachael Chin
  */

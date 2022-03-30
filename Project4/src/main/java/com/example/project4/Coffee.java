@@ -63,14 +63,14 @@ public class Coffee extends MenuItem implements Customizable{
      */
     @Override
     public double itemPrice() {
-        switch(this.size) {
-            case "Tall":
+        switch(this.size.toLowerCase()) {
+            case "tall":
                 total += INITPRICE + (SIZEPRICESTEP * TALL);
                 break;
-            case "Grande":
+            case "grande":
                 total += INITPRICE + (SIZEPRICESTEP * GRANDE);
                 break;
-            case "Venti":
+            case "venti":
                 total += INITPRICE + (SIZEPRICESTEP * VENTI);
                 break;
             default:
@@ -94,7 +94,7 @@ public class Coffee extends MenuItem implements Customizable{
         for(int i = 0; i < addIns.size(); i++) {
             order += addIns.get(i) + ", ";
         }
-        order += "$" + itemPrice();
+        order += "$" + String.format("%.2f", itemPrice());
         return order;
     }
 
@@ -104,6 +104,13 @@ public class Coffee extends MenuItem implements Customizable{
      */
     public void setSize(String size) {
         this.size = size;
+    }
+
+    /**
+     * Setter for addins.
+     */
+    public void setAddIns(String addIns) {
+        this.addIns.add(addIns);
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.project4;
 
+import java.util.Locale;
+
 /**
  *  Class for creating donut orders. There will be donut type, flavor, and quantity.
  *
@@ -30,14 +32,14 @@ public class Donuts extends MenuItem {
      */
     @Override
     public double itemPrice() {
-        switch(donutType) {
-            case "Cake":
+        switch(this.donutType.toLowerCase()) {
+            case "cake":
                 total += CAKE * quantity;
                 break;
-            case "Yeast":
+            case "yeast":
                 total += YEAST * quantity;
                 break;
-            case "Holes":
+            case "holes":
                 total += HOLES * quantity;
                 break;
             default:
@@ -53,7 +55,8 @@ public class Donuts extends MenuItem {
      */
     @Override
     public String toString() {
-        return "Donut: " + donutType + ", " + flavor + ", " + quantity + ", $" + itemPrice();
+        return "Donut: " + donutType + ", " + flavor + ", " + quantity
+                + ", $" + String.format("%.2f", itemPrice());
     }
 
     /**
