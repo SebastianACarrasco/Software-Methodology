@@ -1,5 +1,10 @@
 package com.example.project4;
+import javafx.scene.control.Menu;
+
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -8,14 +13,12 @@ import java.util.HashMap;
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class StoreOrders implements Customizable {
-    private int ID;
     private HashMap<Integer, Order> storeOrders;
 
     /**
      * Constructor for StoreOrders.
      */
     public StoreOrders() {
-        ID = 0;
         storeOrders = new HashMap<>();
     }
 
@@ -24,7 +27,7 @@ public class StoreOrders implements Customizable {
      * @param o
      */
     public void ordersPlaced(Order o) {
-        storeOrders.put(this.ID++, o);
+        storeOrders.put(o.getID(), o);
     }
 
     /**
@@ -44,13 +47,38 @@ public class StoreOrders implements Customizable {
      */
     @Override
     public boolean remove(Object o) {
-        return false;
+        boolean removed = false;
+        if(o instanceof Order) {
+            if(storeOrders.containsValue(o)) {
+                storeOrders.remove(((Order) o).getID());
+                removed = true;
+            }
+        }
+        return removed;
     }
 
     /**
      * Exports all the orders to a file.
      */
-    public void exportStoreOrders() {}
+    public boolean exportStoreOrders() {
+        boolean exported = false;
+            File file = new File("storeOrders.txt");
+            BufferedWriter bf = null;
+            try {
+                bf = new BufferedWriter(new FileWriter(file));
+                for (HashMap.Entry<Integer, Order> entry : storeOrders.entrySet()) {
+                    // put key and value separated by a colon
+                    bf.write("" + entry.getValue());
+                    bf.newLine();
+                }
+                bf.flush();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return exported;
+    }
 
     /**
      * toString that prints all the orders from the store.
@@ -60,19 +88,16 @@ public class StoreOrders implements Customizable {
     public String toString() {
         String s = "";
         for (Order o : storeOrders.values()) {
-            s += ID + " " + o.toString() + "\n";
+            s += o.toString() + "\n";
         }
         return s;
     }
-
-
-
-
 
     //Testbed
     public static void main(String[] args) {
         //order 1
         Order order = new Order();
+        order.setID(1);
 
         Coffee item = new Coffee();
         item.setSize("Venti");
@@ -84,11 +109,18 @@ public class StoreOrders implements Customizable {
         item2.setFlavor("strawberry");
         item2.setQuantity(5);
 
+        Donuts item3 = new Donuts();
+        item3.setDonutType("cake");
+        item3.setFlavor("chocolate");
+        item3.setQuantity(3);
+
         order.setItems(item);
         order.setItems(item2);
+        order.setItems(item3);
 
         //order 2
         Order order2 = new Order();
+        order2.setID(2);
 
         Coffee itemOrder2 = new Coffee();
         itemOrder2.setSize("grande");
@@ -110,6 +142,9 @@ public class StoreOrders implements Customizable {
         storeOrders.ordersPlaced(order2);
 
         System.out.println(storeOrders.toString());
+
+        //export storeOrders
+        storeOrders.exportStoreOrders();
     }
 }
 

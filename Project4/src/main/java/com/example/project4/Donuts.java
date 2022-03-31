@@ -55,8 +55,8 @@ public class Donuts extends MenuItem {
      */
     @Override
     public String toString() {
-        return "Donut: " + donutType + ", " + flavor + ", " + quantity
-                + ", $" + String.format("%.2f", itemPrice());
+        return "Donut: " + donutType + ", " + flavor + ", " + quantity;
+                //+ ", $" + String.format("%.2f", itemPrice());
     }
 
     /**

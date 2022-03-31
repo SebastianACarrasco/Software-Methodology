@@ -94,7 +94,7 @@ public class Coffee extends MenuItem implements Customizable{
         for(int i = 0; i < addIns.size(); i++) {
             order += addIns.get(i) + ", ";
         }
-        order += "$" + String.format("%.2f", itemPrice());
+        //order += "$" + String.format("%.2f", itemPrice());
         return order;
     }
 
