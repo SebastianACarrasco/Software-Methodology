@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.project4.mainViewController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="290.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#fa0ea3" strokeType="OUTSIDE" strokeWidth="0.0" text="Rutgers Cafe">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <FlowPane.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </FlowPane.margin>
+      </Text>
+      <Text fill="#1b1a1a" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select what you would like to order or select and action to view your store order or order basket" textAlignment="JUSTIFY" wrappingWidth="500.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <FlowPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </FlowPane.margin>
+      </Text>
+      <Button id="orderDonutButton" mnemonicParsing="false" text="Donuts">
+         <FlowPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </FlowPane.margin></Button>
+      <Button fx:id="orderCoffeeButton" mnemonicParsing="false" text="Coffee">
+         <FlowPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </FlowPane.margin>
+      </Button>
+      <Button fx:id="orderBasketButton" mnemonicParsing="false" text="Order Basket">
+         <FlowPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </FlowPane.margin>
+      </Button>
+      <Button fx:id="storeOrderButton" mnemonicParsing="false" text="Store Order">
+         <FlowPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </FlowPane.margin>
+      </Button>
+   </children>
+</FlowPane>

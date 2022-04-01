@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.project4.OrderBasketViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="626.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderBasketViewController">
+   <children>
+      <Text fill="#171717" layoutX="27.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Order Basket">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="basketViewOrderNumber" layoutX="27.0" layoutY="86.0" prefHeight="17.0" prefWidth="159.0" />
+      <Text layoutX="27.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Order Number">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <ListView fx:id="basketListView" layoutX="27.0" layoutY="142.0" prefHeight="200.0" prefWidth="537.0" />
+      <TextArea fx:id="basketSubtotal" layoutX="132.0" layoutY="379.0" prefHeight="41.0" prefWidth="135.0" />
+      <TextArea fx:id="basketSalesTax" layoutX="132.0" layoutY="451.0" prefHeight="41.0" prefWidth="135.0" />
+      <TextArea fx:id="baskedOrderTotal" layoutX="132.0" layoutY="522.0" prefHeight="41.0" prefWidth="135.0" />
+      <Text layoutX="40.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal $">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Tax $">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Total $">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="basketRemove" layoutX="397.0" layoutY="420.0" mnemonicParsing="false" text="Remove Item">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="basketPlaceOrder" layoutX="397.0" layoutY="498.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="109.0" text="Place Order">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>
