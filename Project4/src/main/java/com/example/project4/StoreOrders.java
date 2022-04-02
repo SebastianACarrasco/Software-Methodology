@@ -37,7 +37,13 @@ public class StoreOrders implements Customizable {
      */
     @Override
     public boolean add(Object o) {
-        return false;
+        boolean added = false;
+
+        if (o instanceof Order) {
+            storeOrders.put(((Order) o).getID(), (Order) o);
+            added = true;
+        }
+        return added;
     }
 
     /**
@@ -144,7 +150,7 @@ public class StoreOrders implements Customizable {
         System.out.println(storeOrders.toString());
 
         //export storeOrders
-        storeOrders.exportStoreOrders();
+        //storeOrders.exportStoreOrders();
     }
 }
 

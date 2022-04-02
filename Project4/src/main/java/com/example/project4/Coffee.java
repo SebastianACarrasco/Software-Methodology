@@ -108,9 +108,21 @@ public class Coffee extends MenuItem implements Customizable{
 
     /**
      * Setter for addins.
+     * @param addIns
+     * @return true if addins is added, false if not
      */
-    public void setAddIns(String addIns) {
-        this.addIns.add(addIns);
+    public boolean setAddIns(String addIns) {
+        //this.addIns.add(addIns);
+        return add(addIns);
+    }
+
+    /**
+     * Removes addin
+     * @param addIns
+     * @return true if addin is removed, false if not
+     */
+    public boolean removeAddIns(String addIns) {
+        return remove(addIns);
     }
 
 
