@@ -31,23 +31,15 @@ j
 Project4.iml,5/7/5752f7c0de8a1f3193c3a931fccefb9c7974f712
 N
 src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
-j
-:src/main/java/com/example/project4/mainViewController.java,7/7/777de305c59be3f37225ed9ec93c67ea9c9e3e85
-q
-Asrc/main/java/com/example/project4/OrderBasketViewController.java,9/6/96992cf94b4b17a8269c645219cef824e1cdba72
-t
-Dsrc/main/java/com/example/project4/OrderingCoffeeViewController.java,b/9/b96d89fd23f30b5b149ff9306359f598b59f3878
 t
 Dsrc/main/java/com/example/project4/OrderingDonutsViewController.java,3/a/3aa31ab974467066763231b20bba6f9281e8ce11
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 p
 @src/main/java/com/example/project4/StoreOrderViewController.java,c/6/c630b7e7c153a9ab6812439a77d20f4bc4a0826b
-k
-;src/main/java/com/example/project4/mainViewApplication.java,c/c/ccfea249ddb58e080db888e828046524f62cb652
-^
-.src/main/java/com/example/project4/AddIns.java,5/e/5e3893f6cf70ff17223d8f232810295a4863de4a
 `
 0src/main/java/com/example/project4/MenuItem.java,b/c/bccd2563729a79c001b2ad29a7c6d3cb20365502
 d
 4src/main/java/com/example/project4/Customizable.java,a/7/a7d0b73eddeb035ee9448f2298e486bcd812ecdc
+^
+.src/main/java/com/example/project4/AddIns.java,5/e/5e3893f6cf70ff17223d8f232810295a4863de4a

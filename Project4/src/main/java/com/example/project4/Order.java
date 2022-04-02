@@ -104,9 +104,11 @@ public class Order implements Customizable {
     /**
      * Adds a menu item to the order
      * @param items
+     * @return true if the menu item was added, false otherwise
      */
-    public void setItems(MenuItem items) {
-        this.items.add(items);
+    public boolean setItems(MenuItem items) {
+        //this.items.add(items);
+        return add(items);
     }
 
     /**
