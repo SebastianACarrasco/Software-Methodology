@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="513.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderingCoffeeViewController">
+<AnchorPane prefHeight="513.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderingCoffeeViewController">
    <children>
       <Text fill="#e80f82" layoutX="37.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customize your coffee">
          <font>
@@ -12,16 +16,16 @@
          </font>
       </Text>
       <ComboBox fx:id="coffeeSize" layoutX="37.0" layoutY="108.0" onAction="#getCoffeeSize" prefWidth="150.0" />
-      <CheckBox fx:id="creamAddIn" layoutX="47.0" layoutY="182.0" mnemonicParsing="false" onAction="#isChecked" text="Cream" />
-      <CheckBox fx:id="syrupAddIn" layoutX="47.0" layoutY="214.0" mnemonicParsing="false" onAction="#isChecked" text="Syrup" />
-      <CheckBox fx:id="milkAddIn" layoutX="47.0" layoutY="249.0" mnemonicParsing="false" onAction="#isChecked" text="Milk" />
-      <CheckBox fx:id="caramelAddIn" layoutX="46.0" layoutY="282.0" mnemonicParsing="false" onAction="#isChecked" text="Caramel" />
+      <CheckBox fx:id="creamAddIn" layoutX="47.0" layoutY="182.0" mnemonicParsing="false" onAction="#cream" text="Cream" />
+      <CheckBox fx:id="syrupAddIn" layoutX="47.0" layoutY="214.0" mnemonicParsing="false" onAction="#syrup" text="Syrup" />
+      <CheckBox fx:id="milkAddIn" layoutX="47.0" layoutY="249.0" mnemonicParsing="false" onAction="#milk" text="Milk" />
+      <CheckBox fx:id="caramelAddIn" layoutX="46.0" layoutY="282.0" mnemonicParsing="false" onAction="#caramel" text="Caramel" />
       <Text layoutX="37.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Step 1: Select your size">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <CheckBox fx:id="whippedCreamAddIn" layoutX="46.0" layoutY="314.0" mnemonicParsing="false" onAction="#isChecked" text="Whipped Cream" />
+      <CheckBox fx:id="whippedCreamAddIn" layoutX="46.0" layoutY="314.0" mnemonicParsing="false" onAction="#whippedCream" text="Whipped Cream" />
       <Text layoutX="37.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Step 2: Select your add-ins (if any)">
          <font>
             <Font size="18.0" />

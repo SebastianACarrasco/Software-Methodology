@@ -2,6 +2,9 @@ package com.example.project4;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -14,6 +17,7 @@ import java.lang.reflect.GenericArrayType;
 
 public class OrderingCoffeeViewController {
     private static final double ADDINPRICE = 0.3;
+    private double coffeeTotal = 0;
     Coffee coffee = new Coffee();
     
     @FXML
@@ -42,11 +46,6 @@ public class OrderingCoffeeViewController {
     }
 
     /**
-     *
-     */
-    public void
-
-    /**
      * Receives data from previos view and sends it to the next view
      * @param event
      */
@@ -55,12 +54,25 @@ public class OrderingCoffeeViewController {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
+        coffee.setTotal(this.coffeeTotal);
         order.setItems(coffee);
-        creamAddIn.setSelected(false);
-        syrupAddIn.setSelected(false);
-        milkAddIn.setSelected(false);
-        caramelAddIn.setSelected(false);
-        whippedCreamAddIn.setSelected(false);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderBasketViewController.fxml"));
+            //Parent root = loader.load();
+            //loader.setLocation(getClass().getResource("OrderBasketViewController.fxml") );
+            Stage basket = new Stage();
+            basket.setUserData(order);
+            basket.setTitle("Order Basket");
+            //basket.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        resetOrder();
+        this.coffeeSubtotal.setText("");
+        this.coffeeTotal = 0;
     }
 
     /**
@@ -70,51 +82,100 @@ public class OrderingCoffeeViewController {
     @FXML
     public void getCoffeeSize(ActionEvent event) {
         coffee.setSize(this.coffeeSize.getValue().toString());
+        this.coffeeTotal = coffee.itemPrice();
+        resetOrder();
         printSubTotal();
     }
 
     /**
-     * Checks if add in combo boxes are checked and sets the add in to the coffee object
+     * Sets gui inputs to default values
+     */
+    private void resetOrder() {
+        creamAddIn.setSelected(false);
+        syrupAddIn.setSelected(false);
+        milkAddIn.setSelected(false);
+        caramelAddIn.setSelected(false);
+        whippedCreamAddIn.setSelected(false);
+    }
+
+    /**
+     * Adds or removes cream to the coffee object
      * @param event
      */
     @FXML
-    public void isChecked(ActionEvent event) {
+    public void cream(ActionEvent event) {
         if(creamAddIn.isSelected()) {
             coffee.add("Cream");
-            printSubTotal();
+            coffeeTotal += ADDINPRICE;
         } else {
             coffee.remove("Cream");
-            printSubTotal();
+            coffeeTotal -= ADDINPRICE;
         }
+        printSubTotal();
+    }
+
+    /**
+     * Adds or removes syrup from order
+     * @param event
+     */
+    @FXML
+    public void syrup(ActionEvent event) {
         if(syrupAddIn.isSelected()) {
             coffee.add("Syrup");
-            printSubTotal();
+            coffeeTotal += ADDINPRICE;
         } else {
             coffee.remove("Syrup");
-            printSubTotal();
+            coffeeTotal -= ADDINPRICE;
         }
+        printSubTotal();
+    }
+
+    /**
+     * Adds or removes milk from order
+     * @param event
+     */
+    @FXML
+    public void milk(ActionEvent event) {
         if(milkAddIn.isSelected()) {
             coffee.add("Milk");
-            printSubTotal();
-        }else {
+            coffeeTotal += ADDINPRICE;
+        } else {
             coffee.remove("Milk");
-            printSubTotal();
+            coffeeTotal -= ADDINPRICE;
         }
+        printSubTotal();
+    }
+
+    /**
+     * Adds or removes caramel from order
+     * @param event
+     */
+    @FXML
+    public void caramel(ActionEvent event) {
         if(caramelAddIn.isSelected()) {
             coffee.add("Caramel");
-            printSubTotal();
+            coffeeTotal += ADDINPRICE;
         } else {
             coffee.remove("Caramel");
-            printSubTotal();
+            coffeeTotal -= ADDINPRICE;
         }
+        printSubTotal();
+    }
+
+    /**
+     * Adds or removes whipped cream from order
+     * @param event
+     */
+    @FXML
+    public void whippedCream(ActionEvent event) {
         if(whippedCreamAddIn.isSelected()) {
             coffee.add("Whipped Cream");
-            printSubTotal();
+            coffeeTotal += ADDINPRICE;
         } else {
             coffee.remove("Whipped Cream");
-            printSubTotal();
+            coffeeTotal -= ADDINPRICE;
         }
-
+        printSubTotal();
     }
 
     /**
@@ -122,8 +183,12 @@ public class OrderingCoffeeViewController {
      */
     @FXML
     public void printSubTotal() {
-        coffeeSubtotal.setText(String.format("%.2f", coffee.itemPrice()));
+        coffeeSubtotal.setText(String.format("%.2f", this.coffeeTotal));
     }
 
 
 }
+
+
+
+

@@ -1,5 +1,6 @@
 package com.example.project4;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
+import javafx.stage.WindowEvent;
 
 public class mainViewController {
     @FXML
@@ -17,8 +19,6 @@ public class mainViewController {
 
     @FXML
     public void openDonutsView(ActionEvent event) {
-        Node node = (Node) event.getSource();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
             Parent root = loader.load();

@@ -119,13 +119,14 @@ public class Order implements Customizable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getID() + " ");
+        //sb.append(getID() + " ");
 
-        double total = subTotalWithTax();
+        //double total = subTotalWithTax();
         for (MenuItem item : items) {
             sb.append(item.toString() + "\n");
         }
-        sb.append("Subtotal w/ tax: $" + String.format("%.2f", total) + "\n");
+        //sb.append("Subtotal w/ tax: $" + String.format("%.2f", total) + "\n");
+
         return sb.toString();
     }
 }
