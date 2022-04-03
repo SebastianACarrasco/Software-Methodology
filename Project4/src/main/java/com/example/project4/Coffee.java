@@ -28,7 +28,7 @@ public class Coffee extends MenuItem implements Customizable{
     }
 
     /**
-     * Method to add a coffee order.
+     * Method to add a coffee add in.
      * @param o
      * @return true if order is added, false if not
      */
@@ -36,6 +36,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean add(Object o) {
         boolean added = false;
         if(o instanceof String) {
+            total += ADDINPRICE;
             addIns.add((String)o);
             added = true;
         }
@@ -43,7 +44,7 @@ public class Coffee extends MenuItem implements Customizable{
     }
 
     /**
-     * method to remove a coffee order.
+     * method to remove a coffee add in.
      * @param o
      * @return true if order is removed, false if not
      */
@@ -51,6 +52,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean remove(Object o) {
         boolean removed = false;
         if (o instanceof String) {
+            total -= ADDINPRICE;
             addIns.remove(o);
             removed = true;
         }
@@ -64,21 +66,24 @@ public class Coffee extends MenuItem implements Customizable{
     @Override
     public double itemPrice() {
         switch(this.size.toLowerCase()) {
+            case "short":
+                total = INITPRICE;
+                break;
             case "tall":
-                total += INITPRICE + (SIZEPRICESTEP * TALL);
+                total = INITPRICE + (SIZEPRICESTEP * TALL);
                 break;
             case "grande":
-                total += INITPRICE + (SIZEPRICESTEP * GRANDE);
+                total = INITPRICE + (SIZEPRICESTEP * GRANDE);
                 break;
             case "venti":
-                total += INITPRICE + (SIZEPRICESTEP * VENTI);
+                total = INITPRICE + (SIZEPRICESTEP * VENTI);
                 break;
             default:
                 total = 0;
         }
 
         //gets addin total based on arraylist of addins size
-        total += addIns.size() * ADDINPRICE;
+        //total += addIns.size() * ADDINPRICE;
 
         return total;
     }

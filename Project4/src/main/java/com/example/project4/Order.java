@@ -54,6 +54,7 @@ public class Order implements Customizable {
         return removed;
     }
 
+
     /**
      * Returns subtotal of the order with tax. Gets itemPrice from each menu item
      * @return subtotal of the order

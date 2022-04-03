@@ -1,5 +1,6 @@
 package com.example.project4;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -9,8 +10,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
+import java.lang.reflect.GenericArrayType;
+
 public class OrderingCoffeeViewController {
-    private String[] addIns = new String[5];
+    Coffee coffee = new Coffee();
     
     @FXML
     public ComboBox coffeeSize;
@@ -29,49 +32,78 @@ public class OrderingCoffeeViewController {
     @FXML
     public Button addCoffeeOrder;
 
-
+    /**
+     * Initializes the combo box with the coffee sizes
+     */
     @FXML
-    public void receiveUserData(MouseEvent event) {
+    public void initialize() {
+        coffeeSize.getItems().addAll("short", "tall", "grande", "venti");
+    }
+
+    /**
+     * Receives data from previos view and sends it to the next view
+     * @param event
+     */
+    @FXML
+    public void receiveUserData(ActionEvent event) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
-        Coffee coffee = new Coffee();
-        
-        coffee.setSize(getCoffeeSize(event));
-
-        for(int i = 0; i < addIns.length; i++) {
-            if(addIns[i] != null) {
-                coffee.setAddIns(addIns[i]);
-            }
-        }
-
         order.setItems(coffee);
     }
 
+    /**
+     * Gets coffee size from gui and sets it to the coffee object
+     * @param event
+     */
     @FXML
-    public String getCoffeeSize(MouseEvent event) {
-        String coffeeSize = (String) this.coffeeSize.getValue();
-        return coffeeSize;
+    public void getCoffeeSize(ActionEvent event) {
+        coffee.setSize(this.coffeeSize.getValue().toString());
+        printSubTotal();
     }
 
+    /**
+     * Checks if add in combo boxes are checked and sets the add in to the coffee object
+     * @param event
+     */
     @FXML
-    public String[] getAddIns(MouseEvent event) {
+    public void isChecked(ActionEvent event) {
         if(creamAddIn.isSelected()) {
-            addIns[0] = "Cream";
+            coffee.add("Cream");
+        } else {
+            coffee.remove("Cream");
         }
         if(syrupAddIn.isSelected()) {
-            addIns[1] = "Syrup";
+            coffee.add("Syrup");
+        } else {
+            coffee.remove("Syrup");
         }
         if(milkAddIn.isSelected()) {
-            addIns[2] = "Milk";
+            coffee.add("Milk");
+        }else {
+            coffee.remove("Milk");
         }
         if(caramelAddIn.isSelected()) {
-            addIns[3] = "Caramel";
+            coffee.add("Caramel");
+        } else {
+            coffee.remove("Caramel");
         }
         if(whippedCreamAddIn.isSelected()) {
-            addIns[4] = "Whipped Cream";
+            coffee.add("Whipped Cream");
+        } else {
+            coffee.remove("Whipped Cream");
         }
-        return addIns;
+
+        printSubTotal();
     }
+
+    /**
+     * Prints current subtotal to the gui
+     */
+    @FXML
+    public void printSubTotal() {
+        coffeeSubtotal.setText(String.format("%.2f", coffee.itemPrice()));
+    }
+
 
 }
