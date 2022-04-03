@@ -3,10 +3,7 @@ package com.example.project4;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class OrderingDonutsViewController {
@@ -15,11 +12,11 @@ public class OrderingDonutsViewController {
     @FXML
     public ComboBox baseButton;
     @FXML
-    public CheckBox strawberryFlavor;
+    public RadioButton strawberryFlavor;
     @FXML
-    public CheckBox plainFlavor;
+    public RadioButton plainFlavor;
     @FXML
-    public CheckBox berriesFlavor;
+    public RadioButton berriesFlavor;
     @FXML
     public TextField donutsAmount;
     @FXML
@@ -44,9 +41,23 @@ public class OrderingDonutsViewController {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
-        order.setItems(donuts);
+        order.setItems(donut);
     }
 
+    /**
+     * Gets donut type from gui and sets it to the donut object
+     * @param event
+     */
+    @FXML
+    public void getFlavor(ActionEvent event) {
+        if(strawberryFlavor.isSelected()) {
+            donut.setFlavor("Strawberry");
+        } else if (plainFlavor.isSelected()){
+            donut.setFlavor("Plain");
+        } else if (berriesFlavor.isSelected()){
+            donut.setFlavor("Berries");
+        }
+    }
 
     /**
      * Gets donut type from gui and sets it to the donut object
@@ -58,33 +69,9 @@ public class OrderingDonutsViewController {
         printSubTotal();
     }
 
-    /**
-     * Checks if add in combo boxes are checked and sets the add in to the donut object
-     * @param event
-     */
-    @FXML
-    public void isChecked(ActionEvent event) {
-        if(strawberryFlavor.isSelected()) {
-            donut.add("Strawberry");
-        } else {
-            donut.remove("Strawberry");
-        }
-        if(plainFlavor.isSelected()) {
-            donut.add("Plain");
-        } else {
-            donut.remove("Plain");
-        }
-        if(berriesFlavor.isSelected()) {
-            donut.add("Berries");
-        }else {
-            donut.remove("Berries");
-        }
-        printSubTotal();
-    }
-
     @FXML
     public void getDonutQuantity(ActionEvent event) {
-        donut.setQuantity(this.donutsAmount.getValue().toString());
+        donut.setQuantity(Integer.parseInt(this.donutsAmount.getText()));
         printSubTotal();
     }
 
