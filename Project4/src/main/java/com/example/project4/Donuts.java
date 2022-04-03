@@ -34,13 +34,13 @@ public class Donuts extends MenuItem {
     public double itemPrice() {
         switch(this.donutType.toLowerCase()) {
             case "cake":
-                total += CAKE * quantity;
+                total = CAKE * quantity;
                 break;
             case "yeast":
-                total += YEAST * quantity;
+                total = YEAST * quantity;
                 break;
             case "holes":
-                total += HOLES * quantity;
+                total = HOLES * quantity;
                 break;
             default:
                 total = 0;
