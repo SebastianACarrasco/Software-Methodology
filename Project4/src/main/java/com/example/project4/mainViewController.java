@@ -16,7 +16,7 @@ public class mainViewController {
 
 
     @FXML
-    public void openDonutsView(MouseEvent event) {
+    public void openDonutsView(ActionEvent event) {
         Node node = (Node) event.getSource();
 
         try {
@@ -33,11 +33,12 @@ public class mainViewController {
     }
 
     @FXML
-    public void openCoffeeView(MouseEvent event) {
+    public void openCoffeeView(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.setUserData(order);
             stage.setTitle("Coffee");
             stage.setScene(new Scene(root));
             stage.show();
@@ -47,11 +48,12 @@ public class mainViewController {
     }
 
     @FXML
-    public void openBasketView(MouseEvent event) {
+    public void openBasketView(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.setUserData(order);
             stage.setTitle("Basket Order");
             stage.setScene(new Scene(root));
             stage.show();
@@ -61,11 +63,12 @@ public class mainViewController {
     }
 
     @FXML
-    public void openStoreOrderView(MouseEvent event) {
+    public void openStoreOrderView(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.setUserData(order);
             stage.setTitle("Store Order");
             stage.setScene(new Scene(root));
             stage.show();
