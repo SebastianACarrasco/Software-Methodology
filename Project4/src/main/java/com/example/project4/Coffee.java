@@ -11,7 +11,7 @@ public class Coffee extends MenuItem implements Customizable{
     private String size;
     private double total;
     private ArrayList<String> addIns;
-    private static final double ADDINPRICE = 0.3;
+    //private static final double ADDINPRICE = 0.3;
     private static final double INITPRICE = 1.69;
     private static final int TALL = 1;
     private static final int GRANDE = 2;
@@ -24,7 +24,7 @@ public class Coffee extends MenuItem implements Customizable{
     public Coffee() {
         addIns = new ArrayList<String>();
         size = "";
-        total = 0;
+        this.total = 0;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean add(Object o) {
         boolean added = false;
         if(o instanceof String) {
-            total += ADDINPRICE;
+            //this.total += ADDINPRICE;
             addIns.add((String)o);
             added = true;
         }
@@ -52,7 +52,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean remove(Object o) {
         boolean removed = false;
         if (o instanceof String) {
-            total -= ADDINPRICE;
+            //this.total -= ADDINPRICE;
             addIns.remove(o);
             removed = true;
         }
@@ -67,25 +67,25 @@ public class Coffee extends MenuItem implements Customizable{
     public double itemPrice() {
         switch(this.size.toLowerCase()) {
             case "short":
-                total = INITPRICE;
+                this.total = INITPRICE;
                 break;
             case "tall":
-                total = INITPRICE + (SIZEPRICESTEP * TALL);
+                this.total = INITPRICE + (SIZEPRICESTEP * TALL);
                 break;
             case "grande":
-                total = INITPRICE + (SIZEPRICESTEP * GRANDE);
+                this.total = INITPRICE + (SIZEPRICESTEP * GRANDE);
                 break;
             case "venti":
-                total = INITPRICE + (SIZEPRICESTEP * VENTI);
+                this.total = INITPRICE + (SIZEPRICESTEP * VENTI);
                 break;
             default:
-                total = 0;
+                this.total = 0;
         }
 
         //gets addin total based on arraylist of addins size
         //total += addIns.size() * ADDINPRICE;
 
-        return total;
+        return this.total;
     }
 
     /**
@@ -116,19 +116,25 @@ public class Coffee extends MenuItem implements Customizable{
      * @param addIns
      * @return true if addins is added, false if not
      */
+    /*
     public boolean setAddIns(String addIns) {
         //this.addIns.add(addIns);
         return add(addIns);
     }
+
+     */
 
     /**
      * Removes addin
      * @param addIns
      * @return true if addin is removed, false if not
      */
+    /*
     public boolean removeAddIns(String addIns) {
         return remove(addIns);
     }
+
+     */
 
 
     /**

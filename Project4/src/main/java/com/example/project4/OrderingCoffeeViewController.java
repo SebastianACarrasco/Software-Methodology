@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import java.lang.reflect.GenericArrayType;
 
 public class OrderingCoffeeViewController {
+    private static final double ADDINPRICE = 0.3;
     Coffee coffee = new Coffee();
     
     @FXML
@@ -50,6 +51,11 @@ public class OrderingCoffeeViewController {
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
         order.setItems(coffee);
+        creamAddIn.setSelected(false);
+        syrupAddIn.setSelected(false);
+        milkAddIn.setSelected(false);
+        caramelAddIn.setSelected(false);
+        whippedCreamAddIn.setSelected(false);
     }
 
     /**
@@ -70,31 +76,40 @@ public class OrderingCoffeeViewController {
     public void isChecked(ActionEvent event) {
         if(creamAddIn.isSelected()) {
             coffee.add("Cream");
+            printSubTotal();
         } else {
             coffee.remove("Cream");
+            printSubTotal();
         }
         if(syrupAddIn.isSelected()) {
             coffee.add("Syrup");
+            printSubTotal();
         } else {
             coffee.remove("Syrup");
+            printSubTotal();
         }
         if(milkAddIn.isSelected()) {
             coffee.add("Milk");
+            printSubTotal();
         }else {
             coffee.remove("Milk");
+            printSubTotal();
         }
         if(caramelAddIn.isSelected()) {
             coffee.add("Caramel");
+            printSubTotal();
         } else {
             coffee.remove("Caramel");
+            printSubTotal();
         }
         if(whippedCreamAddIn.isSelected()) {
             coffee.add("Whipped Cream");
+            printSubTotal();
         } else {
             coffee.remove("Whipped Cream");
+            printSubTotal();
         }
 
-        printSubTotal();
     }
 
     /**

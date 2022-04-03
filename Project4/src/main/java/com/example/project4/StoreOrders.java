@@ -99,6 +99,7 @@ public class StoreOrders implements Customizable {
         return s;
     }
 
+    /*
     //Testbed
     public static void main(String[] args) {
         //order 1
@@ -152,6 +153,8 @@ public class StoreOrders implements Customizable {
         //export storeOrders
         //storeOrders.exportStoreOrders();
     }
+
+     */
 }
 
 
