@@ -42,6 +42,11 @@ public class OrderingCoffeeViewController {
     }
 
     /**
+     *
+     */
+    public void
+
+    /**
      * Receives data from previos view and sends it to the next view
      * @param event
      */
