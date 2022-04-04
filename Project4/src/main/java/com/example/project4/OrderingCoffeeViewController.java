@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 import java.lang.reflect.GenericArrayType;
+import java.util.Objects;
 
 public class OrderingCoffeeViewController {
     private static final double ADDINPRICE = 0.3;
@@ -45,35 +46,49 @@ public class OrderingCoffeeViewController {
         coffeeSize.getItems().addAll("short", "tall", "grande", "venti");
     }
 
+
+    public void goToCoffee(Order order) throws Exception {
+        coffee.setTotal(this.coffeeTotal);
+        order.setItems(coffee);
+        //resetOrder();
+        //this.coffeeSubtotal.setText("");
+        //this.coffeeTotal = 0;
+    }
+
     /**
-     * Receives data from previos view and sends it to the next view
+     * Receives data from previous view and sends it to the next view
      * @param event
      */
-    @FXML
+    /*
     public void receiveUserData(ActionEvent event) {
+        //this should be onloaded
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
         coffee.setTotal(this.coffeeTotal);
         order.setItems(coffee);
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderBasketViewController.fxml"));
-            //Parent root = loader.load();
-            //loader.setLocation(getClass().getResource("OrderBasketViewController.fxml") );
-            Stage basket = new Stage();
-            basket.setUserData(order);
-            basket.setTitle("Order Basket");
-            //basket.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
         resetOrder();
         this.coffeeSubtotal.setText("");
         this.coffeeTotal = 0;
     }
+    */
+
+    @FXML
+    public void sendToBasket(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        try {
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderBasketView.fxml")));
+            stage.setUserData(coffee);
+            stage.setTitle("Order Basket");
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     /**
      * Gets coffee size from gui and sets it to the coffee object

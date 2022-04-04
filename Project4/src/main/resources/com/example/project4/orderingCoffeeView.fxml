@@ -37,7 +37,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="addCoffeeOrder" layoutX="191.0" layoutY="439.0" mnemonicParsing="false" onAction="#receiveUserData" text="Add to Order">
+      <Button fx:id="addCoffeeOrder" layoutX="191.0" layoutY="439.0" mnemonicParsing="false" onAction="#sendToBasket" text="Add to Order">
          <font>
             <Font size="16.0" />
          </font>
