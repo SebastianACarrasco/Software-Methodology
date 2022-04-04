@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,17 +13,22 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.stage.WindowEvent;
 
-public class mainViewController {
-    @FXML
-    public Order order = new Order();
+import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
+public class mainViewController {
+    Order order = new Order();
 
     @FXML
     public void openDonutsView(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderingDonutsViewController.fxml")));
             stage.setUserData(order);
             stage.setTitle("Donuts");
             stage.setScene(new Scene(root));
@@ -33,18 +39,46 @@ public class mainViewController {
     }
 
     @FXML
-    public void openCoffeeView(ActionEvent event) {
+    public void openCoffeeView(ActionEvent event) throws Exception {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            //loader.setLocation(getClass().getResource("OrderingCoffeeView.fxml"));
+            Parent root = loader.load(getClass().getResource("OrderingCoffeeView.fxml"));
+            Scene coffeeScene = new Scene(root);
+
+            OrderingCoffeeViewController controller = loader.getController();
+            controller.goToCoffee(order);
+
+            //Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Node node = (Node) event.getSource();
+            Stage window = (Stage) node.getScene().getWindow();
+            window.setTitle("Coffee");
+            window.setScene(coffeeScene);
+            window.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        try {
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderingCoffeeView.fxml")));
             stage.setUserData(order);
+
             stage.setTitle("Coffee");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+         */
+
     }
 
     @FXML

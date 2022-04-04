@@ -30,8 +30,13 @@ public class OrderBasketViewController {
 
     }
 
+    /**
+     * Receives data from previous view and sends it to the next view
+     * @param event
+     */
     @FXML
-    public void receiveOrderBasket(ActionEvent event) {
+    public void receiveUserData(ActionEvent event) {
+        //this should be onloaded
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
