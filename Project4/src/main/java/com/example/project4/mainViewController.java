@@ -19,7 +19,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class mainViewController {
-    Order order = new Order();
+    private Order order = new Order();
+
+
 
     @FXML
     public void openDonutsView(ActionEvent event) {
@@ -41,44 +43,35 @@ public class mainViewController {
     @FXML
     public void openCoffeeView(ActionEvent event) throws Exception {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            //loader.setLocation(getClass().getResource("OrderingCoffeeView.fxml"));
-            Parent root = loader.load(getClass().getResource("OrderingCoffeeView.fxml"));
+            OrderingCoffeeViewController coffee = new OrderingCoffeeViewController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderingCoffeeView.fxml"));
+            loader.setController(coffee);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Coffee");
             Scene coffeeScene = new Scene(root);
+            stage.setScene(coffeeScene);
+            coffee.initOrder(order);
+            //stage.setUserData(order);
 
-            OrderingCoffeeViewController controller = loader.getController();
-            controller.goToCoffee(order);
+            //OrderingCoffeeViewController controller = loader.getController();
+            //controller.goToCoffee(order);
+
+            stage.show();
 
             //Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            /*
             Node node = (Node) event.getSource();
             Stage window = (Stage) node.getScene().getWindow();
             window.setTitle("Coffee");
             window.setScene(coffeeScene);
             window.show();
+             */
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-        /*
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderingCoffeeView.fxml")));
-            stage.setUserData(order);
-
-            stage.setTitle("Coffee");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
-
     }
 
     @FXML

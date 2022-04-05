@@ -20,6 +20,7 @@ public class OrderingCoffeeViewController {
     private static final double ADDINPRICE = 0.3;
     private double coffeeTotal = 0;
     Coffee coffee = new Coffee();
+    Order order;
     
     @FXML
     public ComboBox coffeeSize;
@@ -46,13 +47,8 @@ public class OrderingCoffeeViewController {
         coffeeSize.getItems().addAll("short", "tall", "grande", "venti");
     }
 
-
-    public void goToCoffee(Order order) throws Exception {
-        coffee.setTotal(this.coffeeTotal);
-        order.setItems(coffee);
-        //resetOrder();
-        //this.coffeeSubtotal.setText("");
-        //this.coffeeTotal = 0;
+    public void initOrder(Order order) {
+        this.order = order;
     }
 
     /**
@@ -75,6 +71,7 @@ public class OrderingCoffeeViewController {
 
     @FXML
     public void sendToBasket(ActionEvent event) {
+        /*
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         try {
@@ -83,6 +80,22 @@ public class OrderingCoffeeViewController {
             stage.setUserData(coffee);
             stage.setTitle("Order Basket");
             stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         */
+
+        try {
+            OrderBasketViewController basket = new OrderBasketViewController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderBasketView.fxml"));
+            loader.setController(basket);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Order Basket");
+            Scene basketScene = new Scene(root);
+            stage.setScene(basketScene);
+            basket.initBasket(order);
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

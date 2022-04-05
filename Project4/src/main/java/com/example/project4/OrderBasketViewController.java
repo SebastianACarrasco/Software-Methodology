@@ -12,9 +12,10 @@ import javafx.scene.control.TextArea;
 public class OrderBasketViewController {
     private static int ID;
     private static final double TAXRATE = 0.06625;
+    Order order;
 
     @FXML
-    public ListView basketListView;
+    public ListView<String> basketListView;
     @FXML
     public TextArea basketSubtotal;
     @FXML
@@ -24,16 +25,22 @@ public class OrderBasketViewController {
     @FXML
     public TextArea basketViewOrderNumber;
 
-
-    public OrderBasketViewController() {
+    public void initBasket(Order order) {
+        this.order = order;
         this.ID++;
-
+        this.order.setID(ID);
+        basketListView.getItems().add(this.order.toString());;
+        basketViewOrderNumber.setText(Integer.toString(this.order.getID()));
+        basketSubtotal.setText(""+this.order.subTotal());
+        //basketSalesTax.setText(""+order.salesTax());
+        basketOrderTotal.setText(""+this.order.subTotalWithTax());
     }
 
     /**
      * Receives data from previous view and sends it to the next view
      * @param event
      */
+    /*
     @FXML
     public void receiveUserData(ActionEvent event) {
         //this should be onloaded
@@ -48,7 +55,7 @@ public class OrderBasketViewController {
         basketOrderTotal.setText(""+order.subTotalWithTax());
     }
 
-    /*
+
     @FXML
     public void receiveOrderBasket(ActionEvent event) {
         Node node = (Node) event.getSource();
