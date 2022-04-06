@@ -19,8 +19,8 @@ import java.util.Objects;
 public class OrderingCoffeeViewController {
     private static final double ADDINPRICE = 0.3;
     private double coffeeTotal = 0;
-    Coffee coffee = new Coffee();
-    Order order;
+    private Coffee coffee;
+    private mainViewController controller;
     
     @FXML
     public ComboBox coffeeSize;
@@ -45,63 +45,36 @@ public class OrderingCoffeeViewController {
     @FXML
     public void initialize() {
         coffeeSize.getItems().addAll("short", "tall", "grande", "venti");
+        coffee = new Coffee();
     }
 
-    public void initOrder(Order order) {
-        this.order = order;
+    public void setMainController(mainViewController controller) {
+        this.controller = controller;
     }
-
-    /**
-     * Receives data from previous view and sends it to the next view
-     * @param event
-     */
-    /*
-    public void receiveUserData(ActionEvent event) {
-        //this should be onloaded
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Order order = (Order) stage.getUserData();
-        coffee.setTotal(this.coffeeTotal);
-        order.setItems(coffee);
-        resetOrder();
-        this.coffeeSubtotal.setText("");
-        this.coffeeTotal = 0;
-    }
-    */
 
     @FXML
     public void sendToBasket(ActionEvent event) {
-        /*
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderBasketView.fxml")));
-            stage.setUserData(coffee);
-            stage.setTitle("Order Basket");
-            stage.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
-
-        try {
-            OrderBasketViewController basket = new OrderBasketViewController();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderBasketView.fxml"));
-            loader.setController(basket);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
             Parent root = loader.load();
+
+            controller.getOrder().add(coffee);
+            OrderBasketViewController basket = loader.getController();
+            basket.setMainController(controller);
+
             Stage stage = new Stage();
             stage.setTitle("Order Basket");
             Scene basketScene = new Scene(root);
             stage.setScene(basketScene);
-            basket.initBasket(order);
+            resetOrder();
             stage.show();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
-
-
 
     /**
      * Gets coffee size from gui and sets it to the coffee object
@@ -111,7 +84,6 @@ public class OrderingCoffeeViewController {
     public void getCoffeeSize(ActionEvent event) {
         coffee.setSize(this.coffeeSize.getValue().toString());
         this.coffeeTotal = coffee.itemPrice();
-        resetOrder();
         printSubTotal();
     }
 
@@ -124,6 +96,7 @@ public class OrderingCoffeeViewController {
         milkAddIn.setSelected(false);
         caramelAddIn.setSelected(false);
         whippedCreamAddIn.setSelected(false);
+        coffee = new Coffee();
     }
 
     /**

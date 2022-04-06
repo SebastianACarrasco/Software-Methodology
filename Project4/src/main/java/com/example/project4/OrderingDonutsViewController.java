@@ -41,7 +41,7 @@ public class OrderingDonutsViewController {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Order order = (Order) stage.getUserData();
-        order.setItems(donut);
+        order.add(donut);
     }
 
     /**

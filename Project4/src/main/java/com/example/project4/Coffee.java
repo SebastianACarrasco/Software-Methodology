@@ -84,6 +84,7 @@ public class Coffee extends MenuItem implements Customizable{
         return this.total;
     }
 
+
     /**
      * toString method for coffee order.
      * @return string of coffee order
@@ -91,7 +92,10 @@ public class Coffee extends MenuItem implements Customizable{
     @Override
     public String toString() {
         String order = "Coffee: " + this.size + ", ";
-
+        order += "Add-ins: ";
+        if(addIns.size() == 0) {
+            order += "None";
+        }
         for(int i = 0; i < addIns.size(); i++) {
             order += addIns.get(i) + ", ";
         }

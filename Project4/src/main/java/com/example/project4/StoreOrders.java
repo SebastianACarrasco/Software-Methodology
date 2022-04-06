@@ -23,11 +23,15 @@ public class StoreOrders implements Customizable {
     }
 
     /**
-     * Stores an order into the hashmap with unique ID
-     * @param o
+     * Getters for order ID
+     * @return order ID
      */
-    public void ordersPlaced(Order o) {
-        storeOrders.put(o.getID(), o);
+    public int getID(Order order) {
+        return order.getID();
+    }
+
+    public HashMap<Integer, Order> getStoreOrders() {
+        return storeOrders;
     }
 
     /**

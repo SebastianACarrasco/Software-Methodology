@@ -22,6 +22,17 @@ public class mainViewController {
     private Order order = new Order();
 
 
+    /**
+     * Getter for the order
+     * @return the order
+     */
+    public Order getOrder() {
+        return this.order;
+    }
+
+    public void resetOrder() {
+        order = new Order();
+    }
 
     @FXML
     public void openDonutsView(ActionEvent event) {
@@ -43,31 +54,17 @@ public class mainViewController {
     @FXML
     public void openCoffeeView(ActionEvent event) throws Exception {
         try {
-            OrderingCoffeeViewController coffee = new OrderingCoffeeViewController();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderingCoffeeView.fxml"));
-            loader.setController(coffee);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
             Parent root = loader.load();
+
+            OrderingCoffeeViewController coffee = loader.getController();
+            coffee.setMainController(this);
+
             Stage stage = new Stage();
             stage.setTitle("Coffee");
             Scene coffeeScene = new Scene(root);
             stage.setScene(coffeeScene);
-            coffee.initOrder(order);
-            //stage.setUserData(order);
-
-            //OrderingCoffeeViewController controller = loader.getController();
-            //controller.goToCoffee(order);
-
             stage.show();
-
-            //Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            /*
-            Node node = (Node) event.getSource();
-            Stage window = (Stage) node.getScene().getWindow();
-            window.setTitle("Coffee");
-            window.setScene(coffeeScene);
-            window.show();
-             */
-
 
         } catch (Exception e) {
             e.printStackTrace();
