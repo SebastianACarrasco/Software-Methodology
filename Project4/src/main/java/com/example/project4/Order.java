@@ -9,14 +9,14 @@ import java.util.ArrayList;
  */
 public class Order implements Customizable {
     private static final double TAXRATE = 0.06625;
-    private int ID; //set id value in controller and increment by 1 per order
+    private static int ID; //set id value in controller and increment by 1 per order
     private ArrayList<MenuItem> items;
 
     /**
      * Constructor for Order
      */
     public Order() {
-        this.ID = 0;
+        this.ID++;
         this.items = new ArrayList<>();
     }
 
@@ -54,30 +54,39 @@ public class Order implements Customizable {
         return removed;
     }
 
+    public String getTaxes() {
+        double subTotal = 0;
+        for (MenuItem item : items) {
+            subTotal += item.itemPrice();
+        }
+        double tax = subTotal * TAXRATE;
+        return String.format("%.2f", tax);
+    }
+
 
     /**
      * Returns subtotal of the order with tax. Gets itemPrice from each menu item
      * @return subtotal of the order
      */
-    public double subTotalWithTax() {
+    public String subTotalWithTax() {
         double subTotal = 0;
         for (MenuItem item : items) {
             subTotal += item.itemPrice();
         }
         subTotal = subTotal * (1 + TAXRATE);
-        return subTotal;
+        return String.format("%.2f", subTotal);
     }
 
     /**
      * Returns the total of the order without tax
      * @return total of the order without tax
      */
-    public double subTotal() {
+    public String subTotal() {
         double subTotal = 0;
         for (MenuItem item : items) {
             subTotal += item.itemPrice();
         }
-        return subTotal;
+        return String.format("%.2f", subTotal);
     }
 
     /**
@@ -102,15 +111,6 @@ public class Order implements Customizable {
         return items;
     }
 
-    /**
-     * Adds a menu item to the order
-     * @param items
-     * @return true if the menu item was added, false otherwise
-     */
-    public boolean setItems(MenuItem items) {
-        //this.items.add(items);
-        return add(items);
-    }
 
     /**
      * toString method for Order. Prints the order
