@@ -63,30 +63,41 @@ public class Order implements Customizable {
         return String.format("%.2f", tax);
     }
 
+    public void removeItem(ArrayList<MenuItem> items, int index) {
+        for(int i = 0; i < items.size(); i++) {
+            if(this.items.get(i).equals(items.get(index))) {
+                this.items.remove(i);
+            }
+        }
+    }
+
 
     /**
      * Returns subtotal of the order with tax. Gets itemPrice from each menu item
      * @return subtotal of the order
      */
-    public String subTotalWithTax() {
+    public double subTotalWithTax() {
         double subTotal = 0;
         for (MenuItem item : items) {
             subTotal += item.itemPrice();
         }
         subTotal = subTotal * (1 + TAXRATE);
-        return String.format("%.2f", subTotal);
+        return subTotal;
+        //return String.format("%.2f", subTotal);
     }
 
     /**
      * Returns the total of the order without tax
      * @return total of the order without tax
      */
-    public String subTotal() {
+    public double subTotal() {
         double subTotal = 0;
         for (MenuItem item : items) {
             subTotal += item.itemPrice();
         }
-        return String.format("%.2f", subTotal);
+        return subTotal;
+        //return String.format("%.2f", subTotal);
+
     }
 
     /**

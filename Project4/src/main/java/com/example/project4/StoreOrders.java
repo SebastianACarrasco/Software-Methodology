@@ -68,29 +68,6 @@ public class StoreOrders implements Customizable {
     }
 
     /**
-     * Exports all the orders to a file.
-     */
-    public boolean exportStoreOrders() {
-        boolean exported = false;
-            File file = new File("storeOrders.txt");
-            BufferedWriter bf = null;
-            try {
-                bf = new BufferedWriter(new FileWriter(file));
-                for (HashMap.Entry<Integer, Order> entry : storeOrders.entrySet()) {
-                    // put key and value separated by a colon
-                    bf.write("" + entry.getValue());
-                    bf.newLine();
-                }
-                bf.flush();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return exported;
-    }
-
-    /**
      * toString that prints all the orders from the store.
      * @return String of all the orders.
      */
@@ -98,7 +75,7 @@ public class StoreOrders implements Customizable {
     public String toString() {
         String s = "";
         for (Order o : storeOrders.values()) {
-            s += o.toString() + "\n";
+            s += String.format("%.2f", o.toString()) + "\n";
         }
         return s;
     }

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
+import java.util.ArrayList;
 
 public class OrderBasketViewController {
     private mainViewController controller;
@@ -26,18 +27,41 @@ public class OrderBasketViewController {
     public TextArea basketOrderTotal;
     @FXML
     public TextArea basketViewOrderNumber;
+    @FXML
+    public Button basketRemove;
 
     public void setMainController(mainViewController controller) {
         this.controller = controller;
         initBasket(this.controller.getOrder());
     }
 
-    public void initBasket(Order order) {
-        basketListView.getItems().add(order.toString());;
+    private void initBasket(Order order) {
         basketViewOrderNumber.setText(Integer.toString(order.getID()));
-        basketSubtotal.setText(order.subTotal());
         basketSalesTax.setText(order.getTaxes());
-        basketOrderTotal.setText(order.subTotalWithTax());
+        basketSubtotal.setText(String.format("%.2f", order.subTotal()));
+        basketOrderTotal.setText(String.format("%.2f", order.subTotalWithTax()));
+
+        ArrayList<MenuItem> items = order.getItems();
+        for(int i = 0; i < items.size(); i++) {
+            basketListView.getItems().add(items.get(i).toString());
+        }
+    }
+
+    private void recalculateBasket() {
+        basketSubtotal.setText(String.format("%.2f",controller.getOrder().subTotal()));
+        basketSalesTax.setText(String.format("%.2f",controller.getOrder().getTaxes()));
+        basketOrderTotal.setText(String.format("%.2f",controller.getOrder().subTotalWithTax()));
+    }
+
+    @FXML
+    void removeOrder(ActionEvent event) {
+        int indexToRemove = basketListView.getSelectionModel().getSelectedIndex();
+        if(basketListView.getItems().isEmpty()) {
+            noOrderFound();
+            return;
+        }
+        this.controller.getOrder().removeItem(this.controller.getOrder().getItems(), indexToRemove);
+        recalculateBasket();
     }
 
     @FXML
@@ -84,5 +108,13 @@ public class OrderBasketViewController {
 
     public Order getOrder() {
        return controller.getOrder();
+    }
+
+    void noOrderFound() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!");
+        alert.setHeaderText("No item selected for removal");
+        alert.setContentText("Please choose an item to remove");
+        alert.showAndWait();
     }
 }

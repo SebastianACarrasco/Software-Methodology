@@ -36,7 +36,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Button fx:id="basketRemove" layoutX="397.0" layoutY="420.0" mnemonicParsing="false" text="Remove Item">
+      <Button fx:id="basketRemove" layoutX="397.0" layoutY="420.0" mnemonicParsing="false" onAction="#removeOrder" text="Remove Item">
          <font>
             <Font size="16.0" />
          </font>
