@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -56,25 +53,36 @@ public class OrderingCoffeeViewController {
     @FXML
     public void sendToBasket(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
-            Parent root = loader.load();
+            if(!coffee.getSize().equals("")) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
+                Parent root = loader.load();
 
-            controller.getOrder().add(coffee);
-            OrderBasketViewController basket = loader.getController();
-            basket.setMainController(controller);
+                controller.getOrder().add(coffee);
+                OrderBasketViewController basket = loader.getController();
+                basket.setMainController(controller);
 
-            Stage stage = new Stage();
-            stage.setTitle("Order Basket");
-            Scene basketScene = new Scene(root);
-            stage.setScene(basketScene);
-            resetOrder();
-            stage.show();
-
+                Stage stage = new Stage();
+                stage.setTitle("Order Basket");
+                Scene basketScene = new Scene(root);
+                stage.setScene(basketScene);
+                resetOrder();
+                stage.show();
+            } else {
+                emptyCoffee();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void emptyCoffee() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!");
+        alert.setHeaderText("Order is not complete!");
+        alert.setContentText("Please fill out all entities before placing order.");
+        alert.showAndWait();
     }
 
     /**
