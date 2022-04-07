@@ -27,22 +27,21 @@ public class StoreOrderViewController {
         putOrders();
     }
 
+    //empty listview but need to use combobox to show orders with unique ID
     private void putOrders() {
         storeOrder.add(this.controller.getOrder());
         customerStoreOrderNumber.getItems().add(this.controller.getOrder().getID());
-        storeOrderTotal.setText(String.valueOf(this.controller.getOrder().subTotalWithTax()));
-        //createStoreOrder();
+        storeOrderTotal.setText(String.format("%.2f", this.controller.getOrder().subTotalWithTax()));
+
+        for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
+            customerStoreOrderNumber.getItems().add(mapElement.getKey());
+        }
+
         //printOrders();
     }
 
-    private void createStoreOrder() {
-        for (Map.Entry mapElement : storeOrder.getStoreOrders().entrySet()) {
-            customerStoreOrderNumber.getItems().add(this.controller.getOrder().getID());
-        }
-    }
-
     @FXML
-    public void getOrderID(ActionEvent event) {
+    public void getOrderInfo(ActionEvent event) {
         storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(this.controller.getOrder().getID()));
     }
 
