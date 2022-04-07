@@ -105,6 +105,7 @@ public class OrderingCoffeeViewController {
         milkAddIn.setSelected(false);
         caramelAddIn.setSelected(false);
         whippedCreamAddIn.setSelected(false);
+        coffeeSize.setValue("");
         coffee = new Coffee();
     }
 

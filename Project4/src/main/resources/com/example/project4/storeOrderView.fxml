@@ -11,7 +11,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <ComboBox fx:id="customerStoreOrderNumber" layoutX="31.0" layoutY="109.0" onAction="#getOrderID" prefWidth="150.0" />
+      <ComboBox fx:id="customerStoreOrderNumber" layoutX="31.0" layoutY="109.0" onAction="#getOrderInfo" prefWidth="150.0" />
       <Text layoutX="31.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Order Number">
          <font>
             <Font size="16.0" />
