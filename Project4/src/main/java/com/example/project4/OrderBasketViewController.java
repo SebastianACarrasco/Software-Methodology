@@ -37,7 +37,7 @@ public class OrderBasketViewController {
 
     private void initBasket(Order order) {
         basketViewOrderNumber.setText(Integer.toString(order.getID()));
-        basketSalesTax.setText(order.getTaxes());
+        basketSalesTax.setText(String.format("%.2f", order.getTaxes()));
         basketSubtotal.setText(String.format("%.2f", order.subTotal()));
         basketOrderTotal.setText(String.format("%.2f", order.subTotalWithTax()));
 
@@ -55,13 +55,16 @@ public class OrderBasketViewController {
 
     @FXML
     void removeOrder(ActionEvent event) {
-        int indexToRemove = basketListView.getSelectionModel().getSelectedIndex();
-        if(basketListView.getItems().isEmpty()) {
+        String order = basketListView.getSelectionModel().getSelectedItem();
+        if(order == null) {
             noOrderFound();
             return;
         }
-        this.controller.getOrder().removeItem(this.controller.getOrder().getItems(), indexToRemove);
+
+        int orderIndex = basketListView.getSelectionModel().getSelectedIndex();
+        this.controller.getOrder().removeItem(this.controller.getOrder().getItems());
         recalculateBasket();
+        basketListView.getItems().remove(orderIndex);
     }
 
     @FXML
@@ -82,6 +85,7 @@ public class OrderBasketViewController {
                 stage.show();
             } else {
                 emptyBasketAlert();
+                return;
             }
 
         } catch (Exception e) {
