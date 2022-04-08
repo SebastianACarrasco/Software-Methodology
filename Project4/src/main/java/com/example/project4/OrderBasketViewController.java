@@ -8,14 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import java.util.ArrayList;
 
 public class OrderBasketViewController {
-    private mainViewController controller;
+    private MainViewController controller;
 
     @FXML
     public ListView<String> basketListView;
@@ -30,21 +28,21 @@ public class OrderBasketViewController {
     @FXML
     public Button basketRemove;
 
-    public void setMainController(mainViewController controller) {
+    public void setMainController(MainViewController controller) {
         this.controller = controller;
         initBasket(this.controller.getOrder());
     }
 
     private void initBasket(Order order) {
-        basketViewOrderNumber.setText(Integer.toString(order.getID()));
-        basketSalesTax.setText(String.format("%.2f", order.getTaxes()));
-        basketSubtotal.setText(String.format("%.2f", order.subTotal()));
-        basketOrderTotal.setText(String.format("%.2f", order.subTotalWithTax()));
-
         ArrayList<MenuItem> items = order.getItems();
         for(int i = 0; i < items.size(); i++) {
             basketListView.getItems().add(items.get(i).toString());
         }
+
+        basketViewOrderNumber.setText(Integer.toString(order.getID()));
+        basketSalesTax.setText(String.format("%.2f", order.getTaxes()));
+        basketSubtotal.setText(String.format("%.2f", order.subTotal()));
+        basketOrderTotal.setText(String.format("%.2f", order.subTotalWithTax()));
     }
 
     private void recalculateBasket() {
@@ -56,15 +54,15 @@ public class OrderBasketViewController {
     @FXML
     void removeOrder(ActionEvent event) {
         String order = basketListView.getSelectionModel().getSelectedItem();
+        int orderIndex = basketListView.getSelectionModel().getSelectedIndex();
+
         if(order == null) {
             noOrderFound();
             return;
         }
-
-        int orderIndex = basketListView.getSelectionModel().getSelectedIndex();
+        basketListView.getItems().remove(orderIndex);
         this.controller.getOrder().removeItem(this.controller.getOrder().getItems());
         recalculateBasket();
-        basketListView.getItems().remove(orderIndex);
     }
 
     @FXML

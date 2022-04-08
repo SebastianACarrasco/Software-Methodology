@@ -59,14 +59,12 @@ public class Order implements Customizable {
         for (MenuItem item : items) {
             subTotal += item.itemPrice();
         }
-        double tax = subTotal * TAXRATE;
-        return tax;
-        //return String.format("%.2f", tax);
+        return subTotal * TAXRATE;
     }
+
 
     public void removeItem(ArrayList<MenuItem> items) {
         for(int i = 0; i < items.size(); i++) {
-            //if(this.items.get(i).equals(items.get(index))) {
             if(this.items.contains(items.get(i))) {
                 this.items.remove(i);
                 return;

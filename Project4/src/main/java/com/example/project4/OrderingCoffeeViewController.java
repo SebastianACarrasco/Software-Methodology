@@ -6,18 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.Node;
-
-import java.lang.reflect.GenericArrayType;
-import java.util.Objects;
 
 public class OrderingCoffeeViewController {
     private static final double ADDINPRICE = 0.3;
     private double coffeeTotal = 0;
     private Coffee coffee;
-    private mainViewController controller;
+    private MainViewController controller;
     
     @FXML
     public ComboBox coffeeSize;
@@ -45,7 +40,7 @@ public class OrderingCoffeeViewController {
         coffee = new Coffee();
     }
 
-    public void setMainController(mainViewController controller) {
+    public void setMainController(MainViewController controller) {
         this.controller = controller;
     }
 
@@ -57,7 +52,8 @@ public class OrderingCoffeeViewController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
                 Parent root = loader.load();
 
-                controller.getOrder().add(coffee);
+                this.coffee.setTotal(coffeeTotal);
+                this.controller.getOrder().add(this.coffee);
                 OrderBasketViewController basket = loader.getController();
                 basket.setMainController(controller);
 
@@ -65,6 +61,7 @@ public class OrderingCoffeeViewController {
                 stage.setTitle("Order Basket");
                 Scene basketScene = new Scene(root);
                 stage.setScene(basketScene);
+                //coffee = new Coffee();
                 resetOrder();
                 stage.show();
             } else {
