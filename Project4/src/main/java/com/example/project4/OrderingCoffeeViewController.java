@@ -61,7 +61,7 @@ public class OrderingCoffeeViewController {
                 stage.setTitle("Order Basket");
                 Scene basketScene = new Scene(root);
                 stage.setScene(basketScene);
-                //coffee = new Coffee();
+                coffee = new Coffee();
                 resetOrder();
                 stage.show();
             } else {
@@ -103,7 +103,6 @@ public class OrderingCoffeeViewController {
         caramelAddIn.setSelected(false);
         whippedCreamAddIn.setSelected(false);
         coffeeSize.setValue("");
-        coffee = new Coffee();
     }
 
     /**

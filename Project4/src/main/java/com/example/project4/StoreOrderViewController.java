@@ -24,25 +24,26 @@ public class StoreOrderViewController {
 
     public void setMainControllerForStoreOrder(OrderBasketViewController controller) {
         this.controller = controller;
-        putOrders();
+        storeOrder.add(this.controller.getOrder());//adds order to storeOrder map
+        //putOrders();
+        //customerStoreOrderNumber.getItems().add(this.controller.getOrder().getID());
     }
 
-    //empty listview but need to use combobox to show orders with unique ID
+
     private void putOrders() {
-        storeOrder.add(this.controller.getOrder());
-        customerStoreOrderNumber.getItems().add(this.controller.getOrder().getID());
+        //storeOrder.add(this.controller.getOrder());//adds order to storeOrder map
         storeOrderTotal.setText(String.format("%.2f", this.controller.getOrder().subTotalWithTax()));
 
         for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
             customerStoreOrderNumber.getItems().add(mapElement.getKey());
+            storeOrderListView.getItems().add(mapElement.getValue().toString());
         }
-
-        //printOrders();
     }
+
 
     @FXML
     public void getOrderInfo(ActionEvent event) {
-        storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(this.controller.getOrder().getID()));
+
     }
 
     @FXML
@@ -58,14 +59,14 @@ public class StoreOrderViewController {
 
     @FXML
     public void exportOrder(ActionEvent event) {
-
+        //export the hashmap to a file
     }
 
     void noOrderSelectedWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");
-        alert.setHeaderText("No order selected for removal");
-        alert.setContentText("Please choose an order to view.");
+        alert.setHeaderText("No order selected");
+        alert.setContentText("Please choose an order.");
         alert.showAndWait();
     }
 

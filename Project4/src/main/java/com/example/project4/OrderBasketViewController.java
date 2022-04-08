@@ -34,21 +34,16 @@ public class OrderBasketViewController {
     }
 
     private void initBasket(Order order) {
+        basketViewOrderNumber.setText(Integer.toString(order.getID()));
+
         ArrayList<MenuItem> items = order.getItems();
         for(int i = 0; i < items.size(); i++) {
             basketListView.getItems().add(items.get(i).toString());
         }
 
-        basketViewOrderNumber.setText(Integer.toString(order.getID()));
         basketSalesTax.setText(String.format("%.2f", order.getTaxes()));
         basketSubtotal.setText(String.format("%.2f", order.subTotal()));
         basketOrderTotal.setText(String.format("%.2f", order.subTotalWithTax()));
-    }
-
-    private void recalculateBasket() {
-        basketSubtotal.setText(String.format("%.2f",controller.getOrder().subTotal()));
-        basketSalesTax.setText(String.format("%.2f",controller.getOrder().getTaxes()));
-        basketOrderTotal.setText(String.format("%.2f",controller.getOrder().subTotalWithTax()));
     }
 
     @FXML
@@ -62,7 +57,10 @@ public class OrderBasketViewController {
         }
         basketListView.getItems().remove(orderIndex);
         this.controller.getOrder().removeItem(this.controller.getOrder().getItems());
-        recalculateBasket();
+
+        basketSubtotal.setText(String.format("%.2f",this.controller.getOrder().subTotal()));
+        basketSalesTax.setText(String.format("%.2f",this.controller.getOrder().getTaxes()));
+        basketOrderTotal.setText(String.format("%.2f",this.controller.getOrder().subTotalWithTax()));
     }
 
     @FXML
@@ -83,7 +81,6 @@ public class OrderBasketViewController {
                 stage.show();
             } else {
                 emptyBasketAlert();
-                return;
             }
 
         } catch (Exception e) {
