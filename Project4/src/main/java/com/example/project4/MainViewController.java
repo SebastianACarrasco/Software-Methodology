@@ -44,7 +44,7 @@ public class MainViewController {
     }
 
     @FXML
-    public void openCoffeeView(ActionEvent event) throws Exception {
+    public void openCoffeeView(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
             Parent root = loader.load();
@@ -88,11 +88,16 @@ public class MainViewController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = loader.load();
+
+            OrderBasketViewController storeOrder = loader.getController();
+            storeOrder.setMainController(this);
+
             Stage stage = new Stage();
-            stage.setUserData(order);
-            stage.setTitle("Store Order");
-            stage.setScene(new Scene(root));
+            stage.setTitle("Store Orders");
+            Scene storeScene = new Scene(root);
+            stage.setScene(storeScene);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@ public class Coffee extends MenuItem implements Customizable{
     private String size;
     private double total;
     private ArrayList<String> addIns;
-    //private static final double ADDINPRICE = 0.3;
+    private static final double ADDINPRICE = 0.3;
     private static final double INITPRICE = 1.69;
     private static final int TALL = 1;
     private static final int GRANDE = 2;
@@ -36,7 +36,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean add(Object o) {
         boolean added = false;
         if(o instanceof String) {
-            //this.total += ADDINPRICE;
+            this.total += ADDINPRICE;
             addIns.add((String)o);
             added = true;
         }
@@ -52,7 +52,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean remove(Object o) {
         boolean removed = false;
         if (o instanceof String) {
-            //this.total -= ADDINPRICE;
+            this.total -= ADDINPRICE;
             addIns.remove(o);
             removed = true;
         }
@@ -80,6 +80,12 @@ public class Coffee extends MenuItem implements Customizable{
                 break;
             default:
                 this.total = 0;
+        }
+
+        if(addIns.size() != 0) {
+            for (int i = 0; i < addIns.size(); i++) {
+                this.total += ADDINPRICE;
+            }
         }
         return this.total;
     }
@@ -112,18 +118,33 @@ public class Coffee extends MenuItem implements Customizable{
 
     /**
      * Getter for coffee size
-     * @return
+     * @return size of coffee
      */
     public String getSize() {
-        return size;
+        return this.size;
     }
 
     /**
      * Setter for total of coffee order
+     * @param total
      */
     public void setTotal(double total) {
         this.total = total;
     }
+
+    /**
+     * Getter for total of coffee order with addins
+     * @return total of coffee order
+     */
+    public double getCoffeeAddInTotal() {
+        if(addIns.size() != 0) {
+            for (int i = 0; i < addIns.size(); i++) {
+                this.total += ADDINPRICE;
+            }
+        }
+        return this.total;
+    }
+
 }
 
 
