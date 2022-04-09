@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public class MainViewController {
     private Order order = new Order();
+    private StoreOrders store = new StoreOrders();
     private OrderBasketViewController basket;
 
 
@@ -94,7 +95,7 @@ public class MainViewController {
             Parent root = loader.load();
 
             StoreOrderViewController storeOrder = loader.getController();
-            storeOrder.setMainControllerForStoreOrder(basket);
+            storeOrder.setMain(basket);
 
             Stage stage = new Stage();
             stage.setTitle("Store Orders");

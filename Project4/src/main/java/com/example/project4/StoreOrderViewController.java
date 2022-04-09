@@ -39,26 +39,25 @@ public class StoreOrderViewController {
     @FXML
     public void getOrderInfo(ActionEvent event) {
         storeOrderListView.getItems().clear();
-        int key = (int) customerStoreOrderNumber.getSelectionModel().getSelectedItem();
+        int key = customerStoreOrderNumber.getSelectionModel().getSelectedIndex()+1;
         storeOrderTotal.setText(String.format("%.2f", storeOrder.getStoreOrders().get(key).subTotalWithTax()));
         storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(key).toString());
     }
 
     @FXML
     public void cancelOrder(ActionEvent event) {
-        if(customerStoreOrderNumber.getSelectionModel().getSelectedItem() == null) {
+        if(customerStoreOrderNumber.getSelectionModel().getSelectedIndex() == -1) {
             noOrderSelectedWarning();
         } else {
             storeOrderListView.getItems().clear();
             storeOrderTotal.setText("");
-            //customerStoreOrderNumber.getItems().remove(this.controller.getOrder().getID());
-            customerStoreOrderNumber.getItems().clear();
-            storeOrder.remove(this.controller.getOrder().getID());
+            customerStoreOrderNumber.getItems().remove(customerStoreOrderNumber.getSelectionModel().getSelectedIndex());
+            //customerStoreOrderNumber.getItems().removeAll(customerStoreOrderNumber.getItems());
+            storeOrder.remove(this.controller.getOrder());
             sizeNumberOfOrders();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success!");
             alert.setHeaderText("Order has been canceled");
-            alert.setContentText("You can close this alert and export.");
             alert.showAndWait();
         }
     }
@@ -108,5 +107,6 @@ public class StoreOrderViewController {
         alert.setContentText("Please choose an order.");
         alert.showAndWait();
     }
+
 
 }
