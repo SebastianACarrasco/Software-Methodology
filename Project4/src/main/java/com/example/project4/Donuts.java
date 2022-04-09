@@ -1,7 +1,5 @@
 package com.example.project4;
 
-import java.util.Locale;
-
 /**
  *  Class for creating donut orders. There will be donut type, flavor, and quantity.
  *
@@ -84,14 +82,6 @@ public class Donuts extends MenuItem {
     }
 
     /**
-     * Getter for flavor.
-     * @return flavor
-     */
-    public String getFlavor() {
-        return flavor;
-    }
-
-    /**
      * Setter for quantity.
      * @param quantity
      */
@@ -108,12 +98,13 @@ public class Donuts extends MenuItem {
     }
 
     /**
-     * Getter for quantity.
-     * @return quantity
+     * Getter for donut flavor.
+     * @return flavor
      */
-    public int getQuantity() {
-        return quantity;
+    public String getFlavor() {
+        return flavor;
     }
+
 }
 
 

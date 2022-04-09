@@ -12,6 +12,13 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import java.util.ArrayList;
 
+
+/**
+ * Controller for the order basket. Displays the current order
+ * and lets the user remove items from the order and place.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
 public class OrderBasketViewController {
     private MainViewController controller;
 
@@ -28,11 +35,20 @@ public class OrderBasketViewController {
     @FXML
     public Button basketRemove;
 
+
+    /**
+     * Setter for the main controller of this view.
+     * @param controller
+     */
     public void setMainController(MainViewController controller) {
         this.controller = controller;
         initBasket(this.controller.getOrder());
     }
 
+    /**
+     * Initializes the order basket with the order items.
+     * @param order
+     */
     private void initBasket(Order order) {
         basketViewOrderNumber.setText(Integer.toString(order.getID()));
 
@@ -46,6 +62,10 @@ public class OrderBasketViewController {
         basketOrderTotal.setText(String.format("%.2f", order.subTotalWithTax()));
     }
 
+    /**
+     * Removes selected order from the basket.
+     * @param event
+     */
     @FXML
     void removeOrder(ActionEvent event) {
         String order = basketListView.getSelectionModel().getSelectedItem();
@@ -69,6 +89,10 @@ public class OrderBasketViewController {
         alert.showAndWait();
     }
 
+    /**
+     * Places the order by sending the order over to the store Order database.
+     * @param actionEvent
+     */
     @FXML
     public void placeOrder(ActionEvent actionEvent) {
         try {
@@ -83,13 +107,16 @@ public class OrderBasketViewController {
                 stage.setTitle("Store Orders");
                 Scene storeOrderScene = new Scene(root);
                 stage.setScene(storeOrderScene);
+                controller.setStoreOrderStage(stage);
+                controller.setSceneOrderStage(storeOrderScene);
+                stage.hide();
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success!");
                 alert.setHeaderText("Order has been placed");
                 alert.setContentText("You can close this alert and continue.");
                 alert.showAndWait();
                 clearBasket();
-                //stage.show();
             } else {
                 emptyBasketAlert();
             }
@@ -99,6 +126,9 @@ public class OrderBasketViewController {
         }
     }
 
+    /**
+     * Clears the order basket.
+     */
     private void clearBasket() {
         controller.resetOrder();
         basketListView.getItems().clear();
@@ -108,6 +138,9 @@ public class OrderBasketViewController {
         basketOrderTotal.setText("");
     }
 
+    /**
+     * Alerts the user that the order basket is empty so action cannt be done.
+     */
     private void emptyBasketAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");
@@ -116,10 +149,17 @@ public class OrderBasketViewController {
         alert.showAndWait();
     }
 
+    /**
+     * Getter for the current controller order.
+     * @return
+     */
     public Order getOrder() {
        return controller.getOrder();
     }
 
+    /**
+     * Alert for no order found and action cannt be done.
+     */
     void noOrderFound() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");

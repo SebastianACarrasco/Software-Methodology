@@ -1,10 +1,5 @@
 package com.example.project4;
-import javafx.scene.control.Menu;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -20,14 +15,6 @@ public class StoreOrders implements Customizable {
      */
     public StoreOrders() {
         storeOrders = new HashMap<>();
-    }
-
-    /**
-     * Getters for order ID
-     * @return order ID
-     */
-    public int getID(Order order) {
-        return order.getID();
     }
 
     /**

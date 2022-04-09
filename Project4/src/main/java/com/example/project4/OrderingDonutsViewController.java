@@ -3,7 +3,6 @@ package com.example.project4;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -35,6 +34,7 @@ public class OrderingDonutsViewController {
     @FXML
     public void initialize() {
         baseButton.getItems().addAll("yeast", "cake", "holes");
+        donutsAmount.setText("1");
         donut = new Donuts();
     }
 
@@ -53,7 +53,7 @@ public class OrderingDonutsViewController {
     @FXML
     public void sendDonutToBasket(ActionEvent event) {
         try {
-            if(!donut.getDonutType().equals("")) {
+            if(!donut.getDonutType().equals("") && !donut.getFlavor().equals("")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
                 Parent root = loader.load();
                 if(this.donutTotal < 1) {
@@ -109,7 +109,8 @@ public class OrderingDonutsViewController {
     @FXML
     public void getDonutType(ActionEvent event) {
         donut.setDonutType(this.baseButton.getValue().toString());
-        //this.donutTotal = donut.itemPrice();
+
+        getDonutQuantity(event);
     }
 
     /**

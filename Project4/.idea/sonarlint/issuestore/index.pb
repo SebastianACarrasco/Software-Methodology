@@ -31,21 +31,7 @@ j
 Project4.iml,5/7/5752f7c0de8a1f3193c3a931fccefb9c7974f712
 N
 src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
-`
-0src/main/java/com/example/project4/MenuItem.java,b/c/bccd2563729a79c001b2ad29a7c6d3cb20365502
 k
 ;src/main/java/com/example/project4/mainViewApplication.java,c/c/ccfea249ddb58e080db888e828046524f62cb652
-d
-4src/main/java/com/example/project4/Customizable.java,a/7/a7d0b73eddeb035ee9448f2298e486bcd812ecdc
-k
-;src/main/java/com/example/project4/MainViewApplication.java,c/5/c567b752be311af009a5b7eeb7b0cd0684fbd3e0
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-^
-.src/main/java/com/example/project4/Coffee.java,3/0/30f5181eac0c8a4485b762502c6417bf255df07e
-t
-Dsrc/main/java/com/example/project4/OrderingCoffeeViewController.java,b/9/b96d89fd23f30b5b149ff9306359f598b59f3878
-]
--src/main/java/com/example/project4/Order.java,3/e/3ec732c23fb045babf8210b47c9e993eaa9cc835
-c
-3src/main/java/com/example/project4/StoreOrders.java,2/e/2e03913c72a1c7fc6cf0e1576bf01218081dddee
