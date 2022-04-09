@@ -19,7 +19,7 @@ public class MainViewApplication extends Application {
      */
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainViewApplication.class.getResource("mainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
         stage.setTitle("Welcome to RU Cafe!");
         stage.setScene(scene);
         stage.show();

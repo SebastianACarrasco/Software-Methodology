@@ -38,7 +38,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="addDonutsOrder" layoutX="149.0" layoutY="476.0" mnemonicParsing="false" onAction="#receiveUserData" text="Add to Order">
+      <Button fx:id="addDonutsOrder" layoutX="149.0" layoutY="476.0" mnemonicParsing="false" text="Add to Order">
          <font>
             <Font size="16.0" />
          </font>
@@ -50,6 +50,6 @@
       </RadioButton>
       <RadioButton fx:id="plainFlavor" layoutX="35.0" layoutY="225.0" mnemonicParsing="false" onAction="#getFlavor" text="Plain" toggleGroup="$Flavors" />
       <RadioButton fx:id="berriesFlavor" layoutX="35.0" layoutY="263.0" mnemonicParsing="false" onAction="#getFlavor" text="Berries" toggleGroup="$Flavors" />
-      <TextField fx:id="subtotalAmount" editable="false" layoutX="279.0" layoutY="420.0" onAction="#printSubTotal" prefHeight="26.0" prefWidth="108.0" />
+      <TextField fx:id="subtotalAmount" editable="false" layoutX="279.0" layoutY="420.0" onAction="#printDonutSubTotal" prefHeight="26.0" prefWidth="108.0" />
    </children>
 </AnchorPane>

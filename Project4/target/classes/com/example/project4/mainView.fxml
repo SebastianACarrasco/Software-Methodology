@@ -4,62 +4,90 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="649.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.MainViewController">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="649.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.MainViewController">
    <children>
-      <Text fill="#fa0ea3" strokeType="OUTSIDE" strokeWidth="0.0" text="Rutgers Cafe">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <FlowPane.margin>
-            <Insets left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-      </Text>
-      <Text fill="#1b1a1a" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select what you would like to order or select and action to view your store order or order basket" textAlignment="JUSTIFY" wrappingWidth="500.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-      </Text>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-         <image>
-            <Image url="@../../../donutsImage.jpeg" />
-         </image>
-      </ImageView>
-      <Button id="orderDonutButton" fx:id="orderDonutButton" mnemonicParsing="false" onAction="#openDonutsView" text="Donuts">
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin></Button>
-      <ImageView fitHeight="150.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-         <image>
-            <Image url="@../../../coffeeImage.jpeg" />
-         </image>
-      </ImageView>
-      <Button fx:id="orderCoffeeButton" mnemonicParsing="false" onAction="#openCoffeeView" text="Coffee">
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-      </Button>
-      <Button fx:id="orderBasketButton" mnemonicParsing="false" onAction="#openBasketView" text="Order Basket">
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-      </Button>
-      <Button fx:id="storeOrderButton" mnemonicParsing="false" onAction="#openStoreOrderView" text="Store Order">
-         <FlowPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </FlowPane.margin>
-      </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="469.0" prefWidth="312.0">
+               <children>
+                  <Text fill="#fa0ea3" strokeType="OUTSIDE" strokeWidth="0.0" text="Rutgers Cafe">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="#1b1a1a" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select what you would like to order or select and action to view your store order or order basket" textAlignment="JUSTIFY" wrappingWidth="500.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Button id="orderDonutButton" fx:id="orderDonutButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openDonutsView" text="Donuts" textAlignment="RIGHT">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../donutsImage.jpeg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="orderCoffeeButton" mnemonicParsing="false" onAction="#openCoffeeView" prefHeight="159.0" prefWidth="260.0" text="Coffee">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../coffeeImage.jpeg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="469.0" prefWidth="134.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <Button fx:id="storeOrderButton" mnemonicParsing="false" onAction="#openStoreOrderView" prefHeight="124.0" prefWidth="284.0" text="Store Order">
+                     <graphic>
+                        <ImageView fitHeight="115.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../storeOrder.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="orderBasketButton" layoutX="-115.0" layoutY="104.0" mnemonicParsing="false" onAction="#openBasketView" prefHeight="159.0" prefWidth="272.0" text="Order Basket">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../cartImage.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </FlowPane>
