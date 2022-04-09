@@ -54,6 +54,10 @@ public class Order implements Customizable {
         return removed;
     }
 
+    /**
+     * Gets the order's tax value for NJ
+     * @return double
+     */
     public double getTaxes() {
         double subTotal = 0;
         for (MenuItem item : items) {
@@ -62,7 +66,10 @@ public class Order implements Customizable {
         return subTotal * TAXRATE;
     }
 
-
+    /**
+     * removes an item from the list of orders
+     * @param items
+     */
     public void removeItem(ArrayList<MenuItem> items) {
         for(int i = 0; i < items.size(); i++) {
             if(this.items.contains(items.get(i))) {
@@ -103,6 +110,7 @@ public class Order implements Customizable {
 
     /**
      * Setters for order id
+     * @param id
      */
     public int setID(int id) {
         return this.ID = id;
@@ -110,6 +118,7 @@ public class Order implements Customizable {
 
     /**
      * getter for order id
+     * @return int ID
      */
     public int getID() {
         return this.ID;
@@ -122,7 +131,6 @@ public class Order implements Customizable {
     public ArrayList<MenuItem> getItems() {
         return items;
     }
-
 
     /**
      * toString method for Order. Prints the order

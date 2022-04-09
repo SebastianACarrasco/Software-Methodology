@@ -13,9 +13,11 @@ import java.io.IOException;
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class MainViewApplication extends Application {
+
     @Override
     /**
      * Sets up the stage for the mainView application.
+     * @param stage
      */
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainViewApplication.class.getResource("mainView.fxml"));

@@ -38,14 +38,18 @@ public class OrderingDonutsViewController {
         donut = new Donuts();
     }
 
+    /**
+     * setter for the main controller
+     * @param controller
+     */
     public void setMainController(MainViewController controller) {
         this.controller = controller;
     }
+
     /**
-     * Receives data from previous view and sends it to the next view
+     * sends the donut order to the basket view and displays success if we have it
      * @param event
      */
-
     @FXML
     public void sendDonutToBasket(ActionEvent event) {
         try {
@@ -108,6 +112,10 @@ public class OrderingDonutsViewController {
         //this.donutTotal = donut.itemPrice();
     }
 
+    /**
+     * method to try and get the donut quantity and checks for validity of quantity.
+     * @param event
+     */
     @FXML
     public void getDonutQuantity(ActionEvent event) {
         int quantity = 0;
@@ -125,6 +133,9 @@ public class OrderingDonutsViewController {
         }
     }
 
+    /**
+     * resets the form for ordering donuts
+     */
     @FXML
     private void resetOrder() {
         strawberryFlavor.setSelected(false);
@@ -135,6 +146,9 @@ public class OrderingDonutsViewController {
         subtotalAmount.setText("");
     }
 
+    /**
+     * method for alerting a warning if a donut type is not selected
+     */
     @FXML
     private void emptyDonut() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -144,6 +158,9 @@ public class OrderingDonutsViewController {
         alert.showAndWait();
     }
 
+    /**
+     * method for alerting user that the order quantity is invalid
+     */
     @FXML
     private void alertsMethodQuantity(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -152,6 +169,7 @@ public class OrderingDonutsViewController {
         alert.setContentText("Please input a positive number for quantity and press enter");
         alert.showAndWait();
     }
+
     /**
      * Prints current subtotal to the gui
      */

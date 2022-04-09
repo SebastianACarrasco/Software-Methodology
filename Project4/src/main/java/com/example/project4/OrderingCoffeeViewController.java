@@ -40,11 +40,19 @@ public class OrderingCoffeeViewController {
         coffee = new Coffee();
     }
 
+    /**
+     * setter for the main controller
+     * @param controller
+     */
     public void setMainController(MainViewController controller) {
         this.controller = controller;
     }
 
 
+    /**
+     * will send the item we have to the order basket view and display success if we have it.
+     * @param event
+     */
     @FXML
     public void sendToBasket(ActionEvent event) {
         try {
@@ -79,6 +87,9 @@ public class OrderingCoffeeViewController {
 
     }
 
+    /**
+     * private method for alerting if a field for coffee is missing
+     */
     private void emptyCoffee() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");

@@ -6,6 +6,7 @@ package com.example.project4;
  * @author Sebastian Carrasco, Rachael Chin
  */
 public abstract class MenuItem {
+
     /**
      * Price of the menu item
      */
