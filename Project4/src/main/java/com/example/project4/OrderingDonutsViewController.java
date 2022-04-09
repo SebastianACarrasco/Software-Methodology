@@ -47,14 +47,6 @@ public class OrderingDonutsViewController {
      */
 
     @FXML
-    public void receiveUserData(ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Order order = (Order) stage.getUserData();
-        order.add(donut);
-    }
-
-    @FXML
     public void sendToBasket(ActionEvent event) {
         try {
             if(!donut.getDonutType().equals("")) {
@@ -106,13 +98,13 @@ public class OrderingDonutsViewController {
     public void getDonutType(ActionEvent event) {
         donut.setDonutType(this.baseButton.getValue().toString());
         this.donutTotal = donut.itemPrice();
-        printSubTotal();
+        printDonutSubTotal();
     }
 
     @FXML
     public void getDonutQuantity(ActionEvent event) {
         donut.setQuantity(Integer.parseInt(this.donutsAmount.getText()));
-        printSubTotal();
+        printDonutSubTotal();
     }
 
     @FXML
@@ -136,7 +128,7 @@ public class OrderingDonutsViewController {
      * Prints current subtotal to the gui
      */
     @FXML
-    public void printSubTotal() {
+    public void printDonutSubTotal() {
         subtotalAmount.setText(String.format("%.2f", this.donutTotal));
     }
 
