@@ -144,7 +144,7 @@ public class OrderingDonutsViewController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");
         alert.setHeaderText("Order is not complete!");
-        alert.setContentText("Please input a positive number for quantity");
+        alert.setContentText("Please input a positive number for quantity and press enter");
         alert.showAndWait();
     }
     /**
