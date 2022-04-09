@@ -61,7 +61,7 @@ public class Coffee extends MenuItem implements Customizable{
 
     /**
      * Sets the order price with given size and addins.
-     * @return total price of the order
+     * @return double total price of the order
      */
     @Override
     public double itemPrice() {

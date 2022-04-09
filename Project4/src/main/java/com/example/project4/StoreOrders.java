@@ -30,6 +30,10 @@ public class StoreOrders implements Customizable {
         return order.getID();
     }
 
+    /**
+     * gets the store orders
+     * @return a hashmap of the order ID and order
+     */
     public HashMap<Integer, Order> getStoreOrders() {
         return storeOrders;
     }
