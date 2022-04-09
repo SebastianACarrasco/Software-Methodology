@@ -38,17 +38,20 @@ public class StoreOrderViewController {
         }
     }
 
-    public void setMain(OrderBasketViewController controller) {
-        this.controller = controller;
-    }
-
     @FXML
     public void getOrderInfo(ActionEvent event) {
         storeOrderListView.getItems().clear();
         //int key = customerStoreOrderNumber.getSelectionModel().getSelectedItem();
         int key = (int) customerStoreOrderNumber.getValue();
-        storeOrderTotal.setText(String.format("%.2f", storeOrder.getStoreOrders().get(key).subTotalWithTax()));
-        storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(key).toString());
+        if(storeOrder.getStoreOrders().get(key) != null) {
+            storeOrderTotal.setText(String.format("%.2f", storeOrder.getStoreOrders().get(key).subTotalWithTax()));
+            storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(key).toString());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Order has been canceled");
+            alert.showAndWait();
+        }
     }
 
     @FXML
