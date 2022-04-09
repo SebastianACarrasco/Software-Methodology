@@ -6,14 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
-import java.util.Objects;
-
+/**
+ * Controller for the main view which takes care of opening all the scenes.
+ *
+ * @author Sebastian, Carrasco
+ */
 public class MainViewController {
     private Order order = new Order();
-    private StoreOrders store;
     private OrderBasketViewController basket;
+    private Stage storeOrderStage = new Stage();
+    private Scene storeOrderScene;
 
 
     /**
@@ -24,10 +27,18 @@ public class MainViewController {
         return this.order;
     }
 
+
+    /**
+     * Resets the order object
+     */
     public void resetOrder() {
         order = new Order();
     }
 
+    /**
+     * Opens the donut view
+     * @param event
+     */
     @FXML
     public void openDonutsView(ActionEvent event) {
         try {
@@ -48,6 +59,10 @@ public class MainViewController {
         }
     }
 
+    /**
+     * Opens the coffee view
+     * @param event
+     */
     @FXML
     public void openCoffeeView(ActionEvent event) {
         try {
@@ -68,6 +83,10 @@ public class MainViewController {
         }
     }
 
+    /**
+     * Opens the order basket view
+     * @param event
+     */
     @FXML
     public void openBasketView(ActionEvent event) {
         try {
@@ -88,24 +107,43 @@ public class MainViewController {
         }
     }
 
+    /**
+     * Setter for store order stage after it is created from the basket view. Before it, the stage has null data
+     * @param stage
+     */
+    public void setStoreOrderStage(Stage stage) {
+        this.storeOrderStage = stage;
+    }
+
+    /**
+     * Setter for store order stage after it is created from the basket view. Before it, the stage has null data
+     * @param scene
+     */
+    public void setSceneOrderStage(Scene scene) {
+        this.storeOrderScene = scene;
+    }
+
+    /**
+     * Opens the store order view
+     * @param event
+     */
     @FXML
     public void openStoreOrderView(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
-            Parent root = loader.load();
-
-            //StoreOrderViewController storeOrder = loader.getController();
-            store = loader.getController();
-            //store.setMainControllerForStoreOrder(basket);
-
-            Stage stage = new Stage();
-            stage.setTitle("Store Orders");
-            Scene storeScene = new Scene(root);
-            stage.setScene(storeScene);
-            stage.show();
-
+            storeOrderStage.setTitle("Store Orders");
+            if(storeOrderScene == null) {
+                storeOrderScene = new Scene(loader.load());
+            }
+            storeOrderStage.setScene(storeOrderScene);
+            storeOrderStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }
+
+
+
+

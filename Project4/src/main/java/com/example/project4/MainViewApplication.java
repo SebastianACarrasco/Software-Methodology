@@ -14,11 +14,11 @@ import java.io.IOException;
  */
 public class MainViewApplication extends Application {
 
-    @Override
     /**
      * Sets up the stage for the mainView application.
      * @param stage
      */
+    @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainViewApplication.class.getResource("mainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 600);

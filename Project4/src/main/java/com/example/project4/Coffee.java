@@ -132,19 +132,6 @@ public class Coffee extends MenuItem implements Customizable{
         this.total = total;
     }
 
-    /**
-     * Getter for total of coffee order with addins
-     * @return total of coffee order
-     */
-    public double getCoffeeAddInTotal() {
-        if(addIns.size() != 0) {
-            for (int i = 0; i < addIns.size(); i++) {
-                this.total += ADDINPRICE;
-            }
-        }
-        return this.total;
-    }
-
 }
 
 

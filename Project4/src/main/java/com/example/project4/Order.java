@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Keeps the list of menu items added to the order as well as provides a
  * unique identifier for every order.
  *
- * @author Sebastian Carrasco
+ * @author Sebastian Carrasco, Rachael Chin
  */
 public class Order implements Customizable {
     private static final double TAXRATE = 0.06625;
@@ -91,7 +91,6 @@ public class Order implements Customizable {
         }
         subTotal = subTotal * (1 + TAXRATE);
         return subTotal;
-        //return String.format("%.2f", subTotal);
     }
 
     /**
@@ -104,16 +103,7 @@ public class Order implements Customizable {
             subTotal += item.itemPrice();
         }
         return subTotal;
-        //return String.format("%.2f", subTotal);
 
-    }
-
-    /**
-     * Setters for order id
-     * @param id
-     */
-    public int setID(int id) {
-        return this.ID = id;
     }
 
     /**
@@ -139,14 +129,9 @@ public class Order implements Customizable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        //sb.append(getID() + " ");
-
-        //double total = subTotalWithTax();
         for (MenuItem item : items) {
             sb.append(item.toString() + "\n");
         }
-        //sb.append("Subtotal w/ tax: $" + String.format("%.2f", total) + "\n");
-
         return sb.toString();
     }
 }
