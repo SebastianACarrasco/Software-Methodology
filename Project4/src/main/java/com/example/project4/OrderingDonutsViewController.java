@@ -98,13 +98,22 @@ public class OrderingDonutsViewController {
     public void getDonutType(ActionEvent event) {
         donut.setDonutType(this.baseButton.getValue().toString());
         this.donutTotal = donut.itemPrice();
-        printDonutSubTotal();
     }
 
     @FXML
     public void getDonutQuantity(ActionEvent event) {
-        donut.setQuantity(Integer.parseInt(this.donutsAmount.getText()));
-        printDonutSubTotal();
+        int quantity = 0;
+        try{
+            quantity = Integer.parseInt(this.donutsAmount.getText());
+            if(quantity < 1){
+                alertsMethodQuantity();
+                return;
+            }
+            donut.setQuantity(quantity);
+            printDonutSubTotal();
+        } catch (NumberFormatException e) {
+            alertsMethodQuantity();
+        }
     }
 
     @FXML
@@ -124,6 +133,13 @@ public class OrderingDonutsViewController {
         alert.showAndWait();
     }
 
+    private void alertsMethodQuantity(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!");
+        alert.setHeaderText("Order is not complete!");
+        alert.setContentText("Please input a positive number for quantity");
+        alert.showAndWait();
+    }
     /**
      * Prints current subtotal to the gui
      */
