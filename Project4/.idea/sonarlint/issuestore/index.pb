@@ -45,7 +45,3 @@ k
 -src/main/java/com/example/project4/Order.java,3/e/3ec732c23fb045babf8210b47c9e993eaa9cc835
 ^
 .src/main/java/com/example/project4/Coffee.java,3/0/30f5181eac0c8a4485b762502c6417bf255df07e
-j
-:src/main/java/com/example/project4/MainViewController.java,9/a/9a83c587cb83d5fe8c176e88cdbc89d37cbf515b
-q
-Asrc/main/java/com/example/project4/OrderBasketViewController.java,9/6/96992cf94b4b17a8269c645219cef824e1cdba72

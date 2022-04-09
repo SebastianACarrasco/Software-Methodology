@@ -62,6 +62,11 @@ public class OrderingCoffeeViewController {
                 Scene basketScene = new Scene(root);
                 stage.setScene(basketScene);
                 coffee = new Coffee();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Coffee order has been made");
+                alert.setContentText("You can close this alert and continue to the basket.");
+                alert.showAndWait();
                 resetOrder();
                 stage.show();
             } else {

@@ -61,6 +61,12 @@ public class OrderBasketViewController {
         basketSubtotal.setText(String.format("%.2f",this.controller.getOrder().subTotal()));
         basketSalesTax.setText(String.format("%.2f",this.controller.getOrder().getTaxes()));
         basketOrderTotal.setText(String.format("%.2f",this.controller.getOrder().subTotalWithTax()));
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Success!");
+        alert.setHeaderText("Order has been removed from the basket.");
+        alert.setContentText("You can close this alert and keep adding items or checkout.");
+        alert.showAndWait();
     }
 
     @FXML
@@ -77,6 +83,11 @@ public class OrderBasketViewController {
                 stage.setTitle("Store Orders");
                 Scene storeOrderScene = new Scene(root);
                 stage.setScene(storeOrderScene);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Order has been placed");
+                alert.setContentText("You can close this alert and continue.");
+                alert.showAndWait();
                 clearBasket();
                 stage.show();
             } else {

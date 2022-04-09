@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public class MainViewController {
     private Order order = new Order();
+    private OrderBasketViewController basket;
 
 
     /**
@@ -72,7 +73,7 @@ public class MainViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderBasketView.fxml"));
             Parent root = loader.load();
 
-            OrderBasketViewController basket = loader.getController();
+            basket = loader.getController();
             basket.setMainController(this);
 
             Stage stage = new Stage();
@@ -92,8 +93,8 @@ public class MainViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = loader.load();
 
-            OrderBasketViewController storeOrder = loader.getController();
-            storeOrder.setMainController(this);
+            StoreOrderViewController storeOrder = loader.getController();
+            storeOrder.setMainControllerForStoreOrder(basket);
 
             Stage stage = new Stage();
             stage.setTitle("Store Orders");

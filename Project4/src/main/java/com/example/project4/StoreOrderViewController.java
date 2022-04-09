@@ -7,6 +7,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 
 public class StoreOrderViewController {
@@ -25,44 +32,76 @@ public class StoreOrderViewController {
     public void setMainControllerForStoreOrder(OrderBasketViewController controller) {
         this.controller = controller;
         storeOrder.add(this.controller.getOrder());//adds order to storeOrder map
-        //putOrders();
-        //customerStoreOrderNumber.getItems().add(this.controller.getOrder().getID());
+        customerStoreOrderNumber.getItems().removeAll(customerStoreOrderNumber.getItems());
+        sizeNumberOfOrders();
     }
-
-
-    private void putOrders() {
-        //storeOrder.add(this.controller.getOrder());//adds order to storeOrder map
-        storeOrderTotal.setText(String.format("%.2f", this.controller.getOrder().subTotalWithTax()));
-
-        for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
-            customerStoreOrderNumber.getItems().add(mapElement.getKey());
-            storeOrderListView.getItems().add(mapElement.getValue().toString());
-        }
-    }
-
 
     @FXML
     public void getOrderInfo(ActionEvent event) {
-
+        storeOrderListView.getItems().clear();
+        int key = (int) customerStoreOrderNumber.getSelectionModel().getSelectedItem();
+        storeOrderTotal.setText(String.format("%.2f", storeOrder.getStoreOrders().get(key).subTotalWithTax()));
+        storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(key).toString());
     }
 
     @FXML
     public void cancelOrder(ActionEvent event) {
-        if (storeOrderListView.getSelectionModel().getSelectedItem() == null) {
+        if(customerStoreOrderNumber.getSelectionModel().getSelectedItem() == null) {
             noOrderSelectedWarning();
         } else {
-            storeOrder.remove(this.controller.getOrder());
             storeOrderListView.getItems().clear();
-            customerStoreOrderNumber.getItems().remove(this.controller.getOrder().getID());
+            storeOrderTotal.setText("");
+            //customerStoreOrderNumber.getItems().remove(this.controller.getOrder().getID());
+            customerStoreOrderNumber.getItems().clear();
+            storeOrder.remove(this.controller.getOrder().getID());
+            sizeNumberOfOrders();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success!");
+            alert.setHeaderText("Order has been canceled");
+            alert.setContentText("You can close this alert and export.");
+            alert.showAndWait();
+        }
+    }
+
+    private void sizeNumberOfOrders() {
+        for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
+            customerStoreOrderNumber.getItems().add(mapElement.getKey());
         }
     }
 
     @FXML
     public void exportOrder(ActionEvent event) {
-        //export the hashmap to a file
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open target file for exporting");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", ".txt"),
+                new FileChooser.ExtensionFilter("All Files", ".*"));
+        Stage stage = new Stage();
+        File targetFile = chooser.showSaveDialog(stage);
+        try {
+            FileWriter myWriter = new FileWriter(targetFile);
+            for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
+                myWriter.write(mapElement.getKey() + " " + mapElement.getValue().toString());
+                myWriter.write("\n");
+            }
+            myWriter.close();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successful");
+            alert.setHeaderText("File Created!");
+            alert.setContentText("The StoreOrders.txt file has been created with store data");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Cannot Add to File.");
+            alert.setContentText("For some reason, the txt file can't be created or edited.");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 
-    void noOrderSelectedWarning() {
+    private void noOrderSelectedWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");
         alert.setHeaderText("No order selected");
