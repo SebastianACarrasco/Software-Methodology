@@ -89,7 +89,7 @@ public class OrderBasketViewController {
                 alert.setContentText("You can close this alert and continue.");
                 alert.showAndWait();
                 clearBasket();
-                stage.show();
+                //stage.show();
             } else {
                 emptyBasketAlert();
             }
