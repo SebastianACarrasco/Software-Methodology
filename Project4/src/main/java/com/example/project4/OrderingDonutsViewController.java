@@ -66,6 +66,11 @@ public class OrderingDonutsViewController {
                 Scene basketScene = new Scene(root);
                 stage.setScene(basketScene);
                 donut = new Donuts();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Donut order has been placed");
+                alert.setContentText("You can close this alert and continue to the basket.");
+                alert.showAndWait();
                 resetOrder();
                 stage.show();
             } else {

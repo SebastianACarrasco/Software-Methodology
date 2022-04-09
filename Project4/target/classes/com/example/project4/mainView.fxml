@@ -22,7 +22,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button fx:id="orderCoffeeButton" layoutX="47.0" layoutY="193.0" mnemonicParsing="false" onAction="#openCoffeeView" prefHeight="159.0" prefWidth="260.0" text="Coffee">
+            <Button fx:id="orderCoffeeButton" contentDisplay="TOP" layoutX="47.0" layoutY="193.0" mnemonicParsing="false" onAction="#openCoffeeView" prefHeight="180.0" prefWidth="250.0" text="Coffee">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -31,7 +31,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="orderDonutButton" fx:id="orderDonutButton" alignment="BOTTOM_CENTER" layoutX="337.0" layoutY="193.0" mnemonicParsing="false" onAction="#openDonutsView" text="Donuts" textAlignment="RIGHT">
+            <Button id="orderDonutButton" fx:id="orderDonutButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="335.0" layoutY="193.0" mnemonicParsing="false" onAction="#openDonutsView" prefHeight="180.0" prefWidth="250.0" text="Donuts" textAlignment="RIGHT">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,7 +40,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="orderBasketButton" layoutX="46.0" layoutY="398.0" mnemonicParsing="false" onAction="#openBasketView" prefHeight="159.0" prefWidth="262.0" text="Order Basket">
+            <Button fx:id="orderBasketButton" contentDisplay="TOP" layoutX="46.0" layoutY="398.0" mnemonicParsing="false" onAction="#openBasketView" prefHeight="180.0" prefWidth="250.0" text="Order Basket">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,7 +49,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="storeOrderButton" layoutX="335.0" layoutY="398.0" mnemonicParsing="false" onAction="#openStoreOrderView" prefHeight="159.0" prefWidth="263.0" text="Store Order">
+            <Button fx:id="storeOrderButton" contentDisplay="TOP" layoutX="335.0" layoutY="398.0" mnemonicParsing="false" onAction="#openStoreOrderView" prefHeight="180.0" prefWidth="250.0" text="Store Order">
                <graphic>
                   <ImageView fitHeight="104.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
                      <image>
