@@ -47,12 +47,15 @@ public class OrderingDonutsViewController {
      */
 
     @FXML
-    public void sendToBasket(ActionEvent event) {
+    public void sendDonutToBasket(ActionEvent event) {
         try {
             if(!donut.getDonutType().equals("")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
                 Parent root = loader.load();
-
+                if(this.donutTotal < 1) {
+                    alertsMethodQuantity();
+                    return;
+                }
                 this.donut.setTotal(donutTotal);
                 this.controller.getOrder().add(this.donut);
                 OrderBasketViewController basket = loader.getController();
@@ -97,7 +100,7 @@ public class OrderingDonutsViewController {
     @FXML
     public void getDonutType(ActionEvent event) {
         donut.setDonutType(this.baseButton.getValue().toString());
-        this.donutTotal = donut.itemPrice();
+        //this.donutTotal = donut.itemPrice();
     }
 
     @FXML
@@ -110,6 +113,7 @@ public class OrderingDonutsViewController {
                 return;
             }
             donut.setQuantity(quantity);
+            this.donutTotal = donut.itemPrice();
             printDonutSubTotal();
         } catch (NumberFormatException e) {
             alertsMethodQuantity();
@@ -122,6 +126,7 @@ public class OrderingDonutsViewController {
         plainFlavor.setSelected(false);
         berriesFlavor.setSelected(false);
         baseButton.setValue("");
+        donutsAmount.setText("");
     }
 
     @FXML
@@ -133,6 +138,7 @@ public class OrderingDonutsViewController {
         alert.showAndWait();
     }
 
+    @FXML
     private void alertsMethodQuantity(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");
