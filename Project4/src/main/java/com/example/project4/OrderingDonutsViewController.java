@@ -127,6 +127,7 @@ public class OrderingDonutsViewController {
         berriesFlavor.setSelected(false);
         baseButton.setValue("");
         donutsAmount.setText("");
+        subtotalAmount.setText("");
     }
 
     @FXML
