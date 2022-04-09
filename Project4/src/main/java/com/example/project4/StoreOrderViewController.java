@@ -33,39 +33,39 @@ public class StoreOrderViewController {
         this.controller = controller;
         storeOrder.add(this.controller.getOrder());//adds order to storeOrder map
         customerStoreOrderNumber.getItems().removeAll(customerStoreOrderNumber.getItems());
-        sizeNumberOfOrders();
+        for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
+            customerStoreOrderNumber.getItems().add(mapElement.getKey());
+        }
+    }
+
+    public void setMain(OrderBasketViewController controller) {
+        this.controller = controller;
     }
 
     @FXML
     public void getOrderInfo(ActionEvent event) {
         storeOrderListView.getItems().clear();
-        int key = customerStoreOrderNumber.getSelectionModel().getSelectedIndex()+1;
+        //int key = customerStoreOrderNumber.getSelectionModel().getSelectedItem();
+        int key = (int) customerStoreOrderNumber.getValue();
         storeOrderTotal.setText(String.format("%.2f", storeOrder.getStoreOrders().get(key).subTotalWithTax()));
         storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(key).toString());
     }
 
     @FXML
     public void cancelOrder(ActionEvent event) {
-        if(customerStoreOrderNumber.getSelectionModel().getSelectedIndex() == -1) {
+        if(customerStoreOrderNumber.getSelectionModel().getSelectedItem() == null) {
             noOrderSelectedWarning();
-        } else {
-            storeOrderListView.getItems().clear();
-            storeOrderTotal.setText("");
-            customerStoreOrderNumber.getItems().remove(customerStoreOrderNumber.getSelectionModel().getSelectedIndex());
-            //customerStoreOrderNumber.getItems().removeAll(customerStoreOrderNumber.getItems());
-            storeOrder.remove(this.controller.getOrder());
-            sizeNumberOfOrders();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success!");
-            alert.setHeaderText("Order has been canceled");
-            alert.showAndWait();
+            return;
         }
-    }
 
-    private void sizeNumberOfOrders() {
-        for (Map.Entry<Integer, Order> mapElement : storeOrder.getStoreOrders().entrySet()) {
-            customerStoreOrderNumber.getItems().add(mapElement.getKey());
-        }
+        storeOrderListView.getItems().clear();
+        storeOrderTotal.setText("");
+        customerStoreOrderNumber.getItems().remove(customerStoreOrderNumber.getSelectionModel().getSelectedIndex());
+        storeOrder.remove(this.controller.getOrder());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success!");
+        alert.setHeaderText("Order has been canceled");
+        alert.showAndWait();
     }
 
     @FXML
