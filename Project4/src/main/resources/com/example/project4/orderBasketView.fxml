@@ -17,7 +17,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <ListView fx:id="basketListView" disable="true" layoutX="27.0" layoutY="142.0" onEditStart="#receiveOrderBasket" prefHeight="200.0" prefWidth="537.0" />
+      <ListView fx:id="basketListView" layoutX="27.0" layoutY="142.0" prefHeight="200.0" prefWidth="537.0" />
       <TextArea fx:id="basketSubtotal" editable="false" layoutX="132.0" layoutY="379.0" prefHeight="41.0" prefWidth="135.0" />
       <TextArea fx:id="basketSalesTax" editable="false" layoutX="132.0" layoutY="451.0" prefHeight="41.0" prefWidth="135.0" />
       <TextArea fx:id="basketOrderTotal" editable="false" layoutX="132.0" layoutY="522.0" prefHeight="41.0" prefWidth="135.0" />
@@ -36,12 +36,12 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Button fx:id="basketRemove" layoutX="397.0" layoutY="420.0" mnemonicParsing="false" text="Remove Item">
+      <Button fx:id="basketRemove" layoutX="397.0" layoutY="420.0" mnemonicParsing="false" onAction="#removeOrder" text="Remove Item">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="basketPlaceOrder" layoutX="397.0" layoutY="498.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="109.0" text="Place Order">
+      <Button fx:id="basketPlaceOrder" layoutX="397.0" layoutY="498.0" mnemonicParsing="false" onAction="#placeOrder" prefHeight="31.0" prefWidth="109.0" text="Place Order">
          <font>
             <Font size="16.0" />
          </font>

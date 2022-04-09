@@ -12,13 +12,13 @@ import java.io.IOException;
  *
  * @author Sebastian Carrasco, Rachael Chin
  */
-public class mainViewApplication extends Application {
+public class MainViewApplication extends Application {
     @Override
     /**
      * Sets up the stage for the mainView application.
      */
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(mainViewApplication.class.getResource("mainView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainViewApplication.class.getResource("mainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Welcome to RU Cafe!");
         stage.setScene(scene);

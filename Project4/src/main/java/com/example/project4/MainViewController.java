@@ -5,24 +5,35 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 
-public class mainViewController {
-    @FXML
-    public Order order = new Order();
+import java.util.Objects;
 
+public class MainViewController {
+    private Order order = new Order();
+
+
+    /**
+     * Getter for the order
+     * @return the order
+     */
+    public Order getOrder() {
+        return this.order;
+    }
+
+    public void resetOrder() {
+        order = new Order();
+    }
 
     @FXML
     public void openDonutsView(ActionEvent event) {
         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderingDonutsViewController.fxml")));
             stage.setUserData(order);
             stage.setTitle("Donuts");
             stage.setScene(new Scene(root));
@@ -37,11 +48,16 @@ public class mainViewController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffeeView.fxml"));
             Parent root = loader.load();
+
+            OrderingCoffeeViewController coffee = loader.getController();
+            coffee.setMainController(this);
+
             Stage stage = new Stage();
-            stage.setUserData(order);
             stage.setTitle("Coffee");
-            stage.setScene(new Scene(root));
+            Scene coffeeScene = new Scene(root);
+            stage.setScene(coffeeScene);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,13 +66,18 @@ public class mainViewController {
     @FXML
     public void openBasketView(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderBasketView.fxml"));
             Parent root = loader.load();
+
+            OrderBasketViewController basket = loader.getController();
+            basket.setMainController(this);
+
             Stage stage = new Stage();
-            stage.setUserData(order);
-            stage.setTitle("Basket Order");
-            stage.setScene(new Scene(root));
+            stage.setTitle("Order Basket");
+            Scene basketScene = new Scene(root);
+            stage.setScene(basketScene);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,11 +88,16 @@ public class mainViewController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
             Parent root = loader.load();
+
+            OrderBasketViewController storeOrder = loader.getController();
+            storeOrder.setMainController(this);
+
             Stage stage = new Stage();
-            stage.setUserData(order);
-            stage.setTitle("Store Order");
-            stage.setScene(new Scene(root));
+            stage.setTitle("Store Orders");
+            Scene storeScene = new Scene(root);
+            stage.setScene(storeScene);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
