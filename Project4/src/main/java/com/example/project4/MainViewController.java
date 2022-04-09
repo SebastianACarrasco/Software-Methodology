@@ -28,16 +28,19 @@ public class MainViewController {
 
     @FXML
     public void openDonutsView(ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("OrderingDonutsViewController.fxml")));
-            stage.setUserData(order);
-            stage.setTitle("Donuts");
-            stage.setScene(new Scene(root));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingDonutsView.fxml"));
+            Parent root = loader.load();
+
+            OrderingDonutsViewController donut = loader.getController();
+            donut.setMainController(this);
+
+            Stage stage = new Stage();
+            stage.setTitle("Donut");
+            Scene donutScene = new Scene(root);
+            stage.setScene(donutScene);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -96,6 +96,9 @@ public class Donuts extends MenuItem {
         this.quantity = quantity;
     }
 
+    public void setTotal(double total) {
+        this.total = total;
+    }
     /**
      * Getter for quantity.
      * @return quantity
