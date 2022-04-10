@@ -53,7 +53,7 @@ public class OrderingDonutsViewController {
     @FXML
     public void sendDonutToBasket(ActionEvent event) {
         try {
-            if(!donut.getDonutType().equals("") && !donut.getFlavor().equals("")) {
+            if(!donut.getDonutType().equals("") || !donut.getFlavor().equals("")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasketView.fxml"));
                 Parent root = loader.load();
                 if(this.donutTotal < 1) {
