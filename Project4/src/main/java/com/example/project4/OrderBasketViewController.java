@@ -151,7 +151,7 @@ public class OrderBasketViewController {
 
     /**
      * Getter for the current controller order.
-     * @return
+     * @return Order object
      */
     public Order getOrder() {
        return controller.getOrder();
