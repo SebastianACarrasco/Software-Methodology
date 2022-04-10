@@ -49,11 +49,9 @@ public class StoreOrders implements Customizable {
     @Override
     public boolean remove(Object o) {
         boolean removed = false;
-        if(o instanceof Order) {
-            if(storeOrders.containsValue(o)) {
+        if(o instanceof Order && storeOrders.containsKey(((Order) o).getID())) {
                 storeOrders.remove(((Order) o).getID());
                 removed = true;
-            }
         }
         return removed;
     }

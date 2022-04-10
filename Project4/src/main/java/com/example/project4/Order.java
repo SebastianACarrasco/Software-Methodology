@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Order implements Customizable {
     private static final double TAXRATE = 0.06625;
-    private static int ID; //set id value in controller and increment by 1 per order
+    private static int ID;
     private ArrayList<MenuItem> items;
 
     /**
