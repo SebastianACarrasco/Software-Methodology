@@ -54,15 +54,13 @@ public class StoreOrderViewController {
     @FXML
     public void getOrderInfo(ActionEvent event) {
         storeOrderListView.getItems().clear();
-        int key = (int) customerStoreOrderNumber.getValue();
+        int key = 0;
+        if(customerStoreOrderNumber.getValue() != null) {
+            key = (int) customerStoreOrderNumber.getValue();
+        }
         if(storeOrder.getStoreOrders().get(key) != null) {
             storeOrderTotal.setText(String.format("%.2f", storeOrder.getStoreOrders().get(key).subTotalWithTax()));
             storeOrderListView.getItems().add(storeOrder.getStoreOrders().get(key).toString());
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Order could not be found.");
-            alert.showAndWait();
         }
     }
 
