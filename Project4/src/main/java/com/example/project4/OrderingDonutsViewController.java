@@ -8,24 +8,29 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the ordering donuts view. Takes care of the donut type, flavor, and quantity.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
 public class OrderingDonutsViewController {
     private double donutTotal = 0;
-    Donuts donut = new Donuts();
+    private Donuts donut = new Donuts();
 
     @FXML
-    public ComboBox baseButton;
+    private ComboBox baseButton;
     @FXML
-    public RadioButton strawberryFlavor;
+    private RadioButton strawberryFlavor;
     @FXML
-    public RadioButton plainFlavor;
+    private RadioButton plainFlavor;
     @FXML
-    public RadioButton berriesFlavor;
+    private RadioButton berriesFlavor;
     @FXML
-    public TextField donutsAmount;
+    private TextField donutsAmount;
     @FXML
-    public TextField subtotalAmount;
+    private TextField subtotalAmount;
     @FXML
-    public Button addDonutsOrder;
+    private Button addDonutsOrder;
 
     private MainViewController controller;
     /**

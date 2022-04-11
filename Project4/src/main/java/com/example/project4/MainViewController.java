@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * Controller for the main view which takes care of opening all the scenes.
  *
- * @author Sebastian, Carrasco
+ * @author Sebastian Carrasco, Rachael Chin
  */
 public class MainViewController {
     private Order order = new Order();

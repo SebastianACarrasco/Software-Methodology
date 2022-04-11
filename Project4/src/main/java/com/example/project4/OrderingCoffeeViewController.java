@@ -8,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ * Controller for ordering coffee view which takes care of the user interaction of adding size and addins to coffee order
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
 public class OrderingCoffeeViewController {
     private static final double ADDINPRICE = 0.3;
     private double coffeeTotal = 0;
@@ -15,21 +20,21 @@ public class OrderingCoffeeViewController {
     private MainViewController controller;
     
     @FXML
-    public ComboBox coffeeSize;
+    private ComboBox coffeeSize;
     @FXML
-    public CheckBox creamAddIn;
+    private CheckBox creamAddIn;
     @FXML
-    public CheckBox syrupAddIn;
+    private CheckBox syrupAddIn;
     @FXML
-    public CheckBox milkAddIn;
+    private CheckBox milkAddIn;
     @FXML
-    public CheckBox caramelAddIn;
+    private CheckBox caramelAddIn;
     @FXML
-    public CheckBox whippedCreamAddIn;
+    private CheckBox whippedCreamAddIn;
     @FXML
-    public TextField coffeeSubtotal;
+    private TextField coffeeSubtotal;
     @FXML
-    public Button addCoffeeOrder;
+    private Button addCoffeeOrder;
 
     /**
      * Initializes the combo box with the coffee sizes
