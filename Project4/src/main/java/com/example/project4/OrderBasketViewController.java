@@ -23,17 +23,17 @@ public class OrderBasketViewController {
     private MainViewController controller;
 
     @FXML
-    public ListView<String> basketListView;
+    private ListView<String> basketListView;
     @FXML
-    public TextArea basketSubtotal;
+    private TextArea basketSubtotal;
     @FXML
-    public TextArea basketSalesTax;
+    private TextArea basketSalesTax;
     @FXML
-    public TextArea basketOrderTotal;
+    private TextArea basketOrderTotal;
     @FXML
-    public TextArea basketViewOrderNumber;
+    private TextArea basketViewOrderNumber;
     @FXML
-    public Button basketRemove;
+    private Button basketRemove;
 
 
     /**
