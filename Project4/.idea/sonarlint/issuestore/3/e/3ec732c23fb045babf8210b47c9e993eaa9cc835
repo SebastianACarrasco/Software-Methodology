@@ -1,0 +1,13 @@
+
+E
+java:S10661"/Merge this if statement with the enclosing one.(ı²í¢
+€
+java:S1319I"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(ë€£†ùÿÿÿÿ
+’
+java:S1319y"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Úºåëûÿÿÿÿ8ÆÖ²¨0
+o
+java:S3008"MRename this field "ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ¢ÓÎûÿÿÿÿ8¦¨0
+W
+java:S2209"5Change this instance-reference to a static reference.(ûöìİıÿÿÿÿ8Û„³¯0
+W
+java:S2209r"5Change this instance-reference to a static reference.(üûÒ™ıÿÿÿÿ8¤¢¦°0
