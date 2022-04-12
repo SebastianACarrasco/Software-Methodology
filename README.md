@@ -28,4 +28,7 @@ the choices of different cup sizes: Short, Tall, Grande and Venti. The price for
 add-in costs $0.30. The price increase for the next size is $0.40. For example, the price increase for a Grande is
 $0.80, therefore a Grande black coffee is $2.49, and a Grande coffee with cream and syrup would be $3.09.
 
+## Project 5
+Develop an Android app based on the requirements of Project 4. You must meet all the functional requirements stated
+in Project 4 description, excluding the Export of store orders.
 
