@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Project5</string>
+    <string name="textview">Welcome to RUCafe!</string>
+    <string name="donuts">Donuts</string>
+    <string name="donutsTextView">Order Donuts</string>
+    <string name="orderCoffee">Order Coffee</string>
+    <string name="coffee">Coffee</string>
+    <string name="orderBasket">Order basket</string>
+    <string name="basket">TODO</string>
+    <string name="storeOrders">Store Orders</string>
+    <string name="list">list</string>
 </resources>
