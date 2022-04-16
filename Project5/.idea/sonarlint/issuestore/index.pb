@@ -19,3 +19,5 @@ k
 ;app/src/test/java/com/example/project5/ExampleUnitTest.java,6/a/6a8c3c49e053eaeda7bb1600b3d769e85211597a
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+<
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
