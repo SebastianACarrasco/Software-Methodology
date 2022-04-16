@@ -9,4 +9,12 @@
     <string name="basket">TODO</string>
     <string name="storeOrders">Store Orders</string>
     <string name="list">list</string>
+    <string name="subtotal">subtotal</string>
+    <string name="tax">tax</string>
+    <string name="subtotalTaxed">subtotal w/ tax</string>
+    <string name="submitOrder">Submit</string>
+    <string name="removeItem">Remove</string>
+    <string name="orderBasketTitle">Order Cart</string>
+    <string name="storeOrderTitle">Store Orders</string>
+    <string name="cancelStoreOrder">Cancel Order</string>
 </resources>
