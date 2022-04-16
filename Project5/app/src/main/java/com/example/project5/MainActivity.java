@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
      * Opens order basket when clicked
      */
     public void orderBasket(View view) {
-        Intent intent = new Intent(this, orderBasketActivity.class);
+        Intent intent = new Intent(this, OrderBasketActivity.class);
         startActivity(intent);
     }
     /**
      * Opens store orders when clicked
      */
     public void storeOrders(View view) {
-        //Intent intent = new Intent(this, StoreordersActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, StoreOrderActivity.class);
+        startActivity(intent);
     }
 }
