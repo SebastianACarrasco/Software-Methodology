@@ -119,6 +119,14 @@ public class Coffee extends MenuItem implements Customizable{
     }
 
     /**
+     * Getter for addins
+     * @return addins
+     */
+    public ArrayList<String> getAddIns() {
+        return addIns;
+    }
+
+    /**
      * Getter for coffee size
      * @return size of coffee
      */

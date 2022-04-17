@@ -12,6 +12,10 @@ import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.content.Intent;
 import android.widget.TextView;
+import android.widget.Button;
+import java.util.ArrayList;
+
+import java.io.Serializable;
 
 
 public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -32,7 +36,7 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
 
         coffee = new Coffee();
         Intent intent = getIntent();
-        Order order = intent.getParcelableExtra("order");
+        //Order order = intent.getParcelableExtra("order");
 
         Spinner spino = findViewById(R.id.coffeeSize);
         spino.setOnItemSelectedListener(this);
@@ -82,6 +86,26 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+
+
+        Button submit = findViewById(R.id.addCoffeeButton);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String size = coffee.getSize();
+                String cost = coffeeTotal + "";
+                ArrayList<String> toppings = coffee.getAddIns();
+
+                Intent intent = new Intent(CoffeeActivity.this, OrderBasketActivity.class);
+                intent.putExtra("size", size);
+                intent.putExtra("cost", cost);
+                intent.putExtra("toppings", toppings);
+                startActivity(intent);
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Order submitted", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
     }
 
     @Override
