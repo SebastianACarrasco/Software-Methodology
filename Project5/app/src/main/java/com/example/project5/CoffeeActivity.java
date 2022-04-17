@@ -33,6 +33,8 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         text = (TextView)findViewById(R.id.coffeeTotalOrder);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Coffee");
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         coffee = new Coffee();
         Intent intent = getIntent();
@@ -110,7 +112,6 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView arg0, View arg1, int position, long id) {
-        //Toast.makeText(getApplicationContext(), sizes[position], Toast.LENGTH_LONG).show();
         size = sizes[position];
         coffee.setSize(size);
         coffeeTotal = coffee.itemPrice();
@@ -119,6 +120,7 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onNothingSelected(AdapterView arg0) {}
+
 
     public void cream(View view) {
         if (view.getId() == R.id.cream && ((CheckBox) view).isChecked()) {
