@@ -14,8 +14,8 @@ import java.io.Serializable;
  *
  * @author Sebastian Carrasco, Rachael Chin
  */
-public class MainActivity extends AppCompatActivity implements Serializable {
-    private Order order = new Order();
+public class MainActivity extends AppCompatActivity {
+    private Order order;
 
     /**
      * Creates the activity on the screen
@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle("Main Menu");
+        this.order = new Order();
 
         //donuts
         ImageButton donuts = findViewById(R.id.homeDonuts);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CoffeeActivity.class);
-                //intent.putExtra("order", (Serializable) order);
+                //intent.putExtra("order", order);
                 startActivity(intent);
             }
         });
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, OrderBasketActivity.class);
-                //intent.putExtra("order", (Serializable) order);
+                //intent.putExtra("order", order);
                 startActivity(intent);
             }
         });
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, StoreOrderActivity.class);
-                //intent.putExtra("order", (Serializable) order);
+                //intent.putExtra("order", order);
                 startActivity(intent);
             }
         });
