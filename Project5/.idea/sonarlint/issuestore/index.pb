@@ -13,11 +13,7 @@ a
 1app/src/main/java/com/example/project5/Order.java,d/c/dccbb2ac09fc3b45dcff7dd0af14899f6808c452
 g
 7app/src/main/java/com/example/project5/StoreOrders.java,8/f/8f412a3cc70264d365c8200fd71631f4c8d9b160
-b
-2app/src/main/java/com/example/project5/Coffee.java,3/9/3922790ba39f49525a884790259d34b5cafda5f9
 k
 ;app/src/test/java/com/example/project5/ExampleUnitTest.java,6/a/6a8c3c49e053eaeda7bb1600b3d769e85211597a
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
