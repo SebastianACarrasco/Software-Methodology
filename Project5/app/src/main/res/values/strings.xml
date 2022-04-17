@@ -17,4 +17,13 @@
     <string name="orderBasketTitle">Order Cart</string>
     <string name="storeOrderTitle">Store Orders</string>
     <string name="cancelStoreOrder">Cancel Order</string>
+    <string name="imageCart">TODO</string>
+    <string name="coffeeImageView">TODO</string>
+    <string name="cream">cream</string>
+    <string name="syrup">syrup</string>
+    <string name="milk">milk</string>
+    <string name="caramel">caramel</string>
+    <string name="whippedcream">whipped cream</string>
+    <string name="coffeeSubtotal">total</string>
+    <string name="addCoffee">Add to Order</string>
 </resources>

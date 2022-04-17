@@ -82,11 +82,13 @@ public class Coffee extends MenuItem implements Customizable{
                 this.total = 0;
         }
 
-        if(addIns.size() != 0) {
+        /*if(addIns.size() != 0) {
             for (int i = 0; i < addIns.size(); i++) {
                 this.total += ADDINPRICE;
             }
         }
+
+         */
         return this.total;
     }
 
