@@ -1,14 +1,24 @@
 package com.example.project5;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
-import android.widget.Button;
 import android.content.Intent;
+import android.view.View;
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
+import java.util.ArrayList;
 
 public class OrderBasketActivity extends AppCompatActivity{
+    private Coffee coffee = new Coffee();
+    private Donuts donut = new Donuts();
+    private Order order = new Order();
+    private static ArrayList<String> orderList = new ArrayList<>();
+    private static double total = 0;
+
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,13 +28,90 @@ public class OrderBasketActivity extends AppCompatActivity{
         actionbar.setTitle("Order Basket");
 
         Intent intent = getIntent();
-
         TextView subtotal = findViewById(R.id.subtotal);
         TextView tax = findViewById(R.id.tax);
-        TextView total = findViewById(R.id.totalWithTax);
-
+        TextView totalWTax = findViewById(R.id.totalWithTax);
         Button submit = findViewById(R.id.submitOrder);
-
         ListView listView = findViewById(R.id.listViewOrder);
+
+        //coffee order type
+        if(intent.getStringExtra("orderType").equals("coffee")){
+            this.coffee.setSize(intent.getStringExtra("coffeeSize"));
+            this.coffee.setTotal(intent.getDoubleExtra("coffeeCost", 0));
+            ArrayList<String> addins = intent.getStringArrayListExtra("coffeeToppings");
+            if(addins != null) {
+                for (String addin : addins) {
+                    coffee.add(addin);
+                }
+            }
+            this.order.add(this.coffee);
+            orderList.add(this.coffee.toString());
+            subtotal.setText(String.format("%.2f", this.order.subTotal()));
+            tax.setText(String.format("%.2f", this.order.getTaxes()));
+            totalWTax.setText(String.format("%.2f", this.order.subTotalWithTax()));
+        } else if(intent.getStringExtra("orderType").equals("donut")) {
+            //add donut order here
+
+        } else {
+            subtotal.setText("error has occurred");
+            tax.setText("0.00");
+            totalWTax.setText("0.00");
+        }
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderBasketActivity.this, StoreOrderActivity.class);
+                intent.putExtra("orderList", orderList);
+                Toast toast = Toast.makeText(getApplicationContext(), "Order placed!", Toast.LENGTH_LONG);
+                for(int i = 0; i < orderList.size(); i++) {
+                    orderList.remove(i);
+                }
+                toast.show();
+                //startActivity(intent);
+            }
+            });
+
+
+        //alert dialog for removing items from the order
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //String clickedItem=(String) listView.getItemAtPosition(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(OrderBasketActivity.this);
+                builder.setMessage("Do you want to remove this item?");
+                builder.setTitle("Alert!");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        orderList.remove(position);
+                        order.removeItem(order.getItems());
+                        listView.removeViewAt(position);
+                        subtotal.setText(String.format("%.2f", order.subTotal()));
+                        tax.setText(String.format("%.2f", order.getTaxes()));
+                        totalWTax.setText(String.format("%.2f", order.subTotalWithTax()));
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, CoffeeActivity.class));
     }
 }

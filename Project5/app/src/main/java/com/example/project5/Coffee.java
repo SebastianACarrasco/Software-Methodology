@@ -36,7 +36,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean add(Object o) {
         boolean added = false;
         if(o instanceof String) {
-            this.total += ADDINPRICE;
+            //this.total += ADDINPRICE;
             addIns.add((String)o);
             added = true;
         }
@@ -52,7 +52,7 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean remove(Object o) {
         boolean removed = false;
         if (o instanceof String) {
-            this.total -= ADDINPRICE;
+            //this.total -= ADDINPRICE;
             addIns.remove(o);
             removed = true;
         }

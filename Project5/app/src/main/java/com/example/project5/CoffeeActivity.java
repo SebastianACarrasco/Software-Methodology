@@ -9,13 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Button;
 import java.util.ArrayList;
-
-import java.io.Serializable;
 
 
 public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -24,7 +21,7 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
     private Coffee coffee;
     private static final double ADDINPRICE = 0.3;
     private double coffeeTotal = 0;
-    TextView text;
+    private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +30,9 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         text = (TextView)findViewById(R.id.coffeeTotalOrder);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Coffee");
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         coffee = new Coffee();
         Intent intent = getIntent();
-        //Order order = intent.getParcelableExtra("order");
 
         Spinner spino = findViewById(R.id.coffeeSize);
         spino.setOnItemSelectedListener(this);
@@ -94,18 +88,20 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String size = coffee.getSize();
-                String cost = coffeeTotal + "";
-                ArrayList<String> toppings = coffee.getAddIns();
+                //String size = coffee.getSize();
+                //double cost = coffeeTotal;
+                //ArrayList<String> toppings = coffee.getAddIns();
 
                 Intent intent = new Intent(CoffeeActivity.this, OrderBasketActivity.class);
-                intent.putExtra("size", size);
-                intent.putExtra("cost", cost);
-                intent.putExtra("toppings", toppings);
-                startActivity(intent);
+                intent.putExtra("coffeeSize", coffee.getSize());
+                intent.putExtra("coffeeCost", coffeeTotal);
+                intent.putExtra("coffeeToppings", coffee.getAddIns());
+                intent.putExtra("orderType", "coffee");
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Order submitted", Toast.LENGTH_LONG);
                 toast.show();
+                resetOrder();
+                startActivity(intent);
             }
         });
     }
@@ -121,6 +117,11 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView arg0) {}
 
+    private void resetOrder() {
+        coffee = new Coffee();
+        coffeeTotal = 0;
+        printSubTotal();
+    }
 
     public void cream(View view) {
         if (view.getId() == R.id.cream && ((CheckBox) view).isChecked()) {
