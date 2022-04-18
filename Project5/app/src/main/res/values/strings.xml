@@ -26,4 +26,7 @@
     <string name="whippedcream">whipped cream</string>
     <string name="coffeeSubtotal">total</string>
     <string name="addCoffee">Add to Order</string>
+    <string name="subtotalText">subtotal</string>
+    <string name="taxText">taxes</string>
+    <string name="subWTaxText">total with tax</string>
 </resources>
