@@ -12,74 +12,62 @@
             android:layout_height="41dp" android:id="@+id/subtotal"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="57dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="208dp" android:layout_marginEnd="296dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.116"
-            android:textSize="20sp" android:textColor="#000000" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="482dp"/>
+            android:layout_marginBottom="160dp" android:layout_marginEnd="296dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.127"
+            android:textSize="20sp" android:textColor="#000000"
+    />
     <TextView
             android:text="@string/tax"
             android:layout_width="230dp"
             android:layout_height="41dp" android:id="@+id/tax"
-            android:layout_marginTop="37dp"
-            app:layout_constraintTop_toBottomOf="@+id/subtotal" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="79dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="152dp" android:layout_marginEnd="313dp"
+            android:layout_marginBottom="100dp" android:layout_marginEnd="313dp"
             android:textSize="20sp" android:textColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.199"
-            app:layout_constraintVertical_bias="0.409"/>
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.208"
+    />
     <TextView
             android:text="@string/subtotalTaxed"
             android:layout_width="230dp"
             android:layout_height="41dp" android:id="@+id/totalWithTax"
-            android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@+id/tax" android:layout_marginEnd="241dp"
+            android:layout_marginEnd="241dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="79dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="40dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="77dp"
             android:textSize="20sp" android:textColor="#000000" app:layout_constraintHorizontal_bias="0.291"
-            app:layout_constraintVertical_bias="0.454"/>
+    />
     <Button
             android:text="@string/submitOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/submitOrder"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="516dp" android:layout_marginStart="22dp"
-            app:layout_constraintStart_toEndOf="@+id/subtotal" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="167dp" android:layout_marginEnd="27dp"
+            android:layout_width="100sp"
+            android:layout_height="50sp" android:id="@+id/submitOrder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="112dp" android:layout_marginEnd="28dp"
             app:layout_constraintEnd_toEndOf="parent"/>
     <ListView
-            android:layout_width="324dp"
-            android:layout_height="293dp"
+            android:layout_width="329dp"
+            android:layout_height="300dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="45dp" android:layout_marginEnd="42dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="79dp"
-            app:layout_constraintBottom_toTopOf="@+id/subtotal" android:id="@+id/listViewOrder"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="110dp"/>
-    <TextView
-            android:text="@string/orderBasketTitle"
-            android:layout_width="230dp"
-            android:layout_height="41dp" android:id="@+id/orderBasketTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="46dp" android:layout_marginBottom="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/listViewOrder" android:layout_marginEnd="177dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="176dp"
-            android:textSize="30sp" android:textColor="#000000" app:layout_constraintHorizontal_bias="0.761"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/listViewOrder"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="110dp"
+            android:layout_marginBottom="17dp" app:layout_constraintBottom_toTopOf="@+id/subtotalText"
+            app:layout_constraintHorizontal_bias="0.8" app:layout_constraintVertical_bias="1.0"/>
     <ImageView
-            android:layout_width="126dp"
-            android:layout_height="82dp" app:srcCompat="@drawable/cartimage" android:id="@+id/carView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" android:layout_marginEnd="42dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="113dp"
+            android:layout_height="75dp" app:srcCompat="@drawable/cartimage" android:id="@+id/carView"
+            android:layout_marginEnd="36dp" app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/imageCart"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="262dp" app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintBottom_toTopOf="@+id/listViewOrder"
-            app:layout_constraintStart_toEndOf="@+id/listViewOrder" app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.0" android:contentDescription="@string/imageCart"/>
+    />
     <TextView
             android:text="@string/subtotalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/subtotalText"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="37dp"
-            android:layout_marginEnd="323dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/listViewOrder"
+            android:layout_marginEnd="323dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/subtotal"/>
     <TextView
             android:text="@string/taxText"
@@ -88,16 +76,18 @@
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/subtotal" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp" app:layout_constraintEnd_toStartOf="@+id/submitOrder"
-            android:layout_marginEnd="202dp" app:layout_constraintHorizontal_bias="0.208"
-            android:layout_marginBottom="2dp" app:layout_constraintBottom_toTopOf="@+id/tax"/>
+            android:layout_marginEnd="202dp" app:layout_constraintHorizontal_bias="0.2"
+            android:layout_marginBottom="2dp" app:layout_constraintBottom_toTopOf="@+id/tax"
+            app:layout_constraintVertical_bias="1.0"/>
     <TextView
             android:text="@string/subWTaxText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/subWtaxText"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="38dp"
             android:layout_marginEnd="315dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/totalWithTax" app:layout_constraintHorizontal_bias="0.045"
-            android:layout_marginTop="11dp" app:layout_constraintTop_toBottomOf="@+id/tax"/>
+            app:layout_constraintBottom_toTopOf="@+id/totalWithTax" app:layout_constraintHorizontal_bias="0.09"
+            android:layout_marginTop="11dp" app:layout_constraintTop_toBottomOf="@+id/tax"
+            app:layout_constraintVertical_bias="1.0"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

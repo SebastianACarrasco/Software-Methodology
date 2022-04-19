@@ -117,6 +117,11 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView arg0) {}
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     private void resetOrder() {
         coffee = new Coffee();
         coffeeTotal = 0;

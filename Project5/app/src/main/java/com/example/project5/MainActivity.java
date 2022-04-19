@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CoffeeActivity.class);
-                //intent.putExtra("order", order);
                 startActivity(intent);
             }
         });
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, OrderBasketActivity.class);
-                //intent.putExtra("order", order);
                 startActivity(intent);
             }
         });
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, StoreOrderActivity.class);
-                //intent.putExtra("order", order);
                 startActivity(intent);
             }
         });
