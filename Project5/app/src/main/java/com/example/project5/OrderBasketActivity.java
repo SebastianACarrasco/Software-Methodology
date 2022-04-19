@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class OrderBasketActivity extends AppCompatActivity{
     private Coffee coffee = new Coffee();
     private Donuts donut = new Donuts();
-    private Order order = new Order();
+    private static Order order = new Order();
+    private static final String ORDER_KEY = "1";
     private static ArrayList<String> orderList = new ArrayList<>();
-    private static double total = 0;
 
     @SuppressLint("DefaultLocale")
     @Override
@@ -62,16 +62,27 @@ public class OrderBasketActivity extends AppCompatActivity{
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrderBasketActivity.this, StoreOrderActivity.class);
-                intent.putExtra("orderList", orderList);
-                Toast toast = Toast.makeText(getApplicationContext(), "Order placed!", Toast.LENGTH_LONG);
-                for(int i = 0; i < orderList.size(); i++) {
-                    orderList.remove(i);
+                if(listView != null) {
+                    Intent intent = new Intent(OrderBasketActivity.this, StoreOrderActivity.class);
+                    intent.putExtra("orderList", orderList);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Order placed!", Toast.LENGTH_LONG);
+                    for (int i = 0; i < orderList.size(); i++) {
+                        orderList.remove(i);
+                    }
+                    subtotal.setText("0.00");
+                    tax.setText("0.00");
+                    totalWTax.setText("0.00");
+                    order = new Order();
+                    toast.show();
+                    //startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please add an item to your order!", Toast.LENGTH_LONG);
+                    toast.show();
                 }
-                toast.show();
-                //startActivity(intent);
             }
             });
+
+
 
 
         //alert dialog for removing items from the order
@@ -80,7 +91,6 @@ public class OrderBasketActivity extends AppCompatActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //String clickedItem=(String) listView.getItemAtPosition(position);
                 AlertDialog.Builder builder = new AlertDialog.Builder(OrderBasketActivity.this);
                 builder.setMessage("Do you want to remove this item?");
                 builder.setTitle("Alert!");
@@ -90,7 +100,8 @@ public class OrderBasketActivity extends AppCompatActivity{
                     public void onClick(DialogInterface dialog, int which) {
                         orderList.remove(position);
                         order.removeItem(order.getItems());
-                        listView.removeViewAt(position);
+                        //listView.removeViewAt(position);
+                        arrayAdapter.notifyDataSetChanged();
                         subtotal.setText(String.format("%.2f", order.subTotal()));
                         tax.setText(String.format("%.2f", order.getTaxes()));
                         totalWTax.setText(String.format("%.2f", order.subTotalWithTax()));

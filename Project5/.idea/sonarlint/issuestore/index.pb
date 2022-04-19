@@ -15,5 +15,9 @@ n
 >app/src/main/java/com/example/project5/StoreOrderActivity.java,a/d/adbb0420374a164057b86a423ccef2fcd2cd0f50
 h
 8app/src/main/java/com/example/project5/Customizable.java,7/7/772643ccebe1f8410173c2b1774b2fce84659748
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+?
+settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
+g
+7app/src/main/java/com/example/project5/StoreOrders.java,8/f/8f412a3cc70264d365c8200fd71631f4c8d9b160
+b
+2app/src/main/java/com/example/project5/Coffee.java,3/9/3922790ba39f49525a884790259d34b5cafda5f9
