@@ -9,13 +9,14 @@ import android.content.Intent;
 import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
+import androidx.core.app.ActivityCompat;
+
 import java.util.ArrayList;
 
 public class OrderBasketActivity extends AppCompatActivity{
     private Coffee coffee = new Coffee();
     private Donuts donut = new Donuts();
     private static Order order = new Order();
-    private static final String ORDER_KEY = "1";
     private static ArrayList<String> orderList = new ArrayList<>();
 
     @SuppressLint("DefaultLocale")
@@ -27,13 +28,14 @@ public class OrderBasketActivity extends AppCompatActivity{
         ActionBar actionbar = getSupportActionBar();
         actionbar.setTitle("Order Basket");
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         TextView subtotal = findViewById(R.id.subtotal);
         TextView tax = findViewById(R.id.tax);
         TextView totalWTax = findViewById(R.id.totalWithTax);
         Button submit = findViewById(R.id.submitOrder);
         ListView listView = findViewById(R.id.listViewOrder);
 
+        /*
         //coffee order type
         if(intent.getStringExtra("orderType").equals("coffee")){
             this.coffee.setSize(intent.getStringExtra("coffeeSize"));
@@ -53,26 +55,37 @@ public class OrderBasketActivity extends AppCompatActivity{
             //add donut order here
 
         } else {
-            subtotal.setText("error has occurred");
+            subtotal.setText("basket is empty");
             tax.setText("0.00");
             totalWTax.setText("0.00");
         }
+         */
 
+        subtotal.setText(String.format("%.2f", this.order.subTotal()));
+        tax.setText(String.format("%.2f", this.order.getTaxes()));
+        totalWTax.setText(String.format("%.2f", this.order.subTotalWithTax()));
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
+        listView.setAdapter(arrayAdapter);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(listView != null) {
+                if(arrayAdapter.getCount() != 0) {
                     Intent intent = new Intent(OrderBasketActivity.this, StoreOrderActivity.class);
                     intent.putExtra("orderList", orderList);
                     Toast toast = Toast.makeText(getApplicationContext(), "Order placed!", Toast.LENGTH_LONG);
                     for (int i = 0; i < orderList.size(); i++) {
                         orderList.remove(i);
                     }
+                    for(int i = 0; i < listView.getChildCount(); i++) {
+                        listView.getChildAt(i).setVisibility(View.GONE);
+                    }
+                    order = new Order();
+                    arrayAdapter.notifyDataSetChanged();
                     subtotal.setText("0.00");
                     tax.setText("0.00");
                     totalWTax.setText("0.00");
-                    order = new Order();
                     toast.show();
                     //startActivity(intent);
                 } else {
@@ -84,10 +97,7 @@ public class OrderBasketActivity extends AppCompatActivity{
 
 
 
-
         //alert dialog for removing items from the order
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
-        listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -123,6 +133,12 @@ public class OrderBasketActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, CoffeeActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
+
+    public static void addToOrder(MenuItem item) {
+        order.add(item);
+        orderList.add(item.toString());
+    }
+    
 }

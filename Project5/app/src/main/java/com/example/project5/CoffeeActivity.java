@@ -32,7 +32,6 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         actionBar.setTitle("Coffee");
 
         coffee = new Coffee();
-        Intent intent = getIntent();
 
         Spinner spino = findViewById(R.id.coffeeSize);
         spino.setOnItemSelectedListener(this);
@@ -88,17 +87,14 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String size = coffee.getSize();
-                //double cost = coffeeTotal;
-                //ArrayList<String> toppings = coffee.getAddIns();
-
                 Intent intent = new Intent(CoffeeActivity.this, OrderBasketActivity.class);
-                intent.putExtra("coffeeSize", coffee.getSize());
-                intent.putExtra("coffeeCost", coffeeTotal);
-                intent.putExtra("coffeeToppings", coffee.getAddIns());
-                intent.putExtra("orderType", "coffee");
+                //intent.putExtra("coffeeSize", coffee.getSize());
+                //intent.putExtra("coffeeCost", coffeeTotal);
+                //intent.putExtra("coffeeToppings", coffee.getAddIns());
+                //intent.putExtra("orderType", "coffee");
+                OrderBasketActivity.addToOrder(coffee);
 
-                Toast toast = Toast.makeText(getApplicationContext(), "Order submitted", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Order added", Toast.LENGTH_SHORT);
                 toast.show();
                 resetOrder();
                 startActivity(intent);

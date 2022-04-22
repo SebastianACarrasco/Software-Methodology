@@ -6,17 +6,12 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
-
-import java.io.Serializable;
-
 /**
  * Home screen for the app that allows the user to navigate to the other activities.
  *
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class MainActivity extends AppCompatActivity {
-    private Order order;
-
     /**
      * Creates the activity on the screen
      * @param savedInstanceState
@@ -26,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setTitle("Main Menu");
-        this.order = new Order();
+        actionbar.setTitle("Welcome to RUCafe!");
 
         //donuts
         ImageButton donuts = findViewById(R.id.homeDonuts);
