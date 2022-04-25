@@ -25,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
         //donuts
         ImageButton donuts = findViewById(R.id.homeDonuts);
+        donuts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DonutsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //coffee
         ImageButton coffee = findViewById(R.id.homeCoffee);
