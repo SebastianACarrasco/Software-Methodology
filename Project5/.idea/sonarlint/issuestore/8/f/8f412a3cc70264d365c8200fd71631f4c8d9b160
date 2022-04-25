@@ -1,0 +1,7 @@
+
+
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ÌñÛşøÿÿÿÿ8¿âÛôƒ0
+>
+java:S1643C"Use a StringBuilder instead.(ÿ×›ÿÿÿÿÿÿ8ÀâÛôƒ0
+5
+java:S1700"Rename field "storeOrders"(¤ê‰ûÿÿÿÿ
