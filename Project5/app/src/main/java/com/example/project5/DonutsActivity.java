@@ -45,17 +45,15 @@ public class DonutsActivity extends AppCompatActivity{
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        type = (TextView) findViewById(R.id.myText);
-        setDonutType(type);
-        price = (TextView) findViewById(R.id.myPrice);
-        setDonutPrice(price);
-
         Button submit = findViewById(R.id.addDonutsButton);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DonutsActivity.this, OrderBasketActivity.class);
-
+                type = (TextView) findViewById(R.id.myText);
+                setDonutType(type);
+                price = (TextView) findViewById(R.id.myPrice);
+                setDonutPrice(price);
                 OrderBasketActivity.addToOrder(donut);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Order added", Toast.LENGTH_SHORT);
