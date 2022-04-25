@@ -12,22 +12,26 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     String data[];
+    String data2[];
     int images[];
     Context context;
 
-    public MyAdapter(Context ct, String donutTypeAndFlavor[], int img[]){
+    public MyAdapter(Context ct, String donutTypeAndFlavor[], String pricing[], int img[]){
         context = ct;
         data = donutTypeAndFlavor;
+        data2 = pricing;
         images = img;
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView myText;
+        TextView myPricing;
         ImageView myImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             myText = itemView.findViewById(R.id.myText);
             myImage = itemView.findViewById(R.id.myImageView);
+            myPricing = itemView.findViewById(R.id.myPrice);
 
         }
 
@@ -46,6 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.myText.setText(data[position]);
         holder.myImage.setImageResource(images[position]);
+        holder.myPricing.setText(data[position]);
 
     }
 

@@ -43,4 +43,18 @@
         <item>Holes Rainbow Sprinkles</item>
         <item>Holes Toasted Coconut</item>
     </string-array>
+    <string-array name = "donutPrices">
+        <item>$1.59</item>
+        <item>$1.59</item>
+        <item>$1.59</item>
+        <item>$1.59</item>
+        <item>$1.79</item>
+        <item>$1.79</item>
+        <item>$1.79</item>
+        <item>$1.79</item>
+        <item>$0.39</item>
+        <item>$0.39</item>
+        <item>$0.39</item>
+        <item>$0.39</item>
+    </string-array>
 </resources>
