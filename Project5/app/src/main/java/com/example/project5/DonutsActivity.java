@@ -11,8 +11,8 @@ public class DonutsActivity extends AppCompatActivity{
     String flavors[];
 
     String prices[];
-    int images[] = { R.drawable.strawberry, R.drawable.plain, R.drawable.raspberry,
-            R.drawable.chocolate, R.drawable.boston, R.drawable.powdered, R.drawable.glazed,
+    int images[] = { R.drawable.strawberry, R.drawable.plain,
+            R.drawable.chocolate, R.drawable.raspberry, R.drawable.boston, R.drawable.powdered, R.drawable.glazed,
             R.drawable.jelly, R.drawable.butternut, R.drawable.maple,
             R.drawable.rainbow, R.drawable.toasted};
 
