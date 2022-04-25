@@ -50,7 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.myText.setText(data[position]);
         holder.myImage.setImageResource(images[position]);
-        holder.myPricing.setText(data[position]);
+        holder.myPricing.setText(data2[position]);
 
     }
 
