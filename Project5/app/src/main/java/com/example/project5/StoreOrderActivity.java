@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class StoreOrderActivity extends AppCompatActivity{
 
+    private static ArrayList<String> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,8 @@ public class StoreOrderActivity extends AppCompatActivity{
         Button remove = findViewById(R.id.removeOrder);
         ListView listView = findViewById(R.id.listViewOrder);
 
-        //Intent intent = new Intent(OrderBasketActivity.class, StoreOrderActivity.this);
+        Intent intent = getIntent();
+        list = intent.getStringArrayListExtra("orderList");
 
         //alert dialog for removing items from the order
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -36,7 +38,7 @@ public class StoreOrderActivity extends AppCompatActivity{
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //orderList.remove(position);
+                        list.remove(position);
                         //arrayAdapter.notifyDataSetChanged();
                     }
                 });
