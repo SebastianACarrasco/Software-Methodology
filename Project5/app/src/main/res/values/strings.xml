@@ -29,4 +29,18 @@
     <string name="subtotalText">subtotal</string>
     <string name="taxText">taxes</string>
     <string name="subWTaxText">total with tax</string>
+    <string-array name = "donutFlavors">
+        <item>Yeast Strawberry</item>
+        <item>Yeast Plain</item>
+        <item>Yeast Chocolate</item>
+        <item>Yeast Berries</item>
+        <item>Cake Boston Cream</item>
+        <item>Cake Powdered</item>
+        <item>Cake Glazed</item>
+        <item>Cake Jelly</item>
+        <item>Holes Butternut</item>
+        <item>Holes Maple Frosted</item>
+        <item>Holes Rainbow Sprinkles</item>
+        <item>Holes Toasted Coconut</item>
+    </string-array>
 </resources>
