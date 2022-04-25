@@ -4,10 +4,6 @@
                                                    android:layout_height="match_parent">
 
 
-    <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button3"/>
     <TextView
             android:text="@string/storeOrderTitle"
             android:layout_width="230dp"
@@ -28,8 +24,4 @@
             android:layout_marginBottom="34dp" android:layout_marginTop="38dp"
             app:layout_constraintTop_toBottomOf="@+id/storeOrderTitle">
     </ListView>
-    <Button
-            android:text="Remove Order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/removeOrder"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

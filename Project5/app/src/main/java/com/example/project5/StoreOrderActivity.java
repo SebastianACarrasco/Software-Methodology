@@ -21,11 +21,12 @@ public class StoreOrderActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storeorders);
 
-        Button remove = findViewById(R.id.removeOrder);
         ListView listView = findViewById(R.id.listViewOrder);
 
         Intent intent = getIntent();
         list = intent.getStringArrayListExtra("orderList");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(arrayAdapter);
 
         //alert dialog for removing items from the order
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
