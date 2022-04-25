@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/layout/activity_coffee.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_donuts.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_donuts.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_orderbasket.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_storeorders.xml" value="0.165" />

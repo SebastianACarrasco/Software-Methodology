@@ -9,6 +9,8 @@ public class DonutsActivity extends AppCompatActivity{
 
     RecyclerView recyclerView;
     String flavors[];
+
+    String prices[];
     int images[] = { R.drawable.strawberry, R.drawable.plain, R.drawable.raspberry,
             R.drawable.chocolate, R.drawable.boston, R.drawable.powdered, R.drawable.glazed,
             R.drawable.jelly, R.drawable.butternut, R.drawable.maple,
@@ -20,10 +22,9 @@ public class DonutsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_donuts);
 
         recyclerView = findViewById(R.id.recyclerview);
-
         flavors = getResources().getStringArray(R.array.donutFlavors);
-
-        MyAdapter myAdapter = new MyAdapter(this, flavors, images);
+        prices = getResources().getStringArray(R.array.donutPrices);
+        MyAdapter myAdapter = new MyAdapter(this, flavors, prices, images);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

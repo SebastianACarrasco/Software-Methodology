@@ -28,7 +28,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"/>
             <TextView
-                    android:text="Yeast Strawberry"
+                    android:text="Donut Flavor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/myText"
@@ -38,6 +38,12 @@
                     app:layout_constraintHorizontal_bias="0.316"
                     app:layout_constraintStart_toEndOf="@+id/myImageView"
                     app:layout_constraintVertical_bias="0.251"/>
+            <TextView
+                    android:text="Donut Type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView6"
+                    tools:layout_editor_absoluteX="215dp" app:layout_constraintTop_toBottomOf="@+id/myPrice"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.566"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
