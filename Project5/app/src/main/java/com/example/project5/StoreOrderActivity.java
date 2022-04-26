@@ -26,7 +26,8 @@ public class StoreOrderActivity extends AppCompatActivity{
         Intent intent = getIntent();
         list = intent.getStringArrayListExtra("orderList");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(arrayAdapter);
+        ListView storeList = (ListView) findViewById(R.id.storeOrderList);
+        storeList.setAdapter(arrayAdapter);
 
         //alert dialog for removing items from the order
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -40,7 +41,7 @@ public class StoreOrderActivity extends AppCompatActivity{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         list.remove(position);
-                        //arrayAdapter.notifyDataSetChanged();
+                        arrayAdapter.notifyDataSetChanged();
                     }
                 });
 
