@@ -6,12 +6,23 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
+import java.util.ArrayList;
 /**
  * Home screen for the app that allows the user to navigate to the other activities.
  *
  * @author Sebastian Carrasco, Rachael Chin
  */
 public class MainActivity extends AppCompatActivity {
+    private static ArrayList<String> db = new ArrayList<>();
+
+    /**
+     * Static method to add items to the database
+     * @param s
+     */
+    public static void addToDB(String s){
+        db.add(s);
+    }
+
     /**
      * Creates the activity on the screen
      * @param savedInstanceState
@@ -59,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, StoreOrderActivity.class);
+                intent.putStringArrayListExtra("db", db);
                 startActivity(intent);
             }
         });

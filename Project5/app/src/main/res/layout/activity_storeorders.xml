@@ -4,25 +4,15 @@
                                                    android:layout_height="match_parent">
 
 
-    <TextView
-            android:text="@string/storeOrderTitle"
-            android:layout_width="230dp"
-            android:layout_height="41dp" android:id="@+id/storeOrderTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="38dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="174dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="674dp" android:layout_marginEnd="179dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="30sp" android:textColor="#000000" app:layout_constraintHorizontal_bias="0.784"
-            app:layout_constraintVertical_bias="0.0"/>
     <ListView
-            android:layout_width="364dp"
-            android:layout_height="580dp"
-            android:id="@+id/storeOrderList"
+            android:layout_width="346dp"
+            android:layout_height="571dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="23dp" android:layout_marginEnd="24dp"
+            android:layout_marginStart="23dp" android:layout_marginEnd="23dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="34dp" android:layout_marginTop="38dp"
-            app:layout_constraintTop_toBottomOf="@+id/storeOrderTitle">
+            android:layout_marginBottom="35dp"
+            android:id="@+id/storeOrderView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="67dp">
     </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>

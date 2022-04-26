@@ -88,10 +88,6 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CoffeeActivity.this, OrderBasketActivity.class);
-                //intent.putExtra("coffeeSize", coffee.getSize());
-                //intent.putExtra("coffeeCost", coffeeTotal);
-                //intent.putExtra("coffeeToppings", coffee.getAddIns());
-                //intent.putExtra("orderType", "coffee");
                 OrderBasketActivity.addToOrder(coffee);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Order added", Toast.LENGTH_SHORT);

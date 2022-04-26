@@ -36,7 +36,6 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean add(Object o) {
         boolean added = false;
         if(o instanceof String) {
-            //this.total += ADDINPRICE;
             addIns.add((String)o);
             added = true;
         }
@@ -52,7 +51,6 @@ public class Coffee extends MenuItem implements Customizable{
     public boolean remove(Object o) {
         boolean removed = false;
         if (o instanceof String) {
-            //this.total -= ADDINPRICE;
             addIns.remove(o);
             removed = true;
         }
@@ -81,14 +79,6 @@ public class Coffee extends MenuItem implements Customizable{
             default:
                 this.total = 0;
         }
-
-        /*if(addIns.size() != 0) {
-            for (int i = 0; i < addIns.size(); i++) {
-                this.total += ADDINPRICE;
-            }
-        }
-
-         */
         return this.total;
     }
 
@@ -116,30 +106,6 @@ public class Coffee extends MenuItem implements Customizable{
      */
     public void setSize(String size) {
         this.size = size;
-    }
-
-    /**
-     * Getter for addins
-     * @return addins
-     */
-    public ArrayList<String> getAddIns() {
-        return addIns;
-    }
-
-    /**
-     * Getter for coffee size
-     * @return size of coffee
-     */
-    public String getSize() {
-        return this.size;
-    }
-
-    /**
-     * Setter for total of coffee order
-     * @param total
-     */
-    public void setTotal(double total) {
-        this.total = total;
     }
 
 }

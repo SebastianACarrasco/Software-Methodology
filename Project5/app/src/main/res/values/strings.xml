@@ -29,6 +29,9 @@
     <string name="subtotalText">subtotal</string>
     <string name="taxText">taxes</string>
     <string name="subWTaxText">total with tax</string>
+    <string name="donut_flavor">Donut Flavor</string>
+    <string name="donut_price">Donut Price</string>
+    <string name="add_to_order">Add to order</string>
     <string-array name = "donutFlavors">
         <item>Yeast Strawberry</item>
         <item>Yeast Plain</item>
