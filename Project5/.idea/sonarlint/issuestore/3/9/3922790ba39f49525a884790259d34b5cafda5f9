@@ -1,14 +1,0 @@
-
-o
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ï™ˆÑ
-
-java:S1319}"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(®ç¿¶8ñ÷’Åƒ0
-2
-java:S1643l"Use a StringBuilder instead.(˜ÉÊƒ
-X	java:S125'"<This block of commented-out lines of code should be removed.(Î·Ê8–Ãùôƒ0
-]	java:S1257"<This block of commented-out lines of code should be removed.(¼¼€ƒüÿÿÿÿ8™Ãùôƒ0
-]	java:S125U"<This block of commented-out lines of code should be removed.(ÉïÚ¼ÿÿÿÿÿ8€Íº¦ƒ0
-Y
-java:S1155h">Use isEmpty() to check whether the collection is empty or not.(Œ²Ôüÿÿÿÿ
-K
-java:S1068".Remove this unused "ADDINPRICE" private field.(¹í‘×8Ãùôƒ0
