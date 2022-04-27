@@ -2,6 +2,7 @@ package com.example.project5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +32,8 @@ public class DonutsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donuts);
         donut = new Donuts();
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Donuts");
         recyclerView = findViewById(R.id.recyclerview);
         flavors = getResources().getStringArray(R.array.donutFlavors);
         prices = getResources().getStringArray(R.array.donutPrices);
