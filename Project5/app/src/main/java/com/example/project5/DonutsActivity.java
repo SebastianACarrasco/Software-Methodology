@@ -13,6 +13,11 @@ import org.w3c.dom.Text;
 
 import java.util.Arrays;
 
+/**
+ *Class for creating donut orders. There will be donut type, flavor, and quantity.
+ *
+ *@author Sebastian Carrasco, Rachael Chin
+ */
 public class DonutsActivity extends AppCompatActivity{
 
     private RecyclerView recyclerView;
@@ -29,6 +34,10 @@ public class DonutsActivity extends AppCompatActivity{
             R.drawable.jelly, R.drawable.butternut, R.drawable.maple,
             R.drawable.rainbow, R.drawable.toasted};
 
+    /**
+     * will create a recylcer view and get all the necessary information
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,70 +51,11 @@ public class DonutsActivity extends AppCompatActivity{
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        /*
-        type = (TextView) findViewById(R.id.myText);
-        setDonutType(type);
-        price = (TextView) findViewById(R.id.myPrice);
-        setDonutPrice(price);
-        OrderBasketActivity.addToOrder(donut);
-
-        Button submit = findViewById(R.id.addDonutsButton);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DonutsActivity.this, OrderBasketActivity.class);
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Order added", Toast.LENGTH_SHORT);
-                toast.show();
-                resetOrder();
-                startActivity(intent);
-            }
-        });
-
-         */
-
-    }
-
-    private void resetOrder() {
-        donut = new Donuts();
-        donutsTotal = 0;
     }
 
     /**
-     * Setter the donut type.
-     * @param type
+     * start the activity and intent based on the main menu
      */
-    public void setDonutType(TextView type) {
-        this.donutType= type.getText().toString();
-    }
-
-    /**
-     * Getter for donut type.
-     * @return donut type
-     */
-    public String getDonutType() {
-        return donutType;
-    }
-
-    /**
-     * Setter the donut price.
-     * @param price
-     */
-    public void setDonutPrice(TextView price) {
-        this.donutPrice = price.getText().toString();
-        String[] result = donutPrice.split("$");
-        this.donutsTotal = Double.parseDouble(Arrays.toString(result));
-    }
-
-    /**
-     * Getter for donut price.
-     * @return donut price
-     */
-    public String getDonutPrice() {
-        return donutPrice;
-    }
-
-
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
