@@ -59,42 +59,43 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 }
             });
         }
-    }
 
-    private void addDonutOnClick(View itemView) {
-        addDonut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                builder.setMessage("Do you want to add this to order?");
-                builder.setTitle("Alert!");
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(itemView.getContext(), myDonut.getText().toString() + "was wadded to basket.",
-                                Toast.LENGTH_LONG).show();
-                        String donutDetails[] = myDonut.getText().toString().split("\\s+");
-                        String type = donutDetails[0];
-                        String flavor = donutDetails[1];
+        private void addDonutOnClick(View itemView) {
+            addDonut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                    builder.setMessage("Do you want to add this to order?");
+                    builder.setTitle("Alert!");
 
-                        int amount = 1;
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(itemView.getContext(), myDonut.getText().toString() + "was wadded to basket.",
+                                    Toast.LENGTH_LONG).show();
+                            String donutDetails[] = myDonut.getText().toString().split("\\s+");
+                            String type = donutDetails[0];
+                            String flavor = donutDetails[1];
 
-                        Donuts donut = new Donuts(type, flavor, amount);
-                        MainActivity.addToOrder(donut);
-                    }
-                }).setNegativeButton("no", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(itemView.getContext(), myDonut.gettext().toString()
-                                + "was not added.", Toast.LENGTH_LONG).show();
-                    }
-                });
+                            int amount = 1;
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+                            Donuts donut = new Donuts(type, flavor, amount);
+                            OrderBasketActivity.addToOrder(donut);
+                        }
+                    }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(itemView.getContext(), myDonut.getText().toString()
+                                    + "was not added.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+        }
     }
 
 
