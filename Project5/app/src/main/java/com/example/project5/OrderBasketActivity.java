@@ -9,15 +9,23 @@ import android.content.Intent;
 import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
-import androidx.core.app.ActivityCompat;
-
 import java.util.ArrayList;
 
+
+/**
+ * This code for the main activity of order basket which deals with displaying the order and placing it,
+ * as well as customizing the current order.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
 public class OrderBasketActivity extends AppCompatActivity{
     private static Order order = new Order();
     private static ArrayList<String> orderList = new ArrayList<>();
-    //private static ArrayList<String> storeOrders = new ArrayList<>();
 
+    /**
+     * This method is called when the activity is created and sets the data to display.
+     * @param savedInstanceState
+     */
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +53,6 @@ public class OrderBasketActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if(arrayAdapter.getCount() != 0) {
                     Intent intent = new Intent(OrderBasketActivity.this, StoreOrderActivity.class);
-                    //storeOrders.add(order.toString());
-                    //intent.putExtra("orderList", storeOrders);
                     MainActivity.addToDB(order.toString());
                     Toast toast = Toast.makeText(getApplicationContext(), "Order placed!", Toast.LENGTH_LONG);
                     for (int i = 0; i < orderList.size(); i++) {
@@ -56,12 +62,12 @@ public class OrderBasketActivity extends AppCompatActivity{
                         listView.getChildAt(i).setVisibility(View.GONE);
                     }
                     order = new Order();
+                    arrayAdapter.clear();
                     arrayAdapter.notifyDataSetChanged();
                     subtotal.setText("0.00");
                     tax.setText("0.00");
                     totalWTax.setText("0.00");
                     toast.show();
-                    //startActivity(intent);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please add an item to your order!", Toast.LENGTH_LONG);
                     toast.show();
@@ -102,11 +108,18 @@ public class OrderBasketActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * When user clicks back button, go back to the main activity
+     */
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    /**
+     * Static method used to add the item to the order list from any activity
+     * @param item
+     */
     public static void addToOrder(MenuItem item) {
         order.add(item);
         orderList.add(item.toString());

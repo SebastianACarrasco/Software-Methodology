@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -34,7 +33,6 @@ public class StoreOrderActivity extends AppCompatActivity{
         ListView listView = findViewById(R.id.storeOrderView);
 
         Intent intent = getIntent();
-        //list = intent.getStringArrayListExtra("orderList");
         list = intent.getStringArrayListExtra("db");
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);

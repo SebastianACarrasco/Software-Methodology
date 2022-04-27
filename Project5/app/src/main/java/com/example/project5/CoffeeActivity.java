@@ -1,5 +1,6 @@
 package com.example.project5;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
@@ -12,9 +13,13 @@ import android.widget.Toast;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Button;
-import java.util.ArrayList;
 
-
+/**
+ * This activity displays the coffee order form that the user fills out to customize order.
+ * It includes selecting the size and adding toppings.
+ *
+ * @author Sebastian Carrasco, Rachael Chin
+ */
 public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private String[] sizes = {"short", "tall", "grande", "venti"};
     private String size = "";
@@ -23,6 +28,11 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
     private double coffeeTotal = 0;
     private TextView text;
 
+    /**
+     * This method is called when the user clicks the "Coffee" button from the homepage and opens up the
+     * coffee activity.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +91,6 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
-
-
         Button submit = findViewById(R.id.addCoffeeButton);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +106,13 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
+    /**
+     * Sets the data for the coffee order object.
+     * @param arg0
+     * @param arg1
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView arg0, View arg1, int position, long id) {
         size = sizes[position];
@@ -106,20 +121,34 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         printSubTotal();
     }
 
+    /**
+     * If nothing is selected, the default size is small.
+     * @param arg0
+     */
     @Override
     public void onNothingSelected(AdapterView arg0) {}
 
+    /**
+     * When the users clicks the back button, it goes back to the home screen.
+     */
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    /**
+     * Resets order upon submission.
+     */
     private void resetOrder() {
         coffee = new Coffee();
         coffeeTotal = 0;
         printSubTotal();
     }
 
+    /**
+     * Helper method that adds cream to the coffee order and price.
+     * @param view
+     */
     public void cream(View view) {
         if (view.getId() == R.id.cream && ((CheckBox) view).isChecked()) {
             coffee.add("Cream");
@@ -131,6 +160,10 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         printSubTotal();
     }
 
+    /**
+     * Helper method that adds syrup to the coffee order and price.
+     * @param view
+     */
     public void syrup(View view) {
         if (view.getId() == R.id.syrup && ((CheckBox) view).isChecked()) {
             coffee.add("Syrup");
@@ -142,6 +175,10 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         printSubTotal();
     }
 
+    /**
+     * Helper method that adds milk to the coffee order and price.
+     * @param view
+     */
     public void milk(View view) {
         if (view.getId() == R.id.milk && ((CheckBox) view).isChecked()) {
             coffee.add("Milk");
@@ -153,6 +190,10 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         printSubTotal();
     }
 
+    /**
+     * Helper method that adds caramel to the coffee order and price.
+     * @param view
+     */
     public void caramel(View view) {
         if (view.getId() == R.id.caramel && ((CheckBox) view).isChecked()) {
             coffee.add("Caramel");
@@ -164,6 +205,10 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         printSubTotal();
     }
 
+    /**
+     * Helper method that adds whipped cream to the coffee order and price.
+     * @param view
+     */
     public void whippedCream(View view) {
         if (view.getId() == R.id.whippedcream && ((CheckBox) view).isChecked()) {
             coffee.add("WhippedCream");
@@ -175,6 +220,10 @@ public class CoffeeActivity extends AppCompatActivity implements AdapterView.OnI
         printSubTotal();
     }
 
+    /**
+     * Prints the subtotal of the coffee order.
+     */
+    @SuppressLint("DefaultLocale")
     public void printSubTotal() {
         text.setText(String.format("%.2f", this.coffeeTotal));
     }

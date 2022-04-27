@@ -66,56 +66,7 @@ public class Donuts extends MenuItem {
      */
     @Override
     public String toString() {
-        return "Donut: " + donutType + ", " + flavor + ", " + quantity;
-                //+ ", $" + String.format("%.2f", itemPrice());
-    }
-
-    /**
-     * Setter the donut type.
-     * @param donutType
-     */
-    public void setDonutType(String donutType) {
-        this.donutType = donutType;
-    }
-
-    /**
-     * Getter for donut type.
-     * @return donut type
-     */
-    public String getDonutType() {
-        return donutType;
-    }
-
-    /**
-     * Setter for flavor.
-     * @param flavor
-     */
-    public void setFlavor(String flavor) {
-        this.flavor = flavor;
-    }
-
-    /**
-     * Setter for quantity.
-     * @param quantity
-     */
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    /**
-     * Setter for total of donuts order
-     * @param total
-     */
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    /**
-     * Getter for donut flavor.
-     * @return flavor
-     */
-    public String getFlavor() {
-        return flavor;
+        return "Donut: " + donutType + ", " + flavor;
     }
 
 }

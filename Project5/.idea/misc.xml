@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_donuts.xml" value="0.165" />
         <entry key="app/src/main/res/layout/donut_flavors_list.xml" value="0.25" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/RU_logo.xml" value="0.1390625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ru_logo.xml" value="0.1390625" />
       </map>
     </option>
   </component>

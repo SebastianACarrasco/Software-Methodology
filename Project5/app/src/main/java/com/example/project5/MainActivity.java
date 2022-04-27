@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates the activity on the screen
+     * Creates the activity on the screen with all the buttons for the homepage.
      * @param savedInstanceState
      */
     @Override

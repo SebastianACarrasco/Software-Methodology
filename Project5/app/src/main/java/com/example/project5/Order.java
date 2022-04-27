@@ -9,14 +9,12 @@ import java.util.ArrayList;
  */
 public class Order implements Customizable {
     private static final double TAXRATE = 0.06625;
-    private static int ID;
     private ArrayList<MenuItem> items;
 
     /**
      * Constructor for Order
      */
     public Order() {
-        this.ID++;
         this.items = new ArrayList<>();
     }
 
@@ -104,14 +102,6 @@ public class Order implements Customizable {
         }
         return subTotal;
 
-    }
-
-    /**
-     * getter for order id
-     * @return int ID
-     */
-    public int getID() {
-        return this.ID;
     }
 
     /**

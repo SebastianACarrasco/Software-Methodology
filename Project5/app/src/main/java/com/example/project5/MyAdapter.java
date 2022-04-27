@@ -149,7 +149,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      *               an adapter position.
      * @param viewType The view type of the new View.
      *
-     * @return
+     * @return A new ViewHolder that holds a View of the given view type.
      */
     @NonNull
     @Override
