@@ -24,6 +24,13 @@ public class Donuts extends MenuItem {
         total = 0;
     }
 
+    public Donuts(String type, String flavor, int quantity) {
+        this.donutType = type;
+        this.flavor = flavor;
+        this.quantity = quantity;
+        total = itemPrice();
+    }
+
     /**
      * Sets the order price with given type and quantity.
      * @return total price of the order

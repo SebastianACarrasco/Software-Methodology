@@ -18,9 +18,6 @@ public class DonutsActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
     private String flavors[];
     private Donuts donut;
-    private static final double YEAST = 1.59;
-    private static final double CAKE = 1.79;
-    private static final double HOLES = 0.39;
     private double donutsTotal = 0;
     private String donutType;
     private TextView type;
@@ -45,6 +42,7 @@ public class DonutsActivity extends AppCompatActivity{
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        /*
         type = (TextView) findViewById(R.id.myText);
         setDonutType(type);
         price = (TextView) findViewById(R.id.myPrice);
@@ -63,6 +61,8 @@ public class DonutsActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+         */
 
     }
 

@@ -37,14 +37,14 @@
         <item>Yeast Plain</item>
         <item>Yeast Chocolate</item>
         <item>Yeast Berries</item>
-        <item>Cake Boston Cream</item>
+        <item>Cake Boston-sCream</item>
         <item>Cake Powdered</item>
         <item>Cake Glazed</item>
         <item>Cake Jelly</item>
         <item>Holes Butternut</item>
-        <item>Holes Maple Frosted</item>
-        <item>Holes Rainbow Sprinkles</item>
-        <item>Holes Toasted Coconut</item>
+        <item>Holes Maple-Frosted</item>
+        <item>Holes Rainbow-Sprinkles</item>
+        <item>Holes Toasted-Coconut</item>
     </string-array>
     <string-array name = "donutPrices">
         <item>$1.59</item>
