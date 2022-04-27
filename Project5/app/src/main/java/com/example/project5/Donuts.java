@@ -24,6 +24,12 @@ public class Donuts extends MenuItem {
         total = 0;
     }
 
+    /**
+     * Constructor for creating a donut given the parameters
+     * @param type
+     * @param flavor
+     * @param quantity
+     */
     public Donuts(String type, String flavor, int quantity) {
         this.donutType = type;
         this.flavor = flavor;
